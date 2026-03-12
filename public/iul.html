@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tax-Free Retirement for High Earners | Cornerstone Financial Partners</title>
+  <meta name="description" content="The tax-free retirement strategy high earners use after maxing out their 401(k). No contribution limits, tax-free income, zero market risk.">
+  <meta property="og:title" content="Tax-Free Retirement for High Earners | Cornerstone Financial">
+  <meta property="og:description" content="If you're earning $200K+ and tired of handing 30-40% of your returns to the IRS, there's a legal strategy most advisors never mention.">
+  <meta property="og:image" content="/og-image.png">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --green: #4CAF7C; --green-dark: #3d9467; --green-bg: #0f2a1a; --warm-white: #F5F1EB; --dark: #0a0a0a; --navy: #1B2A4A; --gold: #CBB26A; }
+    body { font-family: 'Georgia', serif; background: var(--warm-white); color: #1a1a1a; }
+
+    nav { background: var(--dark); padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-back { color: #ccc; text-decoration: none; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 14px; transition: color 0.2s; }
+    .nav-back:hover { color: var(--green); }
+
+    .hero { background: linear-gradient(135deg, var(--green-bg) 0%, var(--dark) 100%); color: white; padding: 60px 20px; text-align: center; }
+    .hero .eyebrow { color: var(--green); font-size: 13px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 16px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+    .hero h1 { font-size: clamp(26px, 5vw, 46px); line-height: 1.2; margin-bottom: 16px; max-width: 760px; margin-left: auto; margin-right: auto; }
+    .hero h1 span { color: var(--green); }
+    .hero p { font-size: 18px; color: #ccc; max-width: 580px; margin: 0 auto 32px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; }
+    .badge { display: inline-flex; gap: 24px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 13px; color: #aaa; flex-wrap: wrap; justify-content: center; }
+    .badge span::before { content: "\2713  "; color: var(--green); }
+
+    .container { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+    .form-section { background: white; border-radius: 12px; padding: 40px; box-shadow: 0 4px 24px rgba(0,0,0,0.1); margin: -40px auto 0; max-width: 560px; position: relative; }
+    .form-section h2 { font-size: 22px; margin-bottom: 8px; }
+    .form-section p { color: #666; font-size: 14px; margin-bottom: 24px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+    label { display: block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 13px; font-weight: 600; color: #444; margin-bottom: 6px; margin-top: 16px; }
+    input, select { width: 100%; padding: 12px 14px; border: 1.5px solid #ddd; border-radius: 8px; font-size: 15px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; transition: border-color 0.2s; }
+    input:focus, select:focus { outline: none; border-color: var(--green-bg); }
+    .sms-opt { display: flex; align-items: flex-start; gap: 10px; margin-top: 16px; }
+    .sms-opt input[type="checkbox"] { width: 18px; height: 18px; margin-top: 2px; flex-shrink: 0; }
+    .sms-opt label { font-size: 13px; color: #666; font-weight: normal; margin: 0; }
+    .submit-btn { width: 100%; padding: 18px; background: var(--green); color: #fff; font-size: 17px; font-weight: 700; border: none; border-radius: 8px; cursor: pointer; margin-top: 24px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; letter-spacing: 0.5px; transition: background 0.2s; }
+    .submit-btn:hover { background: var(--green-dark); }
+    .trust-line { text-align: center; font-size: 12px; color: #999; margin-top: 12px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+
+    .benefits-section { padding: 60px 20px; max-width: 760px; margin: 0 auto; }
+    .benefits-section h2 { font-size: 28px; text-align: center; margin-bottom: 8px; }
+    .benefits-section .sub { text-align: center; color: #666; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; margin-bottom: 32px; }
+    .benefits-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+    .benefit-item { background: white; border-radius: 10px; padding: 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); border-left: 4px solid var(--green); }
+    .benefit-item h3 { font-size: 15px; margin-bottom: 8px; }
+    .benefit-item p { font-size: 13px; color: #666; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.5; }
+
+    .who-section { background: #f0f0f0; padding: 50px 20px; }
+    .who-section .inner { max-width: 600px; margin: 0 auto; text-align: center; }
+    .who-section h2 { font-size: 24px; margin-bottom: 16px; }
+    .who-list { text-align: left; display: inline-block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 15px; line-height: 2; list-style: none; }
+    .who-list li::before { content: "\2713   "; color: var(--green); font-weight: bold; }
+    .disclaimer { padding: 24px 20px; text-align: center; font-size: 11px; color: #999; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 700px; margin: 0 auto; line-height: 1.6; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-back">&larr; Back to Cornerstone Financial</a>
+    <a href="https://calculator.cornerstone-fps.com" style="color: var(--green); text-decoration: none; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 14px; font-weight: 600;">Free Calculator</a>
+  </nav>
+
+  <section class="hero">
+    <div class="eyebrow">IRS-Approved Strategy &bull; No Contribution Limits &bull; Tax-Free</div>
+    <h1>The <span>Tax-Free Retirement Strategy</span> High Earners Use After Maxing Out Their 401(k)</h1>
+    <p>If you're earning $200K+ and tired of handing 30-40% of your returns to the IRS, there's a legal strategy most advisors never mention. See if you qualify in 60 seconds.</p>
+    <div class="badge">
+      <span>No contribution limits</span>
+      <span>Tax-free income</span>
+      <span>Zero market risk option</span>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="form-section">
+      <h2>Check Your Eligibility</h2>
+      <p>Answer 5 quick questions to see if this strategy makes sense for your situation.</p>
+
+      <!-- REPLACE action with your GHL webhook URL -->
+      <form action="YOUR_GHL_WEBHOOK_URL" method="POST">
+        <label for="fname">First Name</label>
+        <input type="text" id="fname" name="first_name" placeholder="Sarah" required>
+
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="sarah@email.com" required>
+
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" name="phone" placeholder="(555) 000-0000" required>
+
+        <label for="age">Age Range</label>
+        <select id="age" name="age_range" required>
+          <option value="">Select your age range</option>
+          <option value="35-39">35-39</option>
+          <option value="40-44">40-44</option>
+          <option value="45-49">45-49</option>
+          <option value="50-54">50-54</option>
+          <option value="55+">55+</option>
+        </select>
+
+        <label for="income">Approximate Annual Household Income</label>
+        <select id="income" name="income_range" required>
+          <option value="">Select a range</option>
+          <option value="150-200k">$150,000 &ndash; $199,999</option>
+          <option value="200-300k">$200,000 &ndash; $299,999</option>
+          <option value="300-500k">$300,000 &ndash; $499,999</option>
+          <option value="500k+">$500,000+</option>
+        </select>
+
+        <label for="profile">Best describes you</label>
+        <select id="profile" name="profile_type" required>
+          <option value="">Select one</option>
+          <option value="w2">W-2 Employee / Executive</option>
+          <option value="business_owner">Business Owner</option>
+          <option value="both">Both (W-2 + Business Income)</option>
+          <option value="professional">Self-Employed Professional</option>
+        </select>
+
+        <div class="sms-opt">
+          <input type="checkbox" id="sms_opt" name="sms_opt_in" value="yes">
+          <label for="sms_opt">Text me tax-free retirement tips and updates (standard rates apply)</label>
+        </div>
+
+        <button type="submit" class="submit-btn">Check My Eligibility &rarr;</button>
+        <p class="trust-line">No obligation &bull; No spam &bull; Your information is 100% private</p>
+      </form>
+    </div>
+  </div>
+
+  <div class="benefits-section">
+    <h2>Why High Earners Are Using This Strategy</h2>
+    <p class="sub">Indexed Universal Life (IUL) does things a 401(k) simply can't</p>
+    <div class="benefits-list">
+      <div class="benefit-item">
+        <h3>No Contribution Limits</h3>
+        <p>Unlike a 401(k) capped at $23K/year, you can fund this strategy with $50K, $100K, or more annually.</p>
+      </div>
+      <div class="benefit-item">
+        <h3>Tax-Free Income</h3>
+        <p>Retirement income comes out tax-free via policy loans — not counted as taxable income.</p>
+      </div>
+      <div class="benefit-item">
+        <h3>Zero Market Risk</h3>
+        <p>Your cash value is indexed to market growth but protected from losses. You never go backwards.</p>
+      </div>
+      <div class="benefit-item">
+        <h3>Living Benefits</h3>
+        <p>Access your death benefit early if diagnosed with a chronic, critical, or terminal illness.</p>
+      </div>
+    </div>
+  </div>
+
+  <section class="who-section">
+    <div class="inner">
+      <h2>This Strategy Is Best For People Who:</h2>
+      <ul class="who-list">
+        <li>Have maxed out their 401(k) or IRA</li>
+        <li>Earn $150K+ and want to reduce their tax burden</li>
+        <li>Own a business and want to shelter more income</li>
+        <li>Want retirement income with zero market risk</li>
+        <li>Are looking for estate planning advantages</li>
+        <li>Want a death benefit that also works while alive</li>
+      </ul>
+    </div>
+  </section>
+
+  <p class="disclaimer">
+    Cornerstone Financial Partners. This is not investment advice. Indexed Universal Life Insurance involves insurance products and is subject to underwriting, carrier approval, and policy terms. Tax advantages depend on proper policy structure and individual circumstances. Consult a licensed professional before making financial decisions.
+  </p>
+
+</body>
+</html>

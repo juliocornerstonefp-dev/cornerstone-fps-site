@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cornerstone Financial Partners | Retirement Income Planning</title>
+  <meta name="description" content="Independent retirement income planning for pre-retirees. Free Retirement Income Gap Calculator. Virtual consultations nationwide.">
+  <meta property="og:title" content="Cornerstone Financial Partners | Retirement Income Planning">
+  <meta property="og:description" content="See how much guaranteed monthly income you could lock in — without market risk. Free 60-second calculator.">
+  <meta property="og:image" content="/og-image.png">
+  <meta property="og:url" content="https://cornerstone-fps.com">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <!-- META PIXEL — Replace YOUR_PIXEL_ID with your actual Meta Pixel ID -->
+  <!--
+  <script>
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+  document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', 'YOUR_PIXEL_ID');
+  fbq('track', 'PageView');
+  </script>
+  -->
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #1B2A4A;
+      --gold: #CBB26A;
+      --gold-dark: #b89e52;
+      --warm-white: #F5F1EB;
+      --dark: #0a0a0a;
+      --text: #1a1a1a;
+      --text-light: #666;
+      --text-muted: #999;
+    }
+    body { font-family: 'Georgia', 'Times New Roman', serif; background: var(--warm-white); color: var(--text); -webkit-font-smoothing: antialiased; }
+    .sans { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+
+    /* Nav */
+    nav { background: var(--dark); padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+    .nav-logo { height: 36px; width: auto; }
+    .nav-links { display: flex; gap: 28px; align-items: center; }
+    .nav-links a { color: #ccc; text-decoration: none; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 14px; letter-spacing: 0.3px; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta { background: var(--gold); color: var(--dark); padding: 10px 20px; border-radius: 6px; font-weight: 600; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; transition: background 0.2s; }
+    .nav-cta:hover { background: var(--gold-dark); color: var(--dark) !important; }
+    .mobile-menu { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+    .mobile-menu svg { width: 24px; height: 24px; fill: #ccc; }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--dark) 100%);
+      color: white;
+      padding: 80px 24px 100px;
+      text-align: center;
+    }
+    .hero .eyebrow { color: var(--gold); font-size: 13px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 20px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+    .hero h1 { font-size: clamp(30px, 5vw, 52px); line-height: 1.15; margin-bottom: 20px; max-width: 780px; margin-left: auto; margin-right: auto; }
+    .hero h1 span { color: var(--gold); }
+    .hero p { font-size: 18px; color: #bbb; max-width: 580px; margin: 0 auto 36px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.7; }
+    .hero-cta { display: inline-block; background: var(--gold); color: var(--dark); padding: 18px 40px; border-radius: 8px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 17px; font-weight: 700; text-decoration: none; letter-spacing: 0.5px; transition: background 0.2s, transform 0.2s; }
+    .hero-cta:hover { background: var(--gold-dark); transform: translateY(-1px); }
+    .hero-badges { display: flex; gap: 28px; justify-content: center; margin-top: 28px; flex-wrap: wrap; }
+    .hero-badges span { color: #888; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 13px; }
+    .hero-badges span::before { content: "\2713  "; color: var(--gold); }
+
+    /* Section */
+    .section { padding: 72px 24px; max-width: 1000px; margin: 0 auto; }
+    .section h2 { font-size: clamp(24px, 3.5vw, 36px); text-align: center; margin-bottom: 12px; }
+    .section .subtitle { text-align: center; color: var(--text-light); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 16px; line-height: 1.6; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto; }
+
+    /* Steps */
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 32px; margin-top: 40px; }
+    .step { text-align: center; padding: 32px 20px; }
+    .step-num { display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; background: var(--navy); color: var(--gold); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 20px; font-weight: 700; border-radius: 50%; margin-bottom: 16px; }
+    .step h3 { font-size: 18px; margin-bottom: 8px; }
+    .step p { font-size: 14px; color: var(--text-light); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; }
+
+    /* Cards */
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
+    .card { background: white; border-radius: 12px; padding: 32px 28px; box-shadow: 0 2px 16px rgba(0,0,0,0.06); border-top: 3px solid var(--gold); }
+    .card h3 { font-size: 17px; margin-bottom: 10px; }
+    .card p { font-size: 14px; color: var(--text-light); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; }
+
+    /* Services */
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px; margin-top: 40px; }
+    .service { background: white; border-radius: 12px; padding: 36px 28px; box-shadow: 0 2px 16px rgba(0,0,0,0.06); text-align: center; transition: transform 0.2s, box-shadow 0.2s; }
+    .service:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,0,0,0.1); }
+    .service-icon { font-size: 36px; margin-bottom: 16px; }
+    .service h3 { font-size: 18px; margin-bottom: 10px; }
+    .service p { font-size: 14px; color: var(--text-light); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; margin-bottom: 16px; }
+    .service-link { color: var(--navy); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 14px; font-weight: 600; text-decoration: none; }
+    .service-link:hover { color: var(--gold-dark); }
+
+    /* About */
+    .about { background: var(--navy); color: white; padding: 72px 24px; }
+    .about-inner { max-width: 700px; margin: 0 auto; text-align: center; }
+    .about h2 { font-size: clamp(24px, 3.5vw, 34px); margin-bottom: 20px; }
+    .about p { color: #bbb; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 16px; line-height: 1.8; margin-bottom: 16px; }
+    .about-highlights { display: flex; gap: 32px; justify-content: center; flex-wrap: wrap; margin-top: 28px; }
+    .about-highlights span { color: var(--gold); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 14px; font-weight: 600; }
+
+    /* CTA Banner */
+    .cta-banner { background: linear-gradient(135deg, var(--dark) 0%, var(--navy) 100%); color: white; padding: 64px 24px; text-align: center; }
+    .cta-banner h2 { font-size: clamp(22px, 3.5vw, 32px); margin-bottom: 16px; }
+    .cta-banner p { color: #aaa; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 16px; margin-bottom: 28px; max-width: 500px; margin-left: auto; margin-right: auto; line-height: 1.6; }
+    .cta-banner a { display: inline-block; background: var(--gold); color: var(--dark); padding: 16px 36px; border-radius: 8px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 16px; font-weight: 700; text-decoration: none; transition: background 0.2s; }
+    .cta-banner a:hover { background: var(--gold-dark); }
+
+    /* Footer */
+    footer { background: var(--dark); color: #888; padding: 40px 24px; text-align: center; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+    .footer-links { display: flex; gap: 24px; justify-content: center; margin-bottom: 20px; flex-wrap: wrap; }
+    .footer-links a { color: #888; text-decoration: none; font-size: 13px; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-disclaimer { max-width: 700px; margin: 0 auto; font-size: 11px; line-height: 1.8; color: #666; }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 68px; left: 0; right: 0; background: var(--dark); padding: 20px 24px; gap: 16px; border-top: 1px solid #222; }
+      .mobile-menu { display: block; }
+      .hero { padding: 56px 20px 72px; }
+      .section { padding: 48px 20px; }
+      .about { padding: 48px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <svg class="nav-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3162 587" role="img" aria-label="Cornerstone Financial Partners">
+      <g transform="scale(8.112) translate(10, 10)">
+        <defs><linearGradient id="g1"><stop stop-color="#905e26" offset="0"/><stop stop-color="#f5ec9b" offset="0.5"/><stop stop-color="#905e26" offset="1"/></linearGradient></defs>
+        <g transform="matrix(0.0831,0,0,0.0831,0,7.02)" fill="url(#g1)"><g><path d="M0 333c0,0 106,-65 145,-80 39,-15 62,-23 100,-52 39,-30 88,-91 105,-104 17,-12 17,-8 49,-19 40,-14 95,-98 116,-74 12,15 44,107 58,69 6,-16 19,-42 32,-32 14,11 11,9 25,60 14,51 20,48 38,66 19,17 5,9 25,49 21,40 62,85 77,109 10,18 18,32 21,37 -44,-14 -127,-38 -223,-54 -9,-17 -10,-45 -12,-55 -8,-40 -60,-28 -42,-61 6,-13 89,-89 61,-85 -17,3 -47,9 -53,12 -85,36 20,-84 -66,-47 -8,4 -31,0 -45,15 -13,15 -31,-3 -47,15 -16,18 -6,26 -32,47 -25,21 -24,22 -46,37 -21,15 -24,36 -43,43 -18,7 -53,24 -65,24 -13,0 -63,30 -69,36 -5,7 -109,44 -109,44z"/><path d="M35 356c0,0 212,-57 406,-43 193,14 379,81 379,81l-72 19c-156,-59 -317,-77 -317,-77 0,0 154,49 243,97l-121 31c0,0 -125,-75 -209,-99 -83,-24 -309,-9 -309,-9z"/></g></g>
+        <g transform="matrix(0.86,0,0,0.86,86.1,-9.77)" fill="url(#g1)"><path d="M18 40.64c-6.72 0-15.8-3.92-15.8-14.12 0-6.92 4.24-15.16 15.44-15.16 4.64 0 8.64 1.44 8.16 2.84l-0.52 1.56c-1.44 4.28-3-1.2-10.12-1.2-5.72 0-8.52 3.72-8.52 9.48 0 9 6.84 12.76 12.32 12.76 0.72 0 4.36-0.56 6.44-1.88 0.32-0.2 1.16 0.72 0.92 1.08-1.72 2.52-7.08 4.64-8.32 4.64zM45 40.64c-8.32 0-14.44-6.16-14.44-14.48 0-8.08 5.76-14.8 14.52-14.8 8.36 0 14.44 6.12 14.44 14.44 0 8.12-5.72 14.84-14.52 14.84zM46.56 37.92c3.52 0 8.2-2.32 8.2-9.88 0-8.08-5.48-13.96-11.24-13.96-3.52 0-8.16 2.32-8.16 9.84 0 8.16 5.48 14 11.2 14z"/></g>
+      </g>
+    </svg>
+    <button class="mobile-menu" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">
+      <svg viewBox="0 0 24 24"><path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z"/></svg>
+    </button>
+    <div class="nav-links">
+      <a href="#how-it-works">How It Works</a>
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="https://calculator.cornerstone-fps.com" class="nav-cta">Free Calculator</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="eyebrow">Free Retirement Income Assessment</div>
+    <h1>Do You Have a <span>Retirement Income Gap?</span></h1>
+    <p>Find out in 60 seconds with our free calculator. See the exact gap between what you'll have and what you'll need — and what you can do about it today.</p>
+    <a href="https://calculator.cornerstone-fps.com" class="hero-cta">Check My Income Gap</a>
+    <div class="hero-badges">
+      <span>Takes 60 seconds</span>
+      <span>No login required</span>
+      <span>100% private</span>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <div class="section" id="how-it-works">
+    <h2>How It Works</h2>
+    <p class="subtitle">Three steps to see where you stand — and what you can do about it.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Enter Your Numbers</h3>
+        <p>Your age, retirement target, current savings, and desired monthly income. That's it — 4 inputs, 60 seconds.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>See Your Gap</h3>
+        <p>Our calculator projects your shortfall (or surplus), shows how much guaranteed income today's rates could lock in, and compares strategies side-by-side.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Get a Game Plan</h3>
+        <p>Book a free 15-minute call with Julio to walk through your results and discuss the right strategy for your situation. No pressure, no obligation.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- What You'll Discover -->
+  <div style="background: white; padding: 72px 24px;">
+    <div style="max-width: 1000px; margin: 0 auto;">
+      <h2 style="font-size: clamp(24px, 3.5vw, 36px); text-align: center; margin-bottom: 40px;">What You'll Discover</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Your Income Gap</h3>
+          <p>The exact monthly shortfall between what your savings will generate and what you'll need in retirement — a number most people never see until it's too late.</p>
+        </div>
+        <div class="card">
+          <h3>Today's Guaranteed Rates</h3>
+          <p>With rates at 15-year highs, the income you can lock in right now is significantly more than 12 months ago. See your personalized estimate before rates change.</p>
+        </div>
+        <div class="card">
+          <h3>Your Market Exposure</h3>
+          <p>What a 20-30% market correction would do to your specific retirement timeline — and whether your current plan can withstand it.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Services -->
+  <div class="section" id="services">
+    <h2>How We Help</h2>
+    <p class="subtitle">Cornerstone Financial Partners specializes in retirement income strategies for pre-retirees.</p>
+    <div class="services-grid">
+      <div class="service">
+        <div class="service-icon" role="presentation">&#128202;</div>
+        <h3>Retirement Income Planning</h3>
+        <p>Guaranteed income strategies using fixed indexed annuities. Lock in rates, protect your principal, and create a paycheck that lasts as long as you do.</p>
+        <a href="/annuity" class="service-link">Learn More &rarr;</a>
+      </div>
+      <div class="service">
+        <div class="service-icon" role="presentation">&#128176;</div>
+        <h3>Tax-Free Growth Strategies</h3>
+        <p>For high earners who've maxed out their 401(k). Indexed Universal Life strategies with no contribution limits, tax-free income, and zero market risk.</p>
+        <a href="/iul" class="service-link">Learn More &rarr;</a>
+      </div>
+      <div class="service">
+        <div class="service-icon" role="presentation">&#128640;</div>
+        <h3>Full Retirement Readiness Review</h3>
+        <p>A comprehensive look at your savings, Social Security timing, tax bracket strategy, and income floor — so you can retire with confidence, not anxiety.</p>
+        <a href="https://calculator.cornerstone-fps.com" class="service-link">Start With the Calculator &rarr;</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- About -->
+  <section class="about" id="about">
+    <div class="about-inner">
+      <h2>About Julio</h2>
+      <p>I'm an independent financial professional specializing in retirement income strategies. I work with pre-retirees and retirees who want clarity about their income, not another sales pitch.</p>
+      <p>Every plan starts with your numbers — not a product. I'll show you where you stand, what the options look like, and help you decide what's right for your situation. Virtual consultations available nationwide.</p>
+      <div class="about-highlights">
+        <span>Independent Advisor</span>
+        <span>Virtual Nationwide</span>
+        <span>No-Pressure Approach</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-banner">
+    <h2>Ready to See Where You Stand?</h2>
+    <p>It takes 60 seconds, costs nothing, and could change how you think about retirement.</p>
+    <a href="https://calculator.cornerstone-fps.com">Run the Free Calculator</a>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/annuity">Guaranteed Income</a>
+      <a href="/iul">Tax-Free Growth</a>
+      <a href="https://calculator.cornerstone-fps.com">Calculator</a>
+    </div>
+    <p class="footer-disclaimer">
+      Cornerstone Financial Partners &copy; 2026. This is not investment advice. Guaranteed income products involve insurance contracts and are subject to carrier terms and conditions. Results are illustrative and based on current market rates, which are subject to change. Past performance is not indicative of future results. Consult a licensed professional before making financial decisions.
+    </p>
+  </footer>
+
+</body>
+</html>
