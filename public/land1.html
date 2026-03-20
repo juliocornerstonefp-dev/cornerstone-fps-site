@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cornerstone Financial Partners | Free Retirement Clarity Session</title>
+  <meta name="description" content="See exactly how to turn $500K+ into retirement income that lasts. Book a free session with a retirement income specialist.">
+  <meta property="og:title" content="Cornerstone Financial Partners | Free Retirement Clarity Session">
+  <meta property="og:description" content="Get a custom income, tax, and protection roadmap — built for adults 55+ who want clarity, not confusion.">
+  <meta property="og:url" content="https://cornerstone-fps.com/land1">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --gold: #B8860B;
+      --gold-hover: #D4A843;
+      --gold-subtle: #F8F3E8;
+      --gold-border: #E8D5A8;
+      --dark: #1A1A1A;
+      --body: #4A4A4A;
+      --light: #7A7A7A;
+      --muted: #A0A0A0;
+      --bg: #FFFFFF;
+      --bg-alt: #FAFAF8;
+      --bg-warm: #F5F3EE;
+      --border: #EDEBE6;
+      --footer-bg: #2C2416;
+      --serif: 'Playfair Display', Georgia, serif;
+      --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--body);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.6;
+    }
+
+    /* ── TOPBAR ── */
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 24px;
+      background: var(--footer-bg);
+      color: rgba(255,255,255,0.7);
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.2px;
+    }
+    .topbar strong { color: var(--gold-hover); font-weight: 600; }
+
+    /* ── NAV ── */
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 40px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      height: 36px;
+      width: auto;
+    }
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 24px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      background: var(--gold);
+      color: #fff;
+      font-family: var(--sans);
+      transition: all 0.3s ease;
+      letter-spacing: 0.3px;
+    }
+    .nav-cta:hover {
+      background: var(--gold-hover);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--bg);
+      padding: 80px 24px 80px;
+      text-align: center;
+      position: relative;
+    }
+    .hero-inner {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: 500;
+      line-height: 1.2;
+      color: var(--dark);
+      margin-bottom: 24px;
+      letter-spacing: -0.5px;
+    }
+    .hero-sub {
+      font-size: 18px;
+      color: var(--light);
+      line-height: 1.75;
+      max-width: 540px;
+      margin: 0 auto 40px;
+      font-weight: 300;
+    }
+    .hero-cta-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 16px 40px;
+      border-radius: 6px;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      font-family: var(--sans);
+      letter-spacing: 0.3px;
+    }
+    .btn-primary {
+      background: var(--gold);
+      color: #fff;
+    }
+    .btn-primary:hover {
+      background: var(--gold-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(184,134,11,0.2);
+    }
+    .btn-primary svg { width: 16px; height: 16px; fill: #fff; }
+    .hero-note {
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    /* ── TRUST BAR ── */
+    .trust-bar {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      padding: 40px 24px;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
+      flex-wrap: wrap;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--dark);
+    }
+    .trust-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--gold-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .trust-icon svg { width: 16px; height: 16px; fill: var(--gold); }
+
+    /* ── SECTION ── */
+    .section {
+      padding: 100px 24px;
+    }
+    .section-inner {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .section-header {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 64px;
+    }
+    .section-eyebrow {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(26px, 3.5vw, 36px);
+      font-weight: 500;
+      line-height: 1.3;
+      color: var(--dark);
+      margin-bottom: 16px;
+      letter-spacing: -0.3px;
+    }
+    .section-desc {
+      font-size: 16px;
+      color: var(--light);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    /* ── PILLARS ── */
+    .pillars { background: var(--bg-alt); }
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .pillar {
+      background: var(--bg);
+      padding: 48px 36px;
+    }
+    .pillar-num {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+    }
+    .pillar h3 {
+      font-family: var(--serif);
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--dark);
+      margin-bottom: 12px;
+      letter-spacing: -0.2px;
+    }
+    .pillar p {
+      font-size: 15px;
+      color: var(--light);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    /* ── DELIVERABLES ── */
+    .deliverables { background: var(--bg); }
+    .deliver-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+    .deliver-item {
+      position: relative;
+    }
+    .deliver-line {
+      width: 32px;
+      height: 2px;
+      background: var(--gold);
+      margin-bottom: 24px;
+    }
+    .deliver-item h3 {
+      font-family: var(--serif);
+      font-size: 19px;
+      font-weight: 500;
+      color: var(--dark);
+      margin-bottom: 12px;
+      letter-spacing: -0.2px;
+    }
+    .deliver-item p {
+      font-size: 15px;
+      color: var(--light);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    /* ── AIRPLANE ── */
+    .airplane {
+      background: var(--bg-warm);
+    }
+    .airplane-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .airplane-left .section-eyebrow { text-align: left; }
+    .airplane-left .section-title {
+      text-align: left;
+      margin-bottom: 20px;
+    }
+    .airplane-left .section-desc {
+      text-align: left;
+      margin-bottom: 32px;
+    }
+    .airplane-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--gold);
+      text-decoration: none;
+      transition: gap 0.2s;
+    }
+    .airplane-cta:hover { gap: 12px; }
+    .airplane-cta svg { width: 16px; height: 16px; fill: var(--gold); }
+    .airplane-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .airplane-cell {
+      background: var(--bg);
+      padding: 28px 24px;
+    }
+    .airplane-cell h4 {
+      font-family: var(--serif);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 6px;
+    }
+    .airplane-cell p {
+      font-size: 13px;
+      color: var(--light);
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials { background: var(--bg); }
+    .testi-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+    .testi-card {
+      padding: 40px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--bg);
+    }
+    .testi-quote {
+      font-family: var(--serif);
+      font-size: 36px;
+      color: var(--gold-border);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+    .testi-card blockquote {
+      font-size: 16px;
+      color: var(--body);
+      line-height: 1.75;
+      font-weight: 300;
+      font-style: normal;
+      margin-bottom: 24px;
+    }
+    .testi-divider {
+      width: 24px;
+      height: 1px;
+      background: var(--border);
+      margin-bottom: 16px;
+    }
+    .testi-name {
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--dark);
+    }
+    .testi-detail {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    /* ── FORM SECTION ── */
+    .form-section {
+      background: var(--bg-alt);
+      padding: 100px 24px;
+    }
+    .form-layout {
+      max-width: 960px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .form-left .section-eyebrow { text-align: left; }
+    .form-left .section-title {
+      text-align: left;
+      margin-bottom: 20px;
+    }
+    .form-left-desc {
+      font-size: 16px;
+      color: var(--light);
+      line-height: 1.75;
+      font-weight: 300;
+      margin-bottom: 32px;
+    }
+    .form-benefits {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .form-benefits li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 15px;
+      color: var(--body);
+      font-weight: 400;
+      line-height: 1.5;
+    }
+    .form-benefits svg {
+      width: 18px;
+      height: 18px;
+      fill: var(--gold);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .form-card {
+      background: var(--bg);
+      border-radius: 12px;
+      padding: 40px;
+      border: 1px solid var(--border);
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .form-group { margin-bottom: 16px; }
+    .form-group:last-of-type { margin-bottom: 0; }
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--dark);
+      margin-bottom: 6px;
+    }
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 15px;
+      font-family: var(--sans);
+      color: var(--dark);
+      background: var(--bg);
+      transition: all 0.2s;
+      outline: none;
+      -webkit-appearance: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(184,134,11,0.08);
+    }
+    .form-group input::placeholder { color: var(--muted); }
+    .form-submit {
+      width: 100%;
+      padding: 16px;
+      background: var(--gold);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 15px;
+      font-weight: 600;
+      font-family: var(--sans);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 24px;
+      letter-spacing: 0.3px;
+    }
+    .form-submit:hover {
+      background: var(--gold-hover);
+      box-shadow: 0 8px 24px rgba(184,134,11,0.2);
+    }
+    .form-note {
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 16px;
+      font-weight: 400;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: var(--footer-bg);
+      color: rgba(255,255,255,0.4);
+      padding: 48px 24px;
+      text-align: center;
+      font-size: 13px;
+      line-height: 1.8;
+    }
+    .footer-logo {
+      height: 28px;
+      margin-bottom: 24px;
+      opacity: 0.6;
+    }
+    .footer a {
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer a:hover { color: rgba(255,255,255,0.8); }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      margin-bottom: 16px;
+    }
+    .footer-disclaimer {
+      max-width: 640px;
+      margin: 20px auto 0;
+      font-size: 11px;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.2);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .airplane-layout,
+      .form-layout {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+    }
+    @media (max-width: 768px) {
+      .hero { padding: 64px 20px 60px; }
+      .section { padding: 72px 20px; }
+      .pillars-grid { grid-template-columns: 1fr; }
+      .deliver-grid { grid-template-columns: 1fr; gap: 32px; }
+      .airplane-grid { grid-template-columns: 1fr; }
+      .testi-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .form-card { padding: 28px 24px; }
+      .form-section { padding: 72px 20px; }
+      .trust-bar { gap: 24px; padding: 32px 20px; }
+      .pillar { padding: 36px 28px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ TOPBAR ═══ -->
+  <div class="topbar">
+    <strong>Limited availability</strong> &mdash; Free retirement clarity sessions for adults 55+
+  </div>
+
+  <!-- ═══ NAV ═══ -->
+  <nav class="nav">
+    <img src="logo-color.png" alt="Cornerstone Financial Partners" class="nav-logo">
+    <a href="#book" class="nav-cta">Book Free Session</a>
+  </nav>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-eyebrow">Retirement Income Planning</div>
+      <h1>See Exactly How to Turn Your Savings Into Retirement Income That Lasts</h1>
+      <p class="hero-sub">In one free session, you'll get a custom income, tax, and protection roadmap — built for adults 55+ who want clarity, not more confusion.</p>
+      <div class="hero-cta-wrap">
+        <a href="#book" class="btn btn-primary">
+          Book Your Free Session
+          <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+        </a>
+        <span class="hero-note">30 minutes. No obligation. No pressure.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ TRUST BAR ═══ -->
+  <div class="trust-bar">
+    <div class="trust-item">
+      <div class="trust-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+      </div>
+      Independent Advisor
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">
+        <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm6.93 6h-2.95a15.65 15.65 0 00-1.38-3.56A8.03 8.03 0 0118.92 8zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2s.06 1.34.14 2H4.26zm.82 2h2.95c.32 1.25.78 2.45 1.38 3.56A7.987 7.987 0 015.08 16zm2.95-8H5.08a7.987 7.987 0 014.33-3.56A15.65 15.65 0 008.03 8zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66c-.09-.66-.16-1.32-.16-2s.07-1.35.16-2h4.68c.09.65.16 1.32.16 2s-.07 1.34-.16 2zm.25 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95a8.03 8.03 0 01-4.33 3.56zM16.36 14c.08-.66.14-1.32.14-2s-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2h-3.38z"/></svg>
+      </div>
+      Virtual &amp; Nationwide
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+      </div>
+      One-on-One Sessions
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">
+        <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+      </div>
+      Retirement-Only Focus
+    </div>
+  </div>
+
+  <!-- ═══ WHY CORNERSTONE ═══ -->
+  <section class="section pillars">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-eyebrow">Why Cornerstone</div>
+        <h2 class="section-title">Built Around One Thing: Your Retirement Income</h2>
+        <p class="section-desc">Most advisors try to do everything. We focus exclusively on helping pre-retirees and retirees turn savings into income they can count on.</p>
+      </div>
+      <div class="pillars-grid">
+        <div class="pillar">
+          <div class="pillar-num">01</div>
+          <h3>Retirement-Only Focus</h3>
+          <p>We do one thing: help people turn savings into income they can count on. No day trading. No chasing trends. Just retirement income planning, every single day.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">02</div>
+          <h3>Coordinated Planning</h3>
+          <p>Most advisors focus on investments alone. We build a complete plan — income, tax strategy, estate protection — so every piece works together. No silos. No gaps.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">03</div>
+          <h3>Personal Guidance</h3>
+          <p>You're not a number here. Every session is a direct conversation with your advisor — someone who knows your situation, your goals, and your concerns.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ WHAT YOU WALK AWAY WITH ═══ -->
+  <section class="section deliverables">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-eyebrow">Your Free Session</div>
+        <h2 class="section-title">What You Walk Away With</h2>
+        <p class="section-desc">In 30 minutes, you'll get actionable answers — not a sales pitch.</p>
+      </div>
+      <div class="deliver-grid">
+        <div class="deliver-item">
+          <div class="deliver-line"></div>
+          <h3>A Retirement Income Game Plan</h3>
+          <p>Know exactly how much you can spend each month, which accounts to draw from first, and how long your money can realistically last.</p>
+        </div>
+        <div class="deliver-item">
+          <div class="deliver-line"></div>
+          <h3>A Personalized Tax Map</h3>
+          <p>Discover strategies to reduce your lifetime tax burden — when to convert, which accounts to tap, and how to keep more of what you've earned.</p>
+        </div>
+        <div class="deliver-item">
+          <div class="deliver-line"></div>
+          <h3>A "What If" Confidence Checklist</h3>
+          <p>Get clear answers on market drops, healthcare surprises, and spouse protection — so you're ready no matter what happens.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ RETIREMENT AIRPLANE STRATEGY ═══ -->
+  <section class="section airplane">
+    <div class="section-inner">
+      <div class="airplane-layout">
+        <div class="airplane-left">
+          <div class="section-eyebrow">Our Framework</div>
+          <h2 class="section-title">The Retirement Airplane Strategy</h2>
+          <p class="section-desc">Your retirement is like flying an airplane. Every component has to work together for a smooth flight. Our proprietary framework ensures nothing gets left behind.</p>
+          <a href="#book" class="airplane-cta">
+            See how it applies to you
+            <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+          </a>
+        </div>
+        <div class="airplane-grid">
+          <div class="airplane-cell">
+            <h4>The Pilot</h4>
+            <p>You and your goals. Everything starts with understanding where you want to go.</p>
+          </div>
+          <div class="airplane-cell">
+            <h4>The Engine</h4>
+            <p>Your income strategy — the power that keeps your retirement moving forward.</p>
+          </div>
+          <div class="airplane-cell">
+            <h4>The Wings</h4>
+            <p>Growth and stability. The balance that keeps your plan aloft through turbulence.</p>
+          </div>
+          <div class="airplane-cell">
+            <h4>The Cabin</h4>
+            <p>Protection and comfort. Insurance and estate planning that shields what matters.</p>
+          </div>
+          <div class="airplane-cell">
+            <h4>The Fuel</h4>
+            <p>Tax efficiency. Making every dollar stretch further by minimizing your tax drag.</p>
+          </div>
+          <div class="airplane-cell">
+            <h4>Air Traffic Control</h4>
+            <p>Ongoing guidance. Regular reviews and adjustments to stay on course.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ TESTIMONIALS ═══ -->
+  <section class="section testimonials">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-eyebrow">Client Experiences</div>
+        <h2 class="section-title">Hear From People Who've Been Where You Are</h2>
+      </div>
+      <div class="testi-grid">
+        <div class="testi-card">
+          <div class="testi-quote">&ldquo;</div>
+          <blockquote>For the first time in years, I actually feel confident about retirement. Julio broke everything down in a way that made sense and gave me a real plan — not just vague advice.</blockquote>
+          <div class="testi-divider"></div>
+          <div class="testi-name">Robert M.</div>
+          <div class="testi-detail">Retired, Age 62 — Texas</div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-quote">&ldquo;</div>
+          <blockquote>I was nervous about leaving my 401(k) without a strategy. Cornerstone showed me exactly how to create monthly income without running out. The Airplane Strategy really clicked for me.</blockquote>
+          <div class="testi-divider"></div>
+          <div class="testi-name">Linda &amp; David T.</div>
+          <div class="testi-detail">Pre-retirees, Ages 58 &amp; 60 — Florida</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ BOOKING FORM ═══ -->
+  <section class="form-section" id="book">
+    <div class="form-layout">
+      <div class="form-left">
+        <div class="section-eyebrow">Get Started</div>
+        <h2 class="section-title">Book Your Free Retirement Clarity Session</h2>
+        <p class="form-left-desc">Sessions are 30 minutes, one-on-one, and completely free. We'll answer your questions and show you what a real retirement income plan looks like.</p>
+        <ul class="form-benefits">
+          <li>
+            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+            Custom income projection for your situation
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+            Tax-efficient withdrawal strategies
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+            Protection planning for the unexpected
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+            Zero obligation — just clarity
+          </li>
+        </ul>
+      </div>
+      <div class="form-card">
+        <form id="leadForm" onsubmit="handleSubmit(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="firstName">First Name</label>
+              <input type="text" id="firstName" name="firstName" placeholder="John" required>
+            </div>
+            <div class="form-group">
+              <label for="lastName">Last Name</label>
+              <input type="text" id="lastName" name="lastName" placeholder="Smith" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="john@example.com" required>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="state">State</label>
+            <select id="state" name="state" required>
+              <option value="">Select your state</option>
+              <option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option>
+              <option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option>
+              <option>Florida</option><option>Georgia</option><option>Hawaii</option><option>Idaho</option>
+              <option>Illinois</option><option>Indiana</option><option>Iowa</option><option>Kansas</option>
+              <option>Kentucky</option><option>Louisiana</option><option>Maine</option><option>Maryland</option>
+              <option>Massachusetts</option><option>Michigan</option><option>Minnesota</option><option>Mississippi</option>
+              <option>Missouri</option><option>Montana</option><option>Nebraska</option><option>Nevada</option>
+              <option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option><option>New York</option>
+              <option>North Carolina</option><option>North Dakota</option><option>Ohio</option><option>Oklahoma</option>
+              <option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option><option>South Carolina</option>
+              <option>South Dakota</option><option>Tennessee</option><option selected>Texas</option><option>Utah</option>
+              <option>Vermont</option><option>Virginia</option><option>Washington</option><option>West Virginia</option>
+              <option>Wisconsin</option><option>Wyoming</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="savings">Approximate Retirement Savings</label>
+            <select id="savings" name="savings" required>
+              <option value="">Select range</option>
+              <option>$250K – $500K</option>
+              <option>$500K – $1M</option>
+              <option>$1M – $2M</option>
+              <option>$2M+</option>
+            </select>
+          </div>
+          <button type="submit" class="form-submit">Book My Free Clarity Session</button>
+        </form>
+        <p class="form-note">Your information is kept 100% confidential.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="/privacy">Privacy Policy</a>
+      <a href="/terms">Terms of Service</a>
+    </div>
+    <p>&copy; 2025 Cornerstone Financial Partners. All rights reserved.</p>
+    <p class="footer-disclaimer">
+      The information provided on this page is for educational purposes only and should not be considered financial, tax, or legal advice.
+      Cornerstone Financial Partners is an independent financial services practice. Insurance products and annuities are sold through licensed agents.
+      Advisory services offered through properly licensed entities. Always consult with a qualified professional regarding your specific situation.
+    </p>
+  </footer>
+
+  <script>
+    function handleSubmit(e) {
+      e.preventDefault();
+      const form = e.target;
+      const data = Object.fromEntries(new FormData(form));
+      console.log('Lead submitted:', data);
+
+      form.innerHTML = `
+        <div style="text-align:center;padding:48px 0;">
+          <div style="width:48px;height:48px;border-radius:50%;background:var(--gold-subtle);display:inline-flex;align-items:center;justify-content:center;margin-bottom:20px;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="var(--gold)"/>
+            </svg>
+          </div>
+          <h3 style="font-family:var(--serif);font-size:22px;font-weight:500;margin-bottom:8px;color:var(--dark);">You're All Set</h3>
+          <p style="color:var(--light);font-size:15px;line-height:1.6;font-weight:300;">
+            We've received your information. You'll hear from us shortly to schedule your session.
+          </p>
+        </div>
+      `;
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  </script>
+
+</body>
+</html>

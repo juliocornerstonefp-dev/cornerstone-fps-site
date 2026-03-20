@@ -1,7 +1,8 @@
 {
   "rewrites": [
     { "source": "/annuity", "destination": "/annuity.html" },
-    { "source": "/iul", "destination": "/iul.html" }
+    { "source": "/iul", "destination": "/iul.html" },
+    { "source": "/land1", "destination": "/land1.html" }
   ],
   "headers": [
     {
