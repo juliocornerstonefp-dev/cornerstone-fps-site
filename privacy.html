@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy | Cornerstone Financial Partners</title>
+  <meta name="description" content="Privacy Policy for Cornerstone Financial Partners. Learn how we collect, use, and protect your personal information.">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --gold: #B8860B;
+      --gold-hover: #D4A843;
+      --gold-subtle: #F8F3E8;
+      --gold-border: #E8D5A8;
+      --dark: #1A1A1A;
+      --body: #4A4A4A;
+      --light: #7A7A7A;
+      --muted: #A0A0A0;
+      --bg: #FFFFFF;
+      --bg-alt: #FAFAF8;
+      --bg-warm: #F5F3EE;
+      --border: #EDEBE6;
+      --footer-bg: #2C2416;
+      --serif: 'Playfair Display', Georgia, serif;
+      --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); background: var(--bg); color: var(--dark); -webkit-font-smoothing: antialiased; }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      padding: 0 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-logo { height: 36px; width: auto; }
+    .nav-right { display: flex; gap: 32px; align-items: center; }
+    .nav-right a {
+      color: var(--light);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-right a:hover { color: var(--dark); }
+    .nav-cta {
+      background: var(--gold) !important;
+      color: #fff !important;
+      padding: 9px 22px !important;
+      border-radius: 6px;
+      font-weight: 600 !important;
+      font-size: 13px !important;
+      letter-spacing: 0.3px;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--gold-hover) !important; }
+    .mobile-menu { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+    .mobile-menu svg { width: 22px; height: 22px; fill: var(--light); }
+
+    /* ── CONTENT ── */
+    .page-header {
+      background: var(--bg-warm);
+      padding: 80px 24px 60px;
+      text-align: center;
+    }
+    .page-header h1 {
+      font-family: var(--serif);
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 500;
+      color: var(--dark);
+      letter-spacing: -0.3px;
+      margin-bottom: 12px;
+    }
+    .page-header p {
+      font-size: 15px;
+      color: var(--light);
+      font-weight: 300;
+    }
+    .content {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 60px 24px 100px;
+    }
+    .content h2 {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--dark);
+      margin-top: 48px;
+      margin-bottom: 16px;
+      letter-spacing: -0.2px;
+    }
+    .content h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--dark);
+      margin-top: 32px;
+      margin-bottom: 12px;
+    }
+    .content p, .content li {
+      font-size: 15px;
+      color: var(--body);
+      line-height: 1.8;
+      font-weight: 300;
+      margin-bottom: 16px;
+    }
+    .content ul {
+      margin-left: 24px;
+      margin-bottom: 16px;
+    }
+    .content li {
+      margin-bottom: 8px;
+    }
+    .content a {
+      color: var(--gold);
+      text-decoration: underline;
+    }
+    .content a:hover {
+      color: var(--gold-hover);
+    }
+    .content strong {
+      font-weight: 600;
+      color: var(--dark);
+    }
+    .highlight-box {
+      background: var(--gold-subtle);
+      border-left: 3px solid var(--gold);
+      padding: 20px 24px;
+      border-radius: 0 8px 8px 0;
+      margin: 24px 0;
+    }
+    .highlight-box p {
+      margin-bottom: 0;
+      font-size: 14px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--footer-bg);
+      color: rgba(255,255,255,0.4);
+      padding: 48px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+    .footer-links { display: flex; gap: 28px; }
+    .footer-links a {
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 400;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: rgba(255,255,255,0.75); }
+    .footer-legal {
+      font-size: 11px;
+      color: rgba(255,255,255,0.2);
+      line-height: 1.7;
+      max-width: 560px;
+      text-align: right;
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .nav-right {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 64px;
+        left: 0;
+        right: 0;
+        background: var(--bg);
+        padding: 20px;
+        gap: 16px;
+        border-bottom: 1px solid var(--border);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      }
+      .nav-right.open { display: flex; }
+      .mobile-menu { display: block; }
+      .page-header { padding: 60px 20px 48px; }
+      .content { padding: 40px 20px 80px; }
+      footer { padding: 32px 20px; flex-direction: column; }
+      .footer-links { flex-wrap: wrap; gap: 16px; }
+      .footer-legal { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <a href="/">
+      <img class="nav-logo" src="logo-v2.png" alt="Cornerstone Financial Partners" style="height:36px;width:auto;">
+    </a>
+    <button class="mobile-menu" onclick="document.querySelector('.nav-right').classList.toggle('open')" aria-label="Menu">
+      <svg viewBox="0 0 24 24"><path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z"/></svg>
+    </button>
+    <div class="nav-right">
+      <a href="/">Home</a>
+      <a href="/annuity">Guaranteed Income</a>
+      <a href="/iul">Tax-Free Growth</a>
+      <a href="https://calculator.cornerstone-fps.com">Calculator</a>
+      <a href="/#contact" class="nav-cta">Schedule a Call</a>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <section class="page-header">
+    <h1>Privacy Policy</h1>
+    <p>Last updated: March 21, 2026</p>
+  </section>
+
+  <!-- Content -->
+  <div class="content">
+
+    <p>Cornerstone Financial Partners ("we," "us," or "our") respects your privacy and is committed to protecting the personal information you share with us. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website <strong>cornerstone-fps.com</strong> and use our services.</p>
+
+    <h2>1. Information We Collect</h2>
+
+    <h3>Information You Provide Directly</h3>
+    <p>When you fill out a form, request an estimate, schedule a consultation, or otherwise interact with our website, we may collect:</p>
+    <ul>
+      <li>First and last name</li>
+      <li>Email address</li>
+      <li>Phone number</li>
+      <li>Age range</li>
+      <li>Approximate retirement savings or household income range</li>
+      <li>Financial profile information you voluntarily provide</li>
+    </ul>
+
+    <h3>Information Collected Automatically</h3>
+    <p>When you visit our website, we may automatically collect certain information, including:</p>
+    <ul>
+      <li>IP address and approximate geographic location</li>
+      <li>Browser type and version</li>
+      <li>Device type and operating system</li>
+      <li>Pages visited, time spent, and referring URLs</li>
+      <li>Cookies and similar tracking technologies</li>
+    </ul>
+
+    <h2>2. How We Use Your Information</h2>
+    <p>We use the information we collect to:</p>
+    <ul>
+      <li>Respond to your inquiries and provide personalized retirement income estimates</li>
+      <li>Schedule and conduct consultations</li>
+      <li>Send you the information you requested</li>
+      <li>Send SMS/text messages if you have opted in (see Section 4 below)</li>
+      <li>Improve our website, services, and user experience</li>
+      <li>Comply with legal obligations</li>
+    </ul>
+
+    <h2>3. How We Share Your Information</h2>
+    <p>We do <strong>not</strong> sell, rent, or trade your personal information to third parties for marketing or promotional purposes.</p>
+
+    <div class="highlight-box">
+      <p><strong>SMS Consent Data:</strong> We will never share, sell, or distribute your mobile phone number or SMS opt-in consent data with any third parties or affiliates for their marketing or promotional purposes. This applies to all information collected through our SMS opt-in process.</p>
+    </div>
+
+    <p>We may share your information only in the following limited circumstances:</p>
+    <ul>
+      <li><strong>Service providers:</strong> We use trusted third-party platforms (such as our CRM system) to manage communications and deliver the services you requested. These providers are contractually obligated to protect your data and use it only for the purposes we specify.</li>
+      <li><strong>Legal requirements:</strong> We may disclose information if required by law, regulation, legal process, or governmental request.</li>
+      <li><strong>Business transfers:</strong> In the event of a merger, acquisition, or sale of assets, your information may be transferred as part of that transaction. We will notify you of any such change.</li>
+    </ul>
+
+    <h2>4. SMS/Text Messaging Policy</h2>
+    <p>If you opt in to receive SMS/text messages from Cornerstone Financial Partners, the following terms apply:</p>
+    <ul>
+      <li><strong>Consent:</strong> By checking the SMS opt-in checkbox on our forms, you expressly consent to receive text messages from Cornerstone Financial Partners at the phone number you provided.</li>
+      <li><strong>Message types:</strong> Messages may include your personalized retirement income estimate, retirement planning tips, appointment reminders, and follow-up information related to your inquiry.</li>
+      <li><strong>Message frequency:</strong> Message frequency varies. You may receive up to 4 messages per month.</li>
+      <li><strong>Message and data rates:</strong> Message and data rates may apply depending on your mobile carrier and plan.</li>
+      <li><strong>Opt-out:</strong> You can opt out of SMS messages at any time by replying <strong>STOP</strong> to any message. You will receive a one-time confirmation message. You may also opt out by contacting us at the information below.</li>
+      <li><strong>Help:</strong> Reply <strong>HELP</strong> to any message for assistance, or contact us at julio@cornerstone-fps.com.</li>
+      <li><strong>No sharing:</strong> Your phone number and SMS consent will never be shared with third parties or affiliates for their marketing purposes.</li>
+      <li><strong>Carriers:</strong> Supported carriers include, but are not limited to: AT&T, T-Mobile, Verizon, Sprint, and all major U.S. carriers.</li>
+    </ul>
+
+    <h2>5. Cookies and Tracking Technologies</h2>
+    <p>Our website may use cookies and similar technologies to enhance your browsing experience and analyze website traffic. You can control cookie preferences through your browser settings. Disabling cookies may affect certain features of our website.</p>
+
+    <h2>6. Data Security</h2>
+    <p>We implement reasonable administrative, technical, and physical security measures to protect your personal information from unauthorized access, alteration, disclosure, or destruction. However, no method of transmission over the internet or electronic storage is 100% secure, and we cannot guarantee absolute security.</p>
+
+    <h2>7. Data Retention</h2>
+    <p>We retain your personal information for as long as necessary to fulfill the purposes described in this Privacy Policy, or as required by law. If you opt out of SMS messaging, we will remove your phone number from our messaging list within 24 hours. If you request deletion of your data, we will process your request within 30 days.</p>
+
+    <h2>8. Your Rights</h2>
+    <p>Depending on your jurisdiction, you may have the following rights regarding your personal information:</p>
+    <ul>
+      <li><strong>Access:</strong> Request a copy of the personal information we hold about you.</li>
+      <li><strong>Correction:</strong> Request correction of inaccurate or incomplete information.</li>
+      <li><strong>Deletion:</strong> Request deletion of your personal information.</li>
+      <li><strong>Opt-out:</strong> Opt out of marketing communications, including SMS messages, at any time.</li>
+      <li><strong>Portability:</strong> Request your data in a portable format where applicable.</li>
+    </ul>
+    <p>To exercise any of these rights, contact us using the information in Section 11 below.</p>
+
+    <h2>9. California Residents (CCPA)</h2>
+    <p>If you are a California resident, you have additional rights under the California Consumer Privacy Act (CCPA), including the right to know what personal information we collect, the right to request deletion, and the right to opt out of the sale of personal information. We do not sell personal information. To make a request, contact us at the information below.</p>
+
+    <h2>10. Children's Privacy</h2>
+    <p>Our website and services are not directed to individuals under the age of 18. We do not knowingly collect personal information from children. If we become aware that we have collected information from a child, we will promptly delete it.</p>
+
+    <h2>11. Contact Us</h2>
+    <p>If you have questions about this Privacy Policy, want to exercise your data rights, or need assistance with SMS messaging, contact us at:</p>
+    <p>
+      <strong>Cornerstone Financial Partners</strong><br>
+      Email: julio@cornerstone-fps.com<br>
+      Website: cornerstone-fps.com
+    </p>
+
+    <h2>12. Changes to This Policy</h2>
+    <p>We may update this Privacy Policy from time to time. When we make changes, we will update the "Last updated" date at the top of this page. We encourage you to review this policy periodically to stay informed about how we protect your information.</p>
+
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/annuity">Guaranteed Income</a>
+      <a href="/iul">Tax-Free Growth</a>
+      <a href="/privacy">Privacy Policy</a>
+      <a href="/terms">Terms of Service</a>
+    </div>
+    <p class="footer-legal">
+      Cornerstone Financial Partners &copy; 2026. This is not investment advice. Guaranteed income products involve insurance contracts subject to carrier terms. Results are illustrative based on current rates. Consult a licensed professional before making financial decisions.
+    </p>
+  </footer>
+
+</body>
+</html>

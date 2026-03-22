@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms of Service | Cornerstone Financial Partners</title>
+  <meta name="description" content="Terms of Service for Cornerstone Financial Partners, including SMS messaging terms and conditions.">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --gold: #B8860B;
+      --gold-hover: #D4A843;
+      --gold-subtle: #F8F3E8;
+      --gold-border: #E8D5A8;
+      --dark: #1A1A1A;
+      --body: #4A4A4A;
+      --light: #7A7A7A;
+      --muted: #A0A0A0;
+      --bg: #FFFFFF;
+      --bg-alt: #FAFAF8;
+      --bg-warm: #F5F3EE;
+      --border: #EDEBE6;
+      --footer-bg: #2C2416;
+      --serif: 'Playfair Display', Georgia, serif;
+      --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); background: var(--bg); color: var(--dark); -webkit-font-smoothing: antialiased; }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      padding: 0 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-logo { height: 36px; width: auto; }
+    .nav-right { display: flex; gap: 32px; align-items: center; }
+    .nav-right a {
+      color: var(--light);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-right a:hover { color: var(--dark); }
+    .nav-cta {
+      background: var(--gold) !important;
+      color: #fff !important;
+      padding: 9px 22px !important;
+      border-radius: 6px;
+      font-weight: 600 !important;
+      font-size: 13px !important;
+      letter-spacing: 0.3px;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--gold-hover) !important; }
+    .mobile-menu { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+    .mobile-menu svg { width: 22px; height: 22px; fill: var(--light); }
+
+    /* ── CONTENT ── */
+    .page-header {
+      background: var(--bg-warm);
+      padding: 80px 24px 60px;
+      text-align: center;
+    }
+    .page-header h1 {
+      font-family: var(--serif);
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 500;
+      color: var(--dark);
+      letter-spacing: -0.3px;
+      margin-bottom: 12px;
+    }
+    .page-header p {
+      font-size: 15px;
+      color: var(--light);
+      font-weight: 300;
+    }
+    .content {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 60px 24px 100px;
+    }
+    .content h2 {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--dark);
+      margin-top: 48px;
+      margin-bottom: 16px;
+      letter-spacing: -0.2px;
+    }
+    .content h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--dark);
+      margin-top: 32px;
+      margin-bottom: 12px;
+    }
+    .content p, .content li {
+      font-size: 15px;
+      color: var(--body);
+      line-height: 1.8;
+      font-weight: 300;
+      margin-bottom: 16px;
+    }
+    .content ul, .content ol {
+      margin-left: 24px;
+      margin-bottom: 16px;
+    }
+    .content li {
+      margin-bottom: 8px;
+    }
+    .content a {
+      color: var(--gold);
+      text-decoration: underline;
+    }
+    .content a:hover {
+      color: var(--gold-hover);
+    }
+    .content strong {
+      font-weight: 600;
+      color: var(--dark);
+    }
+    .highlight-box {
+      background: var(--gold-subtle);
+      border-left: 3px solid var(--gold);
+      padding: 20px 24px;
+      border-radius: 0 8px 8px 0;
+      margin: 24px 0;
+    }
+    .highlight-box p {
+      margin-bottom: 0;
+      font-size: 14px;
+    }
+    .highlight-box p + p {
+      margin-top: 8px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--footer-bg);
+      color: rgba(255,255,255,0.4);
+      padding: 48px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+    .footer-links { display: flex; gap: 28px; }
+    .footer-links a {
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 400;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: rgba(255,255,255,0.75); }
+    .footer-legal {
+      font-size: 11px;
+      color: rgba(255,255,255,0.2);
+      line-height: 1.7;
+      max-width: 560px;
+      text-align: right;
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .nav-right {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 64px;
+        left: 0;
+        right: 0;
+        background: var(--bg);
+        padding: 20px;
+        gap: 16px;
+        border-bottom: 1px solid var(--border);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      }
+      .nav-right.open { display: flex; }
+      .mobile-menu { display: block; }
+      .page-header { padding: 60px 20px 48px; }
+      .content { padding: 40px 20px 80px; }
+      footer { padding: 32px 20px; flex-direction: column; }
+      .footer-links { flex-wrap: wrap; gap: 16px; }
+      .footer-legal { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <a href="/">
+      <img class="nav-logo" src="logo-v2.png" alt="Cornerstone Financial Partners" style="height:36px;width:auto;">
+    </a>
+    <button class="mobile-menu" onclick="document.querySelector('.nav-right').classList.toggle('open')" aria-label="Menu">
+      <svg viewBox="0 0 24 24"><path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z"/></svg>
+    </button>
+    <div class="nav-right">
+      <a href="/">Home</a>
+      <a href="/annuity">Guaranteed Income</a>
+      <a href="/iul">Tax-Free Growth</a>
+      <a href="https://calculator.cornerstone-fps.com">Calculator</a>
+      <a href="/#contact" class="nav-cta">Schedule a Call</a>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <section class="page-header">
+    <h1>Terms of Service</h1>
+    <p>Last updated: March 21, 2026</p>
+  </section>
+
+  <!-- Content -->
+  <div class="content">
+
+    <p>Welcome to Cornerstone Financial Partners. By accessing or using our website at <strong>cornerstone-fps.com</strong> and any related services, you agree to be bound by these Terms of Service ("Terms"). If you do not agree, please do not use our website or services.</p>
+
+    <h2>1. About Our Services</h2>
+    <p>Cornerstone Financial Partners provides retirement income planning education, tools, and consultation services. Our website includes educational content, retirement income calculators, and forms to request personalized estimates or schedule consultations.</p>
+
+    <div class="highlight-box">
+      <p><strong>Important:</strong> The information and tools on this website are for educational and illustrative purposes only. Nothing on this website constitutes investment advice, tax advice, or legal advice. Guaranteed income products involve insurance contracts and are subject to the terms and conditions of the issuing carrier. Past performance is not indicative of future results.</p>
+    </div>
+
+    <h2>2. No Advisory Relationship</h2>
+    <p>Use of this website, our calculators, or submission of a form does not create a fiduciary, advisory, or client relationship between you and Cornerstone Financial Partners. A professional relationship is only established through a signed written agreement.</p>
+    <p>All estimates, projections, and illustrations provided through our website are based on current market rates and assumptions that are subject to change. Actual results may vary.</p>
+
+    <h2>3. User Responsibilities</h2>
+    <p>When using our website and services, you agree to:</p>
+    <ul>
+      <li>Provide accurate and truthful information in any forms you submit</li>
+      <li>Use the website only for lawful purposes</li>
+      <li>Not attempt to interfere with the proper functioning of the website</li>
+      <li>Not reproduce, distribute, or create derivative works from our content without written permission</li>
+    </ul>
+
+    <h2>4. SMS/Text Messaging Terms &amp; Conditions</h2>
+    <p>By opting in to receive SMS/text messages from Cornerstone Financial Partners, you agree to the following terms:</p>
+
+    <h3>Program Description</h3>
+    <p><strong>Cornerstone Financial Partners</strong> offers an SMS messaging program to deliver personalized retirement income estimates, retirement planning tips, appointment reminders, and follow-up information related to your inquiry.</p>
+
+    <h3>Message Types</h3>
+    <p>You may receive the following types of text messages:</p>
+    <ul>
+      <li>Your personalized retirement income estimate or eligibility results</li>
+      <li>Retirement planning tips and educational content</li>
+      <li>Appointment reminders and scheduling confirmations</li>
+      <li>Follow-up information related to your specific inquiry</li>
+    </ul>
+
+    <h3>Message Frequency</h3>
+    <p>Message frequency varies based on your interactions with us. You may receive up to 4 messages per month. Frequency may increase temporarily around scheduled appointments or active consultations.</p>
+
+    <h3>Costs</h3>
+    <p><strong>Message and data rates may apply.</strong> Cornerstone Financial Partners does not charge for SMS messages, but your mobile carrier's standard messaging and data rates apply. Check with your carrier if you are unsure about your plan.</p>
+
+    <h3>Opt-In &amp; Consent</h3>
+    <p>By checking the SMS opt-in checkbox on any of our forms and submitting your phone number, you provide your express written consent to receive text messages from Cornerstone Financial Partners at the number you provided. Consent is not a condition of purchasing any goods or services. You may opt in on the following pages:</p>
+    <ul>
+      <li>Guaranteed Income Estimate form (/annuity)</li>
+      <li>Tax-Free Growth Eligibility form (/iul)</li>
+    </ul>
+
+    <h3>Opt-Out</h3>
+    <p>You can cancel the SMS service at any time. Simply text <strong>"STOP"</strong> to any message you receive from us. After sending STOP, you will receive a one-time confirmation message and will no longer receive SMS messages from us. You may also opt out by contacting us at julio@cornerstone-fps.com or by any other reasonable method.</p>
+
+    <h3>Help</h3>
+    <p>If you are experiencing issues with the messaging program, reply <strong>"HELP"</strong> to any message, or contact us directly at julio@cornerstone-fps.com for assistance.</p>
+
+    <h3>Supported Carriers</h3>
+    <p>Our SMS program is supported by all major U.S. carriers, including but not limited to: AT&T, T-Mobile, Verizon, Sprint, U.S. Cellular, and regional carriers. Carriers are not liable for delayed or undelivered messages.</p>
+
+    <h3>Carrier Liability</h3>
+    <p>Cornerstone Financial Partners and mobile carriers are not responsible for any delays or failures in the delivery of text messages. Delivery is subject to effective transmission by your mobile carrier. T-Mobile is not liable for delayed or undelivered messages.</p>
+
+    <h2>5. Intellectual Property</h2>
+    <p>All content on this website &mdash; including text, graphics, logos, the Retirement Airplane Strategy&trade; framework, calculators, and design &mdash; is the property of Cornerstone Financial Partners and is protected by applicable intellectual property laws. You may not reproduce, distribute, or use any content without our prior written consent.</p>
+
+    <h2>6. Third-Party Links</h2>
+    <p>Our website may contain links to third-party websites or services. We are not responsible for the content, privacy practices, or terms of any third-party sites. Visiting third-party links is at your own risk.</p>
+
+    <h2>7. Calculator &amp; Tool Disclaimers</h2>
+    <p>Our retirement income calculators and tools provide estimates based on the information you input and current market assumptions. These tools are for illustrative and educational purposes only. Results are not guaranteed and should not be relied upon as the sole basis for financial decisions. Always consult a licensed financial professional before making financial decisions.</p>
+
+    <h2>8. Limitation of Liability</h2>
+    <p>To the fullest extent permitted by law, Cornerstone Financial Partners shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of our website or services, including but not limited to loss of profits, data, or goodwill. Our total liability for any claim related to these Terms shall not exceed the amount you paid us (if any) in the 12 months preceding the claim.</p>
+
+    <h2>9. Indemnification</h2>
+    <p>You agree to indemnify and hold harmless Cornerstone Financial Partners, its owner, affiliates, and service providers from any claims, losses, damages, liabilities, and expenses (including reasonable attorneys' fees) arising from your use of the website, violation of these Terms, or infringement of any third-party rights.</p>
+
+    <h2>10. Governing Law</h2>
+    <p>These Terms are governed by and construed in accordance with the laws of the State of Texas, without regard to its conflict of law principles. Any disputes arising under these Terms shall be resolved in the courts located in Tarrant County, Texas.</p>
+
+    <h2>11. Changes to These Terms</h2>
+    <p>We reserve the right to modify these Terms at any time. When we make changes, we will update the "Last updated" date at the top of this page. Your continued use of the website after changes are posted constitutes your acceptance of the updated Terms.</p>
+
+    <h2>12. Contact Us</h2>
+    <p>If you have questions about these Terms of Service or our SMS messaging program, contact us at:</p>
+    <p>
+      <strong>Cornerstone Financial Partners</strong><br>
+      Email: julio@cornerstone-fps.com<br>
+      Website: cornerstone-fps.com
+    </p>
+
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/annuity">Guaranteed Income</a>
+      <a href="/iul">Tax-Free Growth</a>
+      <a href="/privacy">Privacy Policy</a>
+      <a href="/terms">Terms of Service</a>
+    </div>
+    <p class="footer-legal">
+      Cornerstone Financial Partners &copy; 2026. This is not investment advice. Guaranteed income products involve insurance contracts subject to carrier terms. Results are illustrative based on current rates. Consult a licensed professional before making financial decisions.
+    </p>
+  </footer>
+
+</body>
+</html>
