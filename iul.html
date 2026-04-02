@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tax-Free Retirement for High Earners | Cornerstone Financial Partners</title>
-  <meta name="description" content="The tax-free retirement strategy high earners use after maxing out their 401(k). No contribution limits, tax-free income, zero market risk.">
-  <meta property="og:title" content="Tax-Free Retirement for High Earners | Cornerstone Financial">
-  <meta property="og:description" content="If you're earning $200K+ and tired of handing 30-40% of your returns to the IRS, there's a legal strategy most advisors never mention.">
+  <title>Tax-Free Retirement Income for High Earners | Cornerstone Financial Partners</title>
+  <meta name="description" content="The IRS-approved strategy high earners use after maxing out their 401(k). No contribution limits. Tax-free income. Zero market risk on the downside.">
+  <meta property="og:title" content="Tax-Free Retirement Income for High Earners | Cornerstone Financial">
+  <meta property="og:description" content="Earning $200K+ and tired of handing 30-40% of your retirement returns to the IRS? There's a legal strategy most advisors never mention.">
   <meta property="og:image" content="/og-image.png">
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -28,346 +28,125 @@
       --bg-alt: #FAFAF8;
       --bg-warm: #F5F3EE;
       --border: #EDEBE6;
-      --footer-bg: #2C2416;
+      --footer-bg: #1E1A14;
       --serif: 'Playfair Display', Georgia, serif;
       --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.06);
+      --shadow-lg: 0 12px 40px rgba(0,0,0,0.08);
+      --radius: 10px;
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
     html { scroll-behavior: smooth; }
-    body {
-      font-family: var(--sans);
-      background: var(--bg);
-      color: var(--body);
-      -webkit-font-smoothing: antialiased;
-      line-height: 1.6;
-    }
+    body { font-family: var(--sans); background: var(--bg); color: var(--body); -webkit-font-smoothing: antialiased; line-height: 1.6; }
+
+    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
 
     /* ── NAV ── */
     .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 16px 40px;
-      background: var(--bg);
-      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px; height: 72px;
+      background: rgba(255,255,255,0.95); backdrop-filter: blur(12px);
+      border-bottom: 1px solid transparent;
+      position: sticky; top: 0; z-index: 100;
+      transition: border-color 0.3s, box-shadow 0.3s;
     }
-    .nav-logo { height: 36px; width: auto; }
-    .nav-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 24px;
-      border-radius: 6px;
-      font-size: 13px;
-      font-weight: 600;
-      text-decoration: none;
-      background: var(--gold);
-      color: #fff;
-      font-family: var(--sans);
-      transition: all 0.3s ease;
-      letter-spacing: 0.3px;
-    }
-    .nav-cta:hover { background: var(--gold-hover); }
+    .nav.scrolled { border-bottom-color: var(--border); box-shadow: var(--shadow-sm); }
+    .nav-logo { height: 38px; width: auto; }
+    .nav-right { display: flex; align-items: center; gap: 24px; }
+    .nav-back { font-size: 14px; color: var(--light); text-decoration: none; font-weight: 500; display: inline-flex; align-items: center; gap: 6px; transition: color var(--transition); }
+    .nav-back:hover { color: var(--dark); }
+    .nav-back svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; }
+    .nav-cta { display: inline-flex; align-items: center; padding: 10px 24px; border-radius: 8px; font-size: 14px; font-weight: 600; text-decoration: none; background: var(--gold); color: #fff; font-family: var(--sans); transition: all var(--transition); box-shadow: 0 2px 8px rgba(184,134,11,0.2); }
+    .nav-cta:hover { background: var(--gold-hover); transform: translateY(-1px); }
 
     /* ── HERO ── */
-    .hero {
-      background: var(--bg);
-      padding: 80px 24px 60px;
-      text-align: center;
-    }
-    .hero-inner {
-      max-width: 720px;
-      margin: 0 auto;
-    }
-    .hero-eyebrow {
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 24px;
-    }
-    .hero h1 {
-      font-family: var(--serif);
-      font-size: clamp(30px, 5vw, 46px);
-      font-weight: 500;
-      line-height: 1.2;
-      color: var(--dark);
-      margin-bottom: 24px;
-      letter-spacing: -0.5px;
-    }
-    .hero-sub {
-      font-size: 18px;
-      color: var(--light);
-      line-height: 1.75;
-      max-width: 560px;
-      margin: 0 auto 36px;
-      font-weight: 300;
-    }
-    .hero-badges {
-      display: flex;
-      justify-content: center;
-      gap: 32px;
-      flex-wrap: wrap;
-    }
-    .hero-badge-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--body);
-    }
-    .hero-badge-item svg { width: 16px; height: 16px; fill: var(--gold); flex-shrink: 0; }
+    .hero { background: linear-gradient(180deg, var(--bg) 0%, var(--bg-warm) 100%); padding: 80px 24px 60px; text-align: center; }
+    .hero-inner { max-width: 740px; margin: 0 auto; }
+    .hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: var(--gold); margin-bottom: 24px; padding: 8px 20px; background: var(--gold-subtle); border-radius: 50px; }
+    .hero h1 { font-family: var(--serif); font-size: clamp(30px, 5vw, 48px); font-weight: 600; line-height: 1.2; color: var(--dark); margin-bottom: 24px; letter-spacing: -0.5px; }
+    .hero-sub { font-size: 18px; color: var(--body); line-height: 1.75; max-width: 580px; margin: 0 auto 36px; font-weight: 300; }
+    .hero-badges { display: flex; justify-content: center; gap: 28px; flex-wrap: wrap; }
+    .badge-item { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500; color: var(--body); }
+    .badge-item svg { width: 18px; height: 18px; stroke: var(--gold); fill: none; stroke-width: 2; }
 
     /* ── FORM SECTION ── */
-    .form-section {
-      background: var(--bg-alt);
-      padding: 80px 24px;
-    }
-    .form-layout {
-      max-width: 960px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: start;
-    }
-    .form-left-eyebrow {
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 16px;
-    }
-    .form-left-title {
-      font-family: var(--serif);
-      font-size: clamp(24px, 3.5vw, 32px);
-      font-weight: 500;
-      line-height: 1.3;
-      color: var(--dark);
-      margin-bottom: 20px;
-      letter-spacing: -0.3px;
-    }
-    .form-left-desc {
-      font-size: 16px;
-      color: var(--light);
-      line-height: 1.75;
-      font-weight: 300;
-      margin-bottom: 32px;
-    }
-    .form-benefits {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-    .form-benefits li {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      font-size: 15px;
-      color: var(--body);
-      font-weight: 400;
-      line-height: 1.5;
-    }
-    .form-benefits svg { width: 18px; height: 18px; fill: var(--gold); flex-shrink: 0; margin-top: 2px; }
+    .form-section { background: var(--bg-alt); padding: 100px 24px; }
+    .form-layout { max-width: 1020px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .form-left .eyebrow { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+    .form-left h2 { font-family: var(--serif); font-size: clamp(26px, 3.5vw, 36px); font-weight: 600; line-height: 1.25; color: var(--dark); margin-bottom: 20px; }
+    .form-left > p { font-size: 17px; color: var(--body); line-height: 1.75; font-weight: 300; margin-bottom: 36px; }
+    .benefit-list { list-style: none; display: flex; flex-direction: column; gap: 18px; }
+    .benefit-list li { display: flex; align-items: flex-start; gap: 14px; font-size: 16px; color: var(--body); font-weight: 400; line-height: 1.5; }
+    .benefit-list svg { width: 20px; height: 20px; stroke: var(--gold); fill: none; stroke-width: 2; flex-shrink: 0; margin-top: 2px; }
 
-    .form-card {
-      background: var(--bg);
-      border-radius: 12px;
-      padding: 40px;
-      border: 1px solid var(--border);
-    }
-    .form-group { margin-bottom: 16px; }
-    .form-group label {
-      display: block;
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--dark);
-      margin-bottom: 6px;
-    }
-    .form-group input,
-    .form-group select {
-      width: 100%;
-      padding: 12px 16px;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      font-size: 15px;
-      font-family: var(--sans);
-      color: var(--dark);
-      background: var(--bg);
-      transition: all 0.2s;
-      outline: none;
-      -webkit-appearance: none;
-    }
-    .form-group input:focus,
-    .form-group select:focus {
-      border-color: var(--gold);
-      box-shadow: 0 0 0 3px rgba(184,134,11,0.08);
-    }
+    .form-card { background: var(--bg); border-radius: 16px; padding: 44px; border: 1px solid var(--border); box-shadow: var(--shadow-lg); }
+    .form-card h3 { font-family: var(--serif); font-size: 22px; font-weight: 500; color: var(--dark); margin-bottom: 24px; text-align: center; }
+    .form-group { margin-bottom: 18px; }
+    .form-group label { display: block; font-size: 13px; font-weight: 600; color: var(--dark); margin-bottom: 6px; }
+    .form-group input, .form-group select { width: 100%; padding: 14px 16px; border: 1.5px solid var(--border); border-radius: 8px; font-size: 15px; font-family: var(--sans); color: var(--dark); background: var(--bg); transition: all 0.2s; outline: none; -webkit-appearance: none; }
+    .form-group input:focus, .form-group select:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(184,134,11,0.1); }
     .form-group input::placeholder { color: var(--muted); }
-    .sms-opt {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      margin: 16px 0;
-    }
+    .sms-opt { display: flex; align-items: flex-start; gap: 10px; margin: 20px 0; }
     .sms-opt input[type="checkbox"] { width: 18px; height: 18px; margin-top: 2px; flex-shrink: 0; accent-color: var(--gold); }
-    .sms-opt label { font-size: 13px; color: var(--light); font-weight: 400; margin: 0; }
-    .form-submit {
-      width: 100%;
-      padding: 16px;
-      background: var(--gold);
-      color: #fff;
-      border: none;
-      border-radius: 6px;
-      font-size: 15px;
-      font-weight: 600;
-      font-family: var(--sans);
-      cursor: pointer;
-      transition: all 0.3s ease;
-      margin-top: 8px;
-      letter-spacing: 0.3px;
-    }
-    .form-submit:hover {
-      background: var(--gold-hover);
-      box-shadow: 0 8px 24px rgba(184,134,11,0.2);
-    }
-    .form-note {
-      text-align: center;
-      font-size: 12px;
-      color: var(--muted);
-      margin-top: 16px;
-    }
+    .sms-opt label { font-size: 12px; color: var(--light); font-weight: 400; margin: 0; line-height: 1.6; }
+    .sms-opt a { color: var(--gold); }
+    .form-submit { width: 100%; padding: 16px; background: var(--gold); color: #fff; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; font-family: var(--sans); cursor: pointer; transition: all var(--transition); margin-top: 8px; box-shadow: 0 2px 12px rgba(184,134,11,0.25); }
+    .form-submit:hover { background: var(--gold-hover); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(184,134,11,0.3); }
+    .form-note { text-align: center; font-size: 12px; color: var(--muted); margin-top: 16px; line-height: 1.6; }
 
-    /* ── SECTIONS ── */
-    .section { padding: 100px 24px; }
-    .section-inner { max-width: 960px; margin: 0 auto; }
-    .section-header {
-      text-align: center;
-      max-width: 600px;
-      margin: 0 auto 64px;
-    }
-    .section-eyebrow {
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 16px;
-    }
-    .section-title {
-      font-family: var(--serif);
-      font-size: clamp(26px, 3.5vw, 36px);
-      font-weight: 500;
-      line-height: 1.3;
-      color: var(--dark);
-      margin-bottom: 16px;
-      letter-spacing: -0.3px;
-    }
-    .section-desc {
-      font-size: 16px;
-      color: var(--light);
-      line-height: 1.7;
-      font-weight: 300;
-    }
+    /* ── COMPARISON ── */
+    .comparison { padding: 120px 24px; background: var(--bg); }
+    .comparison-inner { max-width: 900px; margin: 0 auto; }
+    .comparison-header { text-align: center; margin-bottom: 64px; }
+    .comparison-header .eyebrow { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+    .comparison-header h2 { font-family: var(--serif); font-size: clamp(28px, 3.5vw, 40px); font-weight: 600; color: var(--dark); margin-bottom: 12px; }
+    .comparison-header p { font-size: 17px; color: var(--light); font-weight: 300; max-width: 520px; margin: 0 auto; line-height: 1.7; }
+    .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border-radius: 16px; overflow: hidden; }
+    .compare-cell { background: var(--bg); padding: 40px 36px; }
+    .compare-cell h3 { font-family: var(--serif); font-size: 19px; font-weight: 500; color: var(--dark); margin-bottom: 12px; }
+    .compare-cell p { font-size: 15px; color: var(--light); line-height: 1.7; font-weight: 300; }
 
-    /* ── BENEFITS GRID ── */
-    .benefits-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1px;
-      background: var(--border);
-      border-radius: 12px;
-      overflow: hidden;
-    }
-    .benefit-cell {
-      background: var(--bg);
-      padding: 40px 36px;
-    }
-    .benefit-cell h3 {
-      font-family: var(--serif);
-      font-size: 18px;
-      font-weight: 500;
-      color: var(--dark);
-      margin-bottom: 10px;
-    }
-    .benefit-cell p {
-      font-size: 15px;
-      color: var(--light);
-      line-height: 1.7;
-      font-weight: 300;
-    }
+    /* ── WHO IT'S FOR ── */
+    .who { background: var(--bg-warm); padding: 100px 24px; }
+    .who-inner { max-width: 640px; margin: 0 auto; text-align: center; }
+    .who-inner .eyebrow { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+    .who-inner h2 { font-family: var(--serif); font-size: clamp(26px, 3.5vw, 34px); font-weight: 600; color: var(--dark); margin-bottom: 40px; }
+    .who-list { list-style: none; text-align: left; display: flex; flex-direction: column; gap: 18px; }
+    .who-list li { display: flex; align-items: flex-start; gap: 14px; font-size: 16px; color: var(--body); font-weight: 400; line-height: 1.5; }
+    .who-list svg { width: 20px; height: 20px; stroke: var(--gold); fill: none; stroke-width: 2; flex-shrink: 0; margin-top: 3px; }
 
-    /* ── WHO SECTION ── */
-    .who-section {
-      background: var(--bg-warm);
-      padding: 80px 24px;
-    }
-    .who-inner {
-      max-width: 600px;
-      margin: 0 auto;
-      text-align: center;
-    }
-    .who-inner h2 {
-      font-family: var(--serif);
-      font-size: clamp(24px, 3.5vw, 32px);
-      font-weight: 500;
-      color: var(--dark);
-      margin-bottom: 40px;
-      letter-spacing: -0.3px;
-    }
-    .who-list {
-      list-style: none;
-      text-align: left;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-    .who-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      font-size: 16px;
-      color: var(--body);
-      font-weight: 400;
-      line-height: 1.5;
-    }
-    .who-list svg { width: 18px; height: 18px; fill: var(--gold); flex-shrink: 0; margin-top: 3px; }
+    /* ── BOTTOM CTA ── */
+    .bottom-cta { background: var(--footer-bg); padding: 80px 24px; text-align: center; }
+    .bottom-cta h2 { font-family: var(--serif); font-size: clamp(26px, 3.5vw, 38px); font-weight: 600; color: #fff; margin-bottom: 16px; }
+    .bottom-cta p { font-size: 17px; color: rgba(255,255,255,0.6); font-weight: 300; max-width: 480px; margin: 0 auto 28px; line-height: 1.7; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 16px 32px; border-radius: 8px; font-size: 15px; font-weight: 600; text-decoration: none; transition: all var(--transition); border: none; cursor: pointer; font-family: var(--sans); }
+    .btn-gold { background: var(--gold); color: #fff; box-shadow: 0 2px 12px rgba(184,134,11,0.25); }
+    .btn-gold:hover { background: var(--gold-hover); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(184,134,11,0.3); }
 
     /* ── FOOTER ── */
-    .footer {
-      background: var(--footer-bg);
-      color: rgba(255,255,255,0.4);
-      padding: 48px 24px;
-      text-align: center;
-      font-size: 13px;
-      line-height: 1.8;
-    }
-    .footer a { color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
-    .footer a:hover { color: rgba(255,255,255,0.8); }
+    .footer { background: var(--footer-bg); color: rgba(255,255,255,0.4); padding: 48px 48px; border-top: 1px solid rgba(255,255,255,0.06); }
     .footer-links { display: flex; justify-content: center; gap: 32px; margin-bottom: 16px; }
-    .footer-disclaimer {
-      max-width: 640px;
-      margin: 20px auto 0;
-      font-size: 11px;
-      line-height: 1.8;
-      color: rgba(255,255,255,0.2);
-    }
+    .footer-links a { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 13px; transition: color var(--transition); }
+    .footer-links a:hover { color: rgba(255,255,255,0.8); }
+    .footer-copy { text-align: center; font-size: 13px; color: rgba(255,255,255,0.3); margin-bottom: 16px; }
+    .footer-legal { max-width: 640px; margin: 0 auto; font-size: 11px; line-height: 1.8; color: rgba(255,255,255,0.15); text-align: center; }
 
-    @media (max-width: 900px) {
-      .form-layout { grid-template-columns: 1fr; gap: 48px; }
-    }
+    @media (max-width: 900px) { .form-layout { grid-template-columns: 1fr; gap: 48px; } }
     @media (max-width: 768px) {
+      .nav { padding: 0 20px; height: 64px; }
       .hero { padding: 60px 20px 48px; }
-      .section { padding: 72px 20px; }
-      .benefits-grid { grid-template-columns: 1fr; }
-      .form-card { padding: 28px 24px; }
-      .form-section { padding: 60px 20px; }
-      .nav { padding: 16px 20px; }
+      .hero h1 { font-size: 30px; }
+      .form-section { padding: 64px 20px; }
+      .form-card { padding: 32px 24px; }
+      .comparison { padding: 80px 20px; }
+      .compare-grid { grid-template-columns: 1fr; }
+      .who { padding: 64px 20px; }
       .hero-badges { gap: 16px; }
-      .who-section { padding: 60px 20px; }
+      .bottom-cta { padding: 64px 20px; }
+      .footer { padding: 32px 20px; }
+      .footer-links { flex-wrap: wrap; gap: 16px; }
     }
   </style>
 </head>
@@ -376,28 +155,22 @@
   <!-- NAV -->
   <nav class="nav">
     <a href="/"><img src="logo-v2.png" alt="Cornerstone Financial Partners" class="nav-logo"></a>
-    <a href="#eligibility" class="nav-cta">Check Eligibility</a>
+    <div class="nav-right">
+      <a href="/" class="nav-back"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Home</a>
+      <a href="#eligibility" class="nav-cta">Check Eligibility</a>
+    </div>
   </nav>
 
   <!-- HERO -->
   <section class="hero">
     <div class="hero-inner">
-      <div class="hero-eyebrow">IRS-Approved &bull; No Contribution Limits &bull; Tax-Free</div>
-      <h1>The Tax-Free Retirement Strategy High Earners Use After Maxing Out Their 401(k)</h1>
-      <p class="hero-sub">If you're earning $200K+ and tired of handing 30-40% of your returns to the IRS, there's a legal strategy most advisors never mention. See if you qualify in 60 seconds.</p>
+      <div class="hero-eyebrow">IRS-Approved Strategy</div>
+      <h1>You've Maxed Out Your 401(k). Now What?</h1>
+      <p class="hero-sub">If you earn $200K+ and you're still sending 30&ndash;40% of your investment gains to the IRS, there's a legal strategy most financial advisors don't talk about. It has no contribution limits, produces tax-free retirement income, and protects your principal from market losses.</p>
       <div class="hero-badges">
-        <div class="hero-badge-item">
-          <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-          No contribution limits
-        </div>
-        <div class="hero-badge-item">
-          <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-          Tax-free income
-        </div>
-        <div class="hero-badge-item">
-          <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-          Zero market risk option
-        </div>
+        <div class="badge-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> No contribution limits</div>
+        <div class="badge-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Tax-free retirement income</div>
+        <div class="badge-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Zero downside market risk</div>
       </div>
     </div>
   </section>
@@ -405,30 +178,19 @@
   <!-- FORM -->
   <section class="form-section" id="eligibility">
     <div class="form-layout">
-      <div class="form-left">
-        <div class="form-left-eyebrow">Quick Check</div>
-        <h2 class="form-left-title">Check Your Eligibility</h2>
-        <p class="form-left-desc">Answer a few quick questions to see if this strategy makes sense for your situation. No obligation, no pressure.</p>
-        <ul class="form-benefits">
-          <li>
-            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-            See if you qualify in under 60 seconds
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-            Get a personalized strategy overview
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-            Learn your potential tax-free income
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-            100% private — zero obligation
-          </li>
+      <div class="form-left fade-in">
+        <span class="eyebrow">Quick Assessment</span>
+        <h2>See If This Strategy Makes Sense for Your Situation</h2>
+        <p>Answer a few questions and we'll send you a personalized overview &mdash; including how much tax-free income this strategy could produce based on your age, income, and goals. No obligation.</p>
+        <ul class="benefit-list">
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Find out if you qualify in under 60 seconds</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Get a personalized tax-free income projection</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Learn how it complements your existing retirement accounts</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Independent advice &mdash; not tied to one carrier</li>
         </ul>
       </div>
-      <div class="form-card">
+      <div class="form-card fade-in">
+        <h3>Check Your Eligibility</h3>
         <form action="YOUR_GHL_WEBHOOK_URL" method="POST">
           <div class="form-group">
             <label for="fname">First Name</label>
@@ -443,18 +205,18 @@
             <input type="tel" id="phone" name="phone" placeholder="(555) 000-0000" required>
           </div>
           <div class="form-group">
-            <label for="age">Age Range</label>
+            <label for="age">Your Age Range</label>
             <select id="age" name="age_range" required>
               <option value="">Select your age range</option>
-              <option value="35-39">35-39</option>
-              <option value="40-44">40-44</option>
-              <option value="45-49">45-49</option>
-              <option value="50-54">50-54</option>
+              <option value="35-39">35 &ndash; 39</option>
+              <option value="40-44">40 &ndash; 44</option>
+              <option value="45-49">45 &ndash; 49</option>
+              <option value="50-54">50 &ndash; 54</option>
               <option value="55+">55+</option>
             </select>
           </div>
           <div class="form-group">
-            <label for="income">Approximate Annual Household Income</label>
+            <label for="income">Annual Household Income</label>
             <select id="income" name="income_range" required>
               <option value="">Select a range</option>
               <option value="150-200k">$150,000 &ndash; $199,999</option>
@@ -464,7 +226,7 @@
             </select>
           </div>
           <div class="form-group">
-            <label for="profile">Best Describes You</label>
+            <label for="profile">Which Best Describes You?</label>
             <select id="profile" name="profile_type" required>
               <option value="">Select one</option>
               <option value="w2">W-2 Employee / Executive</option>
@@ -475,75 +237,66 @@
           </div>
           <div class="sms-opt">
             <input type="checkbox" id="sms_opt" name="sms_opt_in" value="yes">
-            <label for="sms_opt">By checking this box, you agree to receive SMS text messages from Cornerstone Financial Partners regarding tax-free retirement tips and updates. Message frequency varies. Msg &amp; data rates may apply. Reply STOP to opt out. Reply HELP for help. See our <a href="/privacy" style="color:var(--gold)">Privacy Policy</a> &amp; <a href="/terms" style="color:var(--gold)">Terms of Service</a>.</label>
+            <label for="sms_opt">I agree to receive SMS from Cornerstone Financial Partners about tax-free retirement strategies. Msg frequency varies. Msg &amp; data rates may apply. Reply STOP to opt out. See <a href="/privacy">Privacy Policy</a> &amp; <a href="/terms">Terms</a>.</label>
           </div>
           <button type="submit" class="form-submit">Check My Eligibility</button>
-          <p class="form-note">No obligation. No spam. Your information is 100% private. Consent to receive texts is not required to use our services.</p>
+          <p class="form-note">No obligation. No spam. Your information stays private.<br>Consent to texts is not required to use our services.</p>
         </form>
       </div>
     </div>
   </section>
 
-  <!-- BENEFITS -->
-  <section class="section" style="background: var(--bg);">
-    <div class="section-inner">
-      <div class="section-header">
-        <div class="section-eyebrow">The Strategy</div>
-        <h2 class="section-title">Why High Earners Are Using This</h2>
-        <p class="section-desc">Indexed Universal Life does things a 401(k) simply can't.</p>
+  <!-- COMPARISON: 401(k) vs IUL -->
+  <section class="comparison">
+    <div class="comparison-inner">
+      <div class="comparison-header fade-in">
+        <span class="eyebrow">The Comparison</span>
+        <h2>What a 401(k) Can't Do</h2>
+        <p>Your 401(k) is a good start. But for high earners, it has real limitations. Here's how Indexed Universal Life fills the gaps.</p>
       </div>
-      <div class="benefits-grid">
-        <div class="benefit-cell">
-          <h3>No Contribution Limits</h3>
-          <p>Unlike a 401(k) capped at $23K/year, you can fund this strategy with $50K, $100K, or more annually.</p>
+      <div class="compare-grid fade-in">
+        <div class="compare-cell">
+          <h3>No Contribution Ceiling</h3>
+          <p>Your 401(k) caps contributions at $23,500/year (2025). With an IUL, you can allocate $50K, $100K, or more annually &mdash; there's no IRS contribution limit on premiums.</p>
         </div>
-        <div class="benefit-cell">
-          <h3>Tax-Free Income</h3>
-          <p>Retirement income comes out tax-free via policy loans — not counted as taxable income.</p>
+        <div class="compare-cell">
+          <h3>Tax-Free Retirement Income</h3>
+          <p>401(k) withdrawals are taxed as ordinary income. IUL policy loans provide retirement income that's tax-free under current IRS code &mdash; it doesn't count as taxable income.</p>
         </div>
-        <div class="benefit-cell">
-          <h3>Zero Market Risk</h3>
-          <p>Your cash value is indexed to market growth but protected from losses. You never go backwards.</p>
+        <div class="compare-cell">
+          <h3>Downside Protection</h3>
+          <p>Your 401(k) rises and falls with the market. An IUL's cash value is indexed to market performance but has a 0% floor &mdash; you participate in gains, but you never lose to a downturn.</p>
         </div>
-        <div class="benefit-cell">
-          <h3>Living Benefits</h3>
-          <p>Access your death benefit early if diagnosed with a chronic, critical, or terminal illness.</p>
+        <div class="compare-cell">
+          <h3>Living Benefits Built In</h3>
+          <p>Most IUL policies include accelerated benefit riders. If you're diagnosed with a chronic, critical, or terminal illness, you can access your death benefit early &mdash; while you're alive.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- WHO IT'S FOR -->
-  <section class="who-section">
-    <div class="who-inner">
-      <div class="section-eyebrow">Is This For You?</div>
-      <h2>This Strategy Is Best For People Who:</h2>
+  <section class="who">
+    <div class="who-inner fade-in">
+      <span class="eyebrow">Is This for You?</span>
+      <h2>This Strategy Works Best If You:</h2>
       <ul class="who-list">
-        <li>
-          <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-          Have maxed out their 401(k) or IRA
-        </li>
-        <li>
-          <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-          Earn $150K+ and want to reduce their tax burden
-        </li>
-        <li>
-          <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-          Own a business and want to shelter more income
-        </li>
-        <li>
-          <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-          Want retirement income with zero market risk
-        </li>
-        <li>
-          <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-          Are looking for estate planning advantages
-        </li>
-        <li>
-          <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-          Want a death benefit that also works while alive
-        </li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Have already maxed out your 401(k) and IRA contributions</li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Earn $150K+ and want to legally reduce your tax burden in retirement</li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Own a business and want to shelter more income from taxes</li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Want retirement income that isn't tied to stock market performance</li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Are looking for estate planning advantages alongside retirement income</li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Want a death benefit that also provides living benefits if you need them</li>
       </ul>
+    </div>
+  </section>
+
+  <!-- BOTTOM CTA -->
+  <section class="bottom-cta">
+    <div>
+      <h2>Find Out If You Qualify</h2>
+      <p>It takes 60 seconds. No commitment, no sales pitch. Just clarity on whether this strategy belongs in your plan.</p>
+      <a href="#eligibility" class="btn btn-gold">Check my eligibility</a>
     </div>
   </section>
 
@@ -551,21 +304,31 @@
   <footer class="footer">
     <div class="footer-links">
       <a href="/">Home</a>
+      <a href="/about">About</a>
       <a href="/privacy">Privacy Policy</a>
       <a href="/terms">Terms of Service</a>
     </div>
-    <p>&copy; 2025 Cornerstone Financial Partners. All rights reserved.</p>
-    <p class="footer-disclaimer">
-      This is not investment advice. Indexed Universal Life Insurance involves insurance products and is subject to underwriting, carrier approval, and policy terms. Tax advantages depend on proper policy structure and individual circumstances. Consult a licensed professional before making financial decisions.
+    <p class="footer-copy">&copy; 2026 Cornerstone Financial Partners. All rights reserved.</p>
+    <p class="footer-legal">
+      This is not investment advice. Indexed Universal Life Insurance involves insurance products subject to underwriting, carrier approval, and policy terms. Tax advantages depend on proper policy structure and individual tax circumstances. Policy loans reduce death benefit and cash value. Consult a licensed professional before making financial decisions.
     </p>
   </footer>
 
-<!-- LeadConnector Chat Widget -->
-<script
-  src="https://widgets.leadconnectorhq.com/loader.js"
-  data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
-  data-widget-id="69ab60190eb1998316585059">
-</script>
+  <script>
+    const nav = document.querySelector('.nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 10));
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+
+  <!-- LeadConnector Chat Widget -->
+  <script
+    src="https://widgets.leadconnectorhq.com/loader.js"
+    data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
+    data-widget-id="69ab60190eb1998316585059">
+  </script>
 
 </body>
 </html>
