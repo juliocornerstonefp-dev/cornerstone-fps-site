@@ -488,55 +488,52 @@
     /* ── STRATEGY SECTION ── */
     .strategy { background: var(--bg-warm); }
 
-    /* ── FLIP CARDS ── */
-    .flip-grid {
+    /* ── STRATEGY CARDS (Hover Reveal) ── */
+    .card-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 24px;
       max-width: var(--max-width);
       margin: 0 auto;
     }
-    .flip-card {
-      perspective: 1000px;
-      height: 380px;
-      cursor: pointer;
-    }
-    .flip-card-inner {
+    .strat-card {
       position: relative;
-      width: 100%;
-      height: 100%;
-      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-      transform-style: preserve-3d;
-    }
-    .flip-card.flipped .flip-card-inner {
-      transform: rotateY(180deg);
-    }
-    .flip-card-front,
-    .flip-card-back {
-      position: absolute;
-      inset: 0;
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 36px 28px;
-      overflow: hidden;
-    }
-    .flip-card-front {
+      height: 340px;
       background: var(--dark-deep);
-      border: 1px solid rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.06);
+      overflow: hidden;
+      cursor: default;
     }
-    .flip-card-front::before {
+    .strat-card::before {
       content: '';
       position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, transparent 30%, rgba(0,0,0,0.7) 100%);
-      z-index: 1;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 0;
+      background: linear-gradient(180deg, rgba(184,134,11,0.08) 0%, rgba(184,134,11,0.02) 100%);
+      transition: height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 0;
     }
-    .flip-card-front .card-icon {
-      position: relative;
+    .strat-card:hover::before {
+      height: 100%;
+    }
+    .strat-card:hover {
+      border-color: rgba(184,134,11,0.3);
+    }
+    .card-static {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 32px 28px;
       z-index: 2;
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .strat-card:hover .card-static {
+      transform: translateY(-100px);
+    }
+    .card-icon {
       width: 48px;
       height: 48px;
       border-radius: 12px;
@@ -545,8 +542,13 @@
       align-items: center;
       justify-content: center;
       margin-bottom: 16px;
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), background 0.5s ease;
     }
-    .flip-card-front .card-icon svg {
+    .strat-card:hover .card-icon {
+      transform: scale(1.1);
+      background: rgba(184,134,11,0.25);
+    }
+    .card-icon svg {
       width: 24px;
       height: 24px;
       stroke: var(--gold);
@@ -555,9 +557,7 @@
       stroke-linecap: round;
       stroke-linejoin: round;
     }
-    .flip-card-front .card-tag {
-      position: relative;
-      z-index: 2;
+    .card-tag {
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 2px;
@@ -565,51 +565,44 @@
       color: var(--gold);
       margin-bottom: 6px;
     }
-    .flip-card-front h3 {
-      position: relative;
-      z-index: 2;
+    .strat-card h3 {
       font-family: var(--serif);
       font-size: 22px;
       font-weight: 500;
       color: #fff;
     }
-    .flip-card-front .flip-hint {
+    .card-desc {
       position: absolute;
-      top: 20px;
-      right: 20px;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 0 28px 32px;
       z-index: 2;
-      font-size: 11px;
-      color: rgba(255,255,255,0.3);
-      text-transform: uppercase;
-      letter-spacing: 1px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease 0.1s, transform 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
     }
-    .flip-card-back {
-      background: var(--dark);
-      border: 1px solid var(--gold);
-      transform: rotateY(180deg);
-      justify-content: center;
-      padding: 36px 32px;
+    .strat-card:hover .card-desc {
+      opacity: 1;
+      transform: translateY(0);
     }
-    .flip-card-back .card-tag {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 12px;
-    }
-    .flip-card-back h3 {
-      font-family: var(--serif);
-      font-size: 20px;
-      font-weight: 500;
-      color: #fff;
-      margin-bottom: 16px;
-    }
-    .flip-card-back p {
-      font-size: 15px;
+    .card-desc p {
+      font-size: 14px;
       line-height: 1.7;
       color: rgba(255,255,255,0.6);
       font-weight: 300;
+    }
+    .card-line {
+      width: 40px;
+      height: 2px;
+      background: var(--gold);
+      margin-bottom: 14px;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.2s;
+    }
+    .strat-card:hover .card-line {
+      transform: scaleX(1);
     }
 
     /* ── CTA BAND (dark overlay) ── */
@@ -1022,8 +1015,8 @@
       .stat-val { font-size: 24px; }
       .section { padding: 80px 20px; }
       .problem-stats { grid-template-columns: 1fr 1fr; }
-      .flip-grid { grid-template-columns: 1fr 1fr; }
-      .flip-card { height: 320px; }
+      .card-grid { grid-template-columns: 1fr 1fr; }
+      .strat-card { height: 300px; }
       .svc-flip-card { height: 380px; }
       .steps { grid-template-columns: 1fr; gap: 36px; }
       .steps::before { display: none; }
@@ -1035,8 +1028,8 @@
       .header-inner { height: 68px; }
       header.scrolled .header-inner { height: 60px; }
       .hero h1 { font-size: 32px; }
-      .flip-grid { grid-template-columns: 1fr; }
-      .flip-card { height: 300px; }
+      .card-grid { grid-template-columns: 1fr; }
+      .strat-card { height: 280px; }
       .services-grid { grid-template-columns: 1fr; }
       .svc-flip-card { height: 360px; }
       .problem-stats { grid-template-columns: 1fr 1fr; }
@@ -1166,107 +1159,83 @@
         <div class="section-title">The Retirement Airplane Strategy™</div>
         <p class="section-desc">Think of your retirement like a flight. You need a pilot, an engine, wings, a cabin, fuel, and someone watching the radar. Miss one, and things get bumpy. We make sure you have all six.</p>
       </div>
-      <div class="flip-grid">
-        <div class="flip-card reveal reveal-delay-1">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <span class="flip-hint">Tap to explore</span>
-              <div class="card-icon">
-                <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 0 0-16 0"/></svg>
-              </div>
-              <div class="card-tag">The Pilot</div>
-              <h3>You & Your Goals</h3>
+      <div class="card-grid">
+        <div class="strat-card reveal reveal-delay-1">
+          <div class="card-static">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 0 0-16 0"/></svg>
             </div>
-            <div class="flip-card-back">
-              <div class="card-tag">The Pilot</div>
-              <h3>You & Your Goals</h3>
-              <p>Everything starts with what you actually want. When do you want to retire? What does your ideal Tuesday look like? Your vision drives the plan — not a product.</p>
-            </div>
+            <div class="card-tag">The Pilot</div>
+            <h3>You & Your Goals</h3>
+          </div>
+          <div class="card-desc">
+            <div class="card-line"></div>
+            <p>Everything starts with what you actually want. When do you want to retire? What does your ideal Tuesday look like? Your vision drives the plan — not a product.</p>
           </div>
         </div>
-        <div class="flip-card reveal reveal-delay-2">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <span class="flip-hint">Tap to explore</span>
-              <div class="card-icon">
-                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-              </div>
-              <div class="card-tag">The Engine</div>
-              <h3>Guaranteed Income</h3>
+        <div class="strat-card reveal reveal-delay-2">
+          <div class="card-static">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
             </div>
-            <div class="flip-card-back">
-              <div class="card-tag">The Engine</div>
-              <h3>Guaranteed Income</h3>
-              <p>Your retirement paycheck. Money that arrives every month no matter what the market does — so your mortgage, groceries, and essentials are never at risk.</p>
-            </div>
+            <div class="card-tag">The Engine</div>
+            <h3>Guaranteed Income</h3>
+          </div>
+          <div class="card-desc">
+            <div class="card-line"></div>
+            <p>Your retirement paycheck. Money that arrives every month no matter what the market does — so your mortgage, groceries, and essentials are never at risk.</p>
           </div>
         </div>
-        <div class="flip-card reveal reveal-delay-3">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <span class="flip-hint">Tap to explore</span>
-              <div class="card-icon">
-                <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-              </div>
-              <div class="card-tag">The Wings</div>
-              <h3>Growth & Protection</h3>
+        <div class="strat-card reveal reveal-delay-3">
+          <div class="card-static">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
             </div>
-            <div class="flip-card-back">
-              <div class="card-tag">The Wings</div>
-              <h3>Growth & Protection</h3>
-              <p>You still want your money growing — but not at the cost of sleepless nights. We balance upside participation with downside protection so turbulence doesn't ground you.</p>
-            </div>
+            <div class="card-tag">The Wings</div>
+            <h3>Growth & Protection</h3>
+          </div>
+          <div class="card-desc">
+            <div class="card-line"></div>
+            <p>You still want your money growing — but not at the cost of sleepless nights. We balance upside participation with downside protection so turbulence doesn't ground you.</p>
           </div>
         </div>
-        <div class="flip-card reveal reveal-delay-1">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <span class="flip-hint">Tap to explore</span>
-              <div class="card-icon">
-                <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-              </div>
-              <div class="card-tag">The Cabin</div>
-              <h3>Legacy & Healthcare</h3>
+        <div class="strat-card reveal reveal-delay-1">
+          <div class="card-static">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
             </div>
-            <div class="flip-card-back">
-              <div class="card-tag">The Cabin</div>
-              <h3>Legacy & Healthcare</h3>
-              <p>Long-term care. Estate strategy. Making sure the people who matter most are taken care of — whether you're here or not. This is the part most plans forget.</p>
-            </div>
+            <div class="card-tag">The Cabin</div>
+            <h3>Legacy & Healthcare</h3>
+          </div>
+          <div class="card-desc">
+            <div class="card-line"></div>
+            <p>Long-term care. Estate strategy. Making sure the people who matter most are taken care of — whether you're here or not. This is the part most plans forget.</p>
           </div>
         </div>
-        <div class="flip-card reveal reveal-delay-2">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <span class="flip-hint">Tap to explore</span>
-              <div class="card-icon">
-                <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-              </div>
-              <div class="card-tag">The Fuel</div>
-              <h3>Tax Strategy</h3>
+        <div class="strat-card reveal reveal-delay-2">
+          <div class="card-static">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
             </div>
-            <div class="flip-card-back">
-              <div class="card-tag">The Fuel</div>
-              <h3>Tax Strategy</h3>
-              <p>Which account you pull from first can save — or cost — you tens of thousands. Roth conversions, bracket management, and smart sequencing keep more in your pocket.</p>
-            </div>
+            <div class="card-tag">The Fuel</div>
+            <h3>Tax Strategy</h3>
+          </div>
+          <div class="card-desc">
+            <div class="card-line"></div>
+            <p>Which account you pull from first can save — or cost — you tens of thousands. Roth conversions, bracket management, and smart sequencing keep more in your pocket.</p>
           </div>
         </div>
-        <div class="flip-card reveal reveal-delay-3">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <span class="flip-hint">Tap to explore</span>
-              <div class="card-icon">
-                <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-              </div>
-              <div class="card-tag">Air Traffic Control</div>
-              <h3>Ongoing Guidance</h3>
+        <div class="strat-card reveal reveal-delay-3">
+          <div class="card-static">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
             </div>
-            <div class="flip-card-back">
-              <div class="card-tag">Air Traffic Control</div>
-              <h3>Ongoing Guidance</h3>
-              <p>Markets shift. Tax laws change. Life throws curveballs. Your plan isn't a binder on a shelf — it's a living strategy we adjust with you, year after year.</p>
-            </div>
+            <div class="card-tag">Air Traffic Control</div>
+            <h3>Ongoing Guidance</h3>
+          </div>
+          <div class="card-desc">
+            <div class="card-line"></div>
+            <p>Markets shift. Tax laws change. Life throws curveballs. Your plan isn't a binder on a shelf — it's a living strategy we adjust with you, year after year.</p>
           </div>
         </div>
       </div>
@@ -1458,10 +1427,9 @@
     }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-    // ── Flip Cards ──
-    document.querySelectorAll('.flip-card, .svc-flip-card').forEach(card => {
+    // ── Service Flip Cards ──
+    document.querySelectorAll('.svc-flip-card').forEach(card => {
       card.addEventListener('click', () => {
-        // Close other flipped cards in the same grid
         const parent = card.parentElement;
         parent.querySelectorAll('.flipped').forEach(other => {
           if (other !== card) other.classList.remove('flipped');
