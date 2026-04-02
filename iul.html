@@ -15,12 +15,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     :root {
       --gold: #B8860B;
       --gold-hover: #D4A843;
       --gold-subtle: #F8F3E8;
       --gold-border: #E8D5A8;
       --dark: #1A1A1A;
+      --dark-deep: #111111;
       --body: #4A4A4A;
       --light: #7A7A7A;
       --muted: #A0A0A0;
@@ -36,137 +38,731 @@
       --shadow-lg: 0 12px 40px rgba(0,0,0,0.08);
       --radius: 10px;
       --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --max-width: 1200px;
     }
+
     html { scroll-behavior: smooth; }
-    body { font-family: var(--sans); background: var(--bg); color: var(--body); -webkit-font-smoothing: antialiased; line-height: 1.6; }
-
-    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
-    .fade-in.visible { opacity: 1; transform: translateY(0); }
-
-    /* ── NAV ── */
-    .nav {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 48px; height: 72px;
-      background: rgba(255,255,255,0.95); backdrop-filter: blur(12px);
-      border-bottom: 1px solid transparent;
-      position: sticky; top: 0; z-index: 100;
-      transition: border-color 0.3s, box-shadow 0.3s;
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--dark);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
     }
-    .nav.scrolled { border-bottom-color: var(--border); box-shadow: var(--shadow-sm); }
-    .nav-logo { height: 38px; width: auto; }
-    .nav-right { display: flex; align-items: center; gap: 24px; }
-    .nav-back { font-size: 14px; color: var(--light); text-decoration: none; font-weight: 500; display: inline-flex; align-items: center; gap: 6px; transition: color var(--transition); }
-    .nav-back:hover { color: var(--dark); }
-    .nav-back svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; }
-    .nav-cta { display: inline-flex; align-items: center; padding: 10px 24px; border-radius: 8px; font-size: 14px; font-weight: 600; text-decoration: none; background: var(--gold); color: #fff; font-family: var(--sans); transition: all var(--transition); box-shadow: 0 2px 8px rgba(184,134,11,0.2); }
-    .nav-cta:hover { background: var(--gold-hover); transform: translateY(-1px); }
 
-    /* ── HERO ── */
-    .hero { background: linear-gradient(180deg, var(--bg) 0%, var(--bg-warm) 100%); padding: 80px 24px 60px; text-align: center; }
-    .hero-inner { max-width: 740px; margin: 0 auto; }
-    .hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: var(--gold); margin-bottom: 24px; padding: 8px 20px; background: var(--gold-subtle); border-radius: 50px; }
-    .hero h1 { font-family: var(--serif); font-size: clamp(30px, 5vw, 48px); font-weight: 600; line-height: 1.2; color: var(--dark); margin-bottom: 24px; letter-spacing: -0.5px; }
-    .hero-sub { font-size: 18px; color: var(--body); line-height: 1.75; max-width: 580px; margin: 0 auto 36px; font-weight: 300; }
-    .hero-badges { display: flex; justify-content: center; gap: 28px; flex-wrap: wrap; }
-    .badge-item { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500; color: var(--body); }
-    .badge-item svg { width: 18px; height: 18px; stroke: var(--gold); fill: none; stroke-width: 2; }
+    /* -- SCROLL REVEAL -- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
 
-    /* ── FORM SECTION ── */
-    .form-section { background: var(--bg-alt); padding: 100px 24px; }
-    .form-layout { max-width: 1020px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
-    .form-left .eyebrow { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
-    .form-left h2 { font-family: var(--serif); font-size: clamp(26px, 3.5vw, 36px); font-weight: 600; line-height: 1.25; color: var(--dark); margin-bottom: 20px; }
-    .form-left > p { font-size: 17px; color: var(--body); line-height: 1.75; font-weight: 300; margin-bottom: 36px; }
-    .benefit-list { list-style: none; display: flex; flex-direction: column; gap: 18px; }
-    .benefit-list li { display: flex; align-items: flex-start; gap: 14px; font-size: 16px; color: var(--body); font-weight: 400; line-height: 1.5; }
-    .benefit-list svg { width: 20px; height: 20px; stroke: var(--gold); fill: none; stroke-width: 2; flex-shrink: 0; margin-top: 2px; }
+    /* -- BACK TO TOP -- */
+    .back-to-top {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      width: 48px;
+      height: 48px;
+      background: var(--gold);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all var(--transition);
+      z-index: 90;
+      box-shadow: 0 4px 16px rgba(184,134,11,0.3);
+    }
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+    .back-to-top:hover {
+      background: var(--gold-hover);
+      transform: translateY(-3px);
+    }
+    .back-to-top svg {
+      width: 20px;
+      height: 20px;
+      stroke: #fff;
+      fill: none;
+      stroke-width: 2.5;
+    }
 
-    .form-card { background: var(--bg); border-radius: 16px; padding: 44px; border: 1px solid var(--border); box-shadow: var(--shadow-lg); }
-    .form-card h3 { font-family: var(--serif); font-size: 22px; font-weight: 500; color: var(--dark); margin-bottom: 24px; text-align: center; }
-    .form-group { margin-bottom: 18px; }
-    .form-group label { display: block; font-size: 13px; font-weight: 600; color: var(--dark); margin-bottom: 6px; }
-    .form-group input, .form-group select { width: 100%; padding: 14px 16px; border: 1.5px solid var(--border); border-radius: 8px; font-size: 15px; font-family: var(--sans); color: var(--dark); background: var(--bg); transition: all 0.2s; outline: none; -webkit-appearance: none; }
-    .form-group input:focus, .form-group select:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(184,134,11,0.1); }
+    /* -- HEADER (solid for subpage) -- */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: all 0.5s ease;
+    }
+    header.scrolled {
+      box-shadow: var(--shadow-sm);
+    }
+    .header-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 80px;
+      transition: height 0.5s ease;
+    }
+    header.scrolled .header-inner {
+      height: 68px;
+    }
+    .nav-logo {
+      height: 40px;
+      width: auto;
+      transition: all 0.5s ease;
+    }
+    header.scrolled .nav-logo {
+      height: 34px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      align-items: center;
+    }
+    .nav-links a {
+      color: var(--light);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color var(--transition);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta {
+      background: var(--gold) !important;
+      color: #fff !important;
+      padding: 10px 24px !important;
+      border-radius: 6px;
+      font-weight: 600 !important;
+      font-size: 13px !important;
+      letter-spacing: 0.5px;
+      transition: all var(--transition) !important;
+      text-transform: uppercase !important;
+    }
+    .nav-cta:hover {
+      background: var(--gold-hover) !important;
+      transform: translateY(-1px) !important;
+    }
+
+    /* Hamburger */
+    .mobile-menu {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      z-index: 101;
+    }
+    .hamburger {
+      width: 24px;
+      height: 18px;
+      position: relative;
+    }
+    .hamburger span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background: var(--dark);
+      position: absolute;
+      left: 0;
+      transition: all 0.3s ease;
+    }
+    .hamburger span:nth-child(1) { top: 0; }
+    .hamburger span:nth-child(2) { top: 8px; }
+    .hamburger span:nth-child(3) { top: 16px; }
+    .mobile-menu.open .hamburger span:nth-child(1) {
+      top: 8px;
+      transform: rotate(45deg);
+    }
+    .mobile-menu.open .hamburger span:nth-child(2) {
+      opacity: 0;
+    }
+    .mobile-menu.open .hamburger span:nth-child(3) {
+      top: 8px;
+      transform: rotate(-45deg);
+    }
+    .mobile-menu.open .hamburger span {
+      background: var(--dark) !important;
+    }
+
+    /* -- HERO (subpage dark centered) -- */
+    .hero {
+      position: relative;
+      padding: 160px 24px 100px;
+      text-align: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 25%, #0f3460 50%, #1a1a2e 100%);
+    }
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 740px;
+      margin: 0 auto;
+    }
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(30px, 5vw, 48px);
+      font-weight: 600;
+      line-height: 1.2;
+      color: #fff;
+      margin-bottom: 24px;
+      letter-spacing: -0.5px;
+    }
+    .hero-sub {
+      font-size: 18px;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.75;
+      max-width: 580px;
+      margin: 0 auto 36px;
+      font-weight: 300;
+    }
+    .hero-badges {
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+    .badge-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.8);
+    }
+    .badge-item svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--gold);
+      fill: none;
+      stroke-width: 2;
+    }
+
+    /* -- BUTTONS -- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 16px 32px;
+      border-radius: 0;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all var(--transition);
+      border: none;
+      cursor: pointer;
+      font-family: var(--sans);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .btn-gold {
+      background: var(--gold);
+      color: #fff;
+      border: 2px solid var(--gold);
+    }
+    .btn-gold:hover {
+      background: var(--gold-hover);
+      border-color: var(--gold-hover);
+    }
+
+    /* -- FORM SECTION -- */
+    .form-section {
+      background: var(--bg-alt);
+      padding: 120px 24px;
+    }
+    .form-layout {
+      max-width: 1020px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .form-left h2 {
+      font-family: var(--serif);
+      font-size: clamp(26px, 3.5vw, 36px);
+      font-weight: 600;
+      line-height: 1.25;
+      color: var(--dark);
+      margin-bottom: 20px;
+    }
+    .form-left > p {
+      font-size: 17px;
+      color: var(--body);
+      line-height: 1.75;
+      font-weight: 300;
+      margin-bottom: 36px;
+    }
+    .benefit-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .benefit-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      font-size: 16px;
+      color: var(--body);
+      font-weight: 400;
+      line-height: 1.5;
+    }
+    .benefit-list svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--gold);
+      fill: none;
+      stroke-width: 2;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .form-card {
+      background: var(--bg);
+      border-radius: 16px;
+      padding: 44px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-lg);
+    }
+    .form-card h3 {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--dark);
+      margin-bottom: 24px;
+      text-align: center;
+    }
+    .form-group {
+      margin-bottom: 18px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 6px;
+    }
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-size: 15px;
+      font-family: var(--sans);
+      color: var(--dark);
+      background: var(--bg);
+      transition: all 0.2s;
+      outline: none;
+      -webkit-appearance: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(184,134,11,0.1);
+    }
     .form-group input::placeholder { color: var(--muted); }
-    .sms-opt { display: flex; align-items: flex-start; gap: 10px; margin: 20px 0; }
-    .sms-opt input[type="checkbox"] { width: 18px; height: 18px; margin-top: 2px; flex-shrink: 0; accent-color: var(--gold); }
-    .sms-opt label { font-size: 12px; color: var(--light); font-weight: 400; margin: 0; line-height: 1.6; }
+    .sms-opt {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin: 20px 0;
+    }
+    .sms-opt input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      margin-top: 2px;
+      flex-shrink: 0;
+      accent-color: var(--gold);
+    }
+    .sms-opt label {
+      font-size: 12px;
+      color: var(--light);
+      font-weight: 400;
+      margin: 0;
+      line-height: 1.6;
+    }
     .sms-opt a { color: var(--gold); }
-    .form-submit { width: 100%; padding: 16px; background: var(--gold); color: #fff; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; font-family: var(--sans); cursor: pointer; transition: all var(--transition); margin-top: 8px; box-shadow: 0 2px 12px rgba(184,134,11,0.25); }
-    .form-submit:hover { background: var(--gold-hover); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(184,134,11,0.3); }
-    .form-note { text-align: center; font-size: 12px; color: var(--muted); margin-top: 16px; line-height: 1.6; }
+    .form-submit {
+      width: 100%;
+      padding: 16px;
+      background: var(--gold);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      font-family: var(--sans);
+      cursor: pointer;
+      transition: all var(--transition);
+      margin-top: 8px;
+      box-shadow: 0 2px 12px rgba(184,134,11,0.25);
+    }
+    .form-submit:hover {
+      background: var(--gold-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(184,134,11,0.3);
+    }
+    .form-note {
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 16px;
+      line-height: 1.6;
+    }
 
-    /* ── COMPARISON ── */
-    .comparison { padding: 120px 24px; background: var(--bg); }
-    .comparison-inner { max-width: 900px; margin: 0 auto; }
-    .comparison-header { text-align: center; margin-bottom: 64px; }
-    .comparison-header .eyebrow { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
-    .comparison-header h2 { font-family: var(--serif); font-size: clamp(28px, 3.5vw, 40px); font-weight: 600; color: var(--dark); margin-bottom: 12px; }
-    .comparison-header p { font-size: 17px; color: var(--light); font-weight: 300; max-width: 520px; margin: 0 auto; line-height: 1.7; }
-    .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border-radius: 16px; overflow: hidden; }
-    .compare-cell { background: var(--bg); padding: 40px 36px; }
-    .compare-cell h3 { font-family: var(--serif); font-size: 19px; font-weight: 500; color: var(--dark); margin-bottom: 12px; }
-    .compare-cell p { font-size: 15px; color: var(--light); line-height: 1.7; font-weight: 300; }
+    /* -- COMPARISON -- */
+    .comparison {
+      padding: 120px 24px;
+      background: var(--bg);
+    }
+    .comparison-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .comparison-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+    .comparison-header h2 {
+      font-family: var(--serif);
+      font-size: clamp(28px, 3.5vw, 40px);
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 12px;
+    }
+    .comparison-header p {
+      font-size: 17px;
+      color: var(--light);
+      font-weight: 300;
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      overflow: hidden;
+    }
+    .compare-cell {
+      background: var(--bg);
+      padding: 40px 36px;
+    }
+    .compare-cell h3 {
+      font-family: var(--serif);
+      font-size: 19px;
+      font-weight: 500;
+      color: var(--dark);
+      margin-bottom: 12px;
+    }
+    .compare-cell p {
+      font-size: 15px;
+      color: var(--light);
+      line-height: 1.7;
+      font-weight: 300;
+    }
 
-    /* ── WHO IT'S FOR ── */
-    .who { background: var(--bg-warm); padding: 100px 24px; }
-    .who-inner { max-width: 640px; margin: 0 auto; text-align: center; }
-    .who-inner .eyebrow { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
-    .who-inner h2 { font-family: var(--serif); font-size: clamp(26px, 3.5vw, 34px); font-weight: 600; color: var(--dark); margin-bottom: 40px; }
-    .who-list { list-style: none; text-align: left; display: flex; flex-direction: column; gap: 18px; }
-    .who-list li { display: flex; align-items: flex-start; gap: 14px; font-size: 16px; color: var(--body); font-weight: 400; line-height: 1.5; }
-    .who-list svg { width: 20px; height: 20px; stroke: var(--gold); fill: none; stroke-width: 2; flex-shrink: 0; margin-top: 3px; }
+    /* -- WHO IT'S FOR -- */
+    .who {
+      background: var(--bg-warm);
+      padding: 120px 24px;
+    }
+    .who-inner {
+      max-width: 640px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .who-inner h2 {
+      font-family: var(--serif);
+      font-size: clamp(26px, 3.5vw, 34px);
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 40px;
+    }
+    .who-list {
+      list-style: none;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .who-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      font-size: 16px;
+      color: var(--body);
+      font-weight: 400;
+      line-height: 1.5;
+    }
+    .who-list svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--gold);
+      fill: none;
+      stroke-width: 2;
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
 
-    /* ── BOTTOM CTA ── */
-    .bottom-cta { background: var(--footer-bg); padding: 80px 24px; text-align: center; }
-    .bottom-cta h2 { font-family: var(--serif); font-size: clamp(26px, 3.5vw, 38px); font-weight: 600; color: #fff; margin-bottom: 16px; }
-    .bottom-cta p { font-size: 17px; color: rgba(255,255,255,0.6); font-weight: 300; max-width: 480px; margin: 0 auto 28px; line-height: 1.7; }
-    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 16px 32px; border-radius: 8px; font-size: 15px; font-weight: 600; text-decoration: none; transition: all var(--transition); border: none; cursor: pointer; font-family: var(--sans); }
-    .btn-gold { background: var(--gold); color: #fff; box-shadow: 0 2px 12px rgba(184,134,11,0.25); }
-    .btn-gold:hover { background: var(--gold-hover); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(184,134,11,0.3); }
+    /* -- BOTTOM CTA -- */
+    .bottom-cta {
+      position: relative;
+      padding: 120px 24px;
+      text-align: center;
+      overflow: hidden;
+    }
+    .bottom-cta-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 50%, #16213e 100%);
+    }
+    .bottom-cta-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+    }
+    .bottom-cta-content {
+      position: relative;
+      z-index: 2;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .bottom-cta h2 {
+      font-family: var(--serif);
+      font-size: clamp(26px, 3.5vw, 38px);
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+    .bottom-cta p {
+      font-size: 17px;
+      color: rgba(255,255,255,0.6);
+      font-weight: 300;
+      max-width: 480px;
+      margin: 0 auto 28px;
+      line-height: 1.7;
+    }
 
-    /* ── FOOTER ── */
-    .footer { background: var(--footer-bg); color: rgba(255,255,255,0.4); padding: 48px 48px; border-top: 1px solid rgba(255,255,255,0.06); }
-    .footer-links { display: flex; justify-content: center; gap: 32px; margin-bottom: 16px; }
-    .footer-links a { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 13px; transition: color var(--transition); }
-    .footer-links a:hover { color: rgba(255,255,255,0.8); }
-    .footer-copy { text-align: center; font-size: 13px; color: rgba(255,255,255,0.3); margin-bottom: 16px; }
-    .footer-legal { max-width: 640px; margin: 0 auto; font-size: 11px; line-height: 1.8; color: rgba(255,255,255,0.15); text-align: center; }
+    /* -- FOOTER (Aurora Style) -- */
+    footer {
+      background: var(--footer-bg);
+      color: rgba(255,255,255,0.5);
+      padding: 80px 48px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    .footer-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    .footer-main {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      text-align: center;
+      gap: 0;
+    }
+    .footer-col-side {
+      width: 280px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 60px;
+    }
+    .footer-col-side::before {
+      content: '';
+      height: 2px;
+      width: 180px;
+      display: block;
+      background: radial-gradient(circle, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.25) 48%, transparent 100%);
+      margin-bottom: 24px;
+    }
+    .footer-center {
+      padding: 0 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .footer-logo {
+      height: 48px;
+      width: auto;
+      opacity: 0.9;
+      margin-bottom: 20px;
+    }
+    .footer-tagline {
+      font-size: 14px;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.7;
+      max-width: 300px;
+      margin-bottom: 24px;
+    }
+    .footer-nav {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .footer-nav a {
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      font-size: 13px;
+      transition: color var(--transition);
+    }
+    .footer-nav a:hover { color: var(--gold); }
+    .footer-col-side h4 {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 16px;
+    }
+    .footer-col-side p,
+    .footer-col-side a {
+      font-size: 14px;
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      margin-bottom: 8px;
+      display: block;
+      transition: color var(--transition);
+    }
+    .footer-col-side a:hover { color: var(--gold); }
+    .footer-bottom {
+      margin-top: 48px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      text-align: center;
+    }
+    .footer-copy {
+      font-size: 13px;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 12px;
+    }
+    .footer-legal {
+      font-size: 11px;
+      color: rgba(255,255,255,0.15);
+      line-height: 1.7;
+      max-width: 600px;
+      margin: 0 auto;
+    }
 
-    @media (max-width: 900px) { .form-layout { grid-template-columns: 1fr; gap: 48px; } }
-    @media (max-width: 768px) {
-      .nav { padding: 0 20px; height: 64px; }
-      .hero { padding: 60px 20px 48px; }
-      .hero h1 { font-size: 30px; }
-      .form-section { padding: 64px 20px; }
+    /* -- MOBILE -- */
+    @media (max-width: 991px) {
+      .header-inner { padding: 0 24px; }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(255,255,255,0.98);
+        backdrop-filter: blur(12px);
+        padding: 100px 40px 40px;
+        gap: 24px;
+        z-index: 99;
+        align-items: flex-start;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a {
+        color: var(--dark) !important;
+        font-size: 20px;
+      }
+      .mobile-menu { display: block; z-index: 101; }
+      .hero { padding: 140px 20px 80px; }
+      .form-section { padding: 80px 20px; }
+      .form-layout { grid-template-columns: 1fr; gap: 48px; }
       .form-card { padding: 32px 24px; }
       .comparison { padding: 80px 20px; }
+      .who { padding: 80px 20px; }
+      .bottom-cta { padding: 80px 20px; }
+      .footer-main { flex-direction: column; align-items: center; }
+      .footer-col-side { margin-top: 32px; }
+      footer { padding: 48px 24px 32px; }
+    }
+    @media (max-width: 768px) {
+      .header-inner { height: 68px; }
+      header.scrolled .header-inner { height: 60px; }
+      .hero h1 { font-size: 30px; }
+      .hero { padding: 120px 20px 60px; }
       .compare-grid { grid-template-columns: 1fr; }
-      .who { padding: 64px 20px; }
       .hero-badges { gap: 16px; }
-      .bottom-cta { padding: 64px 20px; }
-      .footer { padding: 32px 20px; }
-      .footer-links { flex-wrap: wrap; gap: 16px; }
+      .footer-center { padding: 0 20px; }
+    }
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 26px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav class="nav">
-    <a href="/"><img src="logo-v2.png" alt="Cornerstone Financial Partners" class="nav-logo"></a>
-    <div class="nav-right">
-      <a href="/" class="nav-back"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Home</a>
-      <a href="#eligibility" class="nav-cta">Check Eligibility</a>
-    </div>
-  </nav>
+  <!-- Back to Top -->
+  <button class="back-to-top" aria-label="Back to top">
+    <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
 
-  <!-- HERO -->
+  <!-- Header -->
+  <header id="top">
+    <div class="header-inner">
+      <a href="/">
+        <img class="nav-logo" src="logo-v2.png" alt="Cornerstone Financial Partners">
+      </a>
+      <button class="mobile-menu" aria-label="Toggle menu">
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </button>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/#approach">Our Approach</a>
+        <a href="/#services">Services</a>
+        <a href="/about">About</a>
+        <a href="#eligibility" class="nav-cta">Check Eligibility</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
   <section class="hero">
-    <div class="hero-inner">
-      <div class="hero-eyebrow">IRS-Approved Strategy</div>
+    <div class="hero-bg"></div>
+    <div class="hero-inner reveal">
       <h1>You've Maxed Out Your 401(k). Now What?</h1>
-      <p class="hero-sub">If you earn $200K+ and you're still sending 30&ndash;40% of your investment gains to the IRS, there's a legal strategy most financial advisors don't talk about. It has no contribution limits, produces tax-free retirement income, and protects your principal from market losses.</p>
+      <p class="hero-sub">If you earn $200K+ and you're still sending 30-40% of your investment gains to the IRS, there's a legal strategy most financial advisors don't talk about. It has no contribution limits, produces tax-free retirement income, and protects your principal from market losses.</p>
       <div class="hero-badges">
         <div class="badge-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> No contribution limits</div>
         <div class="badge-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Tax-free retirement income</div>
@@ -175,21 +771,20 @@
     </div>
   </section>
 
-  <!-- FORM -->
+  <!-- Form -->
   <section class="form-section" id="eligibility">
     <div class="form-layout">
-      <div class="form-left fade-in">
-        <span class="eyebrow">Quick Assessment</span>
+      <div class="form-left reveal">
         <h2>See If This Strategy Makes Sense for Your Situation</h2>
-        <p>Answer a few questions and we'll send you a personalized overview &mdash; including how much tax-free income this strategy could produce based on your age, income, and goals. No obligation.</p>
+        <p>Answer a few questions and we'll send you a personalized overview -- including how much tax-free income this strategy could produce based on your age, income, and goals. No obligation.</p>
         <ul class="benefit-list">
           <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Find out if you qualify in under 60 seconds</li>
           <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Get a personalized tax-free income projection</li>
           <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Learn how it complements your existing retirement accounts</li>
-          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Independent advice &mdash; not tied to one carrier</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Independent advice -- not tied to one carrier</li>
         </ul>
       </div>
-      <div class="form-card fade-in">
+      <div class="form-card reveal reveal-delay-1">
         <h3>Check Your Eligibility</h3>
         <form action="YOUR_GHL_WEBHOOK_URL" method="POST">
           <div class="form-group">
@@ -208,10 +803,10 @@
             <label for="age">Your Age Range</label>
             <select id="age" name="age_range" required>
               <option value="">Select your age range</option>
-              <option value="35-39">35 &ndash; 39</option>
-              <option value="40-44">40 &ndash; 44</option>
-              <option value="45-49">45 &ndash; 49</option>
-              <option value="50-54">50 &ndash; 54</option>
+              <option value="35-39">35 - 39</option>
+              <option value="40-44">40 - 44</option>
+              <option value="45-49">45 - 49</option>
+              <option value="50-54">50 - 54</option>
               <option value="55+">55+</option>
             </select>
           </div>
@@ -219,9 +814,9 @@
             <label for="income">Annual Household Income</label>
             <select id="income" name="income_range" required>
               <option value="">Select a range</option>
-              <option value="150-200k">$150,000 &ndash; $199,999</option>
-              <option value="200-300k">$200,000 &ndash; $299,999</option>
-              <option value="300-500k">$300,000 &ndash; $499,999</option>
+              <option value="150-200k">$150,000 - $199,999</option>
+              <option value="200-300k">$200,000 - $299,999</option>
+              <option value="300-500k">$300,000 - $499,999</option>
               <option value="500k+">$500,000+</option>
             </select>
           </div>
@@ -237,7 +832,7 @@
           </div>
           <div class="sms-opt">
             <input type="checkbox" id="sms_opt" name="sms_opt_in" value="yes">
-            <label for="sms_opt">I agree to receive SMS from Cornerstone Financial Partners about tax-free retirement strategies. Msg frequency varies. Msg &amp; data rates may apply. Reply STOP to opt out. See <a href="/privacy">Privacy Policy</a> &amp; <a href="/terms">Terms</a>.</label>
+            <label for="sms_opt">I agree to receive SMS from Cornerstone Financial Partners about tax-free retirement strategies. Msg frequency varies. Msg & data rates may apply. Reply STOP to opt out. See <a href="/privacy">Privacy Policy</a> & <a href="/terms">Terms</a>.</label>
           </div>
           <button type="submit" class="form-submit">Check My Eligibility</button>
           <p class="form-note">No obligation. No spam. Your information stays private.<br>Consent to texts is not required to use our services.</p>
@@ -246,39 +841,37 @@
     </div>
   </section>
 
-  <!-- COMPARISON: 401(k) vs IUL -->
+  <!-- Comparison: 401(k) vs IUL -->
   <section class="comparison">
     <div class="comparison-inner">
-      <div class="comparison-header fade-in">
-        <span class="eyebrow">The Comparison</span>
+      <div class="comparison-header reveal">
         <h2>What a 401(k) Can't Do</h2>
         <p>Your 401(k) is a good start. But for high earners, it has real limitations. Here's how Indexed Universal Life fills the gaps.</p>
       </div>
-      <div class="compare-grid fade-in">
+      <div class="compare-grid reveal">
         <div class="compare-cell">
           <h3>No Contribution Ceiling</h3>
-          <p>Your 401(k) caps contributions at $23,500/year (2025). With an IUL, you can allocate $50K, $100K, or more annually &mdash; there's no IRS contribution limit on premiums.</p>
+          <p>Your 401(k) caps contributions at $23,500/year (2025). With an IUL, you can allocate $50K, $100K, or more annually -- there's no IRS contribution limit on premiums.</p>
         </div>
         <div class="compare-cell">
           <h3>Tax-Free Retirement Income</h3>
-          <p>401(k) withdrawals are taxed as ordinary income. IUL policy loans provide retirement income that's tax-free under current IRS code &mdash; it doesn't count as taxable income.</p>
+          <p>401(k) withdrawals are taxed as ordinary income. IUL policy loans provide retirement income that's tax-free under current IRS code -- it doesn't count as taxable income.</p>
         </div>
         <div class="compare-cell">
           <h3>Downside Protection</h3>
-          <p>Your 401(k) rises and falls with the market. An IUL's cash value is indexed to market performance but has a 0% floor &mdash; you participate in gains, but you never lose to a downturn.</p>
+          <p>Your 401(k) rises and falls with the market. An IUL's cash value is indexed to market performance but has a 0% floor -- you participate in gains, but you never lose to a downturn.</p>
         </div>
         <div class="compare-cell">
           <h3>Living Benefits Built In</h3>
-          <p>Most IUL policies include accelerated benefit riders. If you're diagnosed with a chronic, critical, or terminal illness, you can access your death benefit early &mdash; while you're alive.</p>
+          <p>Most IUL policies include accelerated benefit riders. If you're diagnosed with a chronic, critical, or terminal illness, you can access your death benefit early -- while you're alive.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- WHO IT'S FOR -->
+  <!-- Who It's For -->
   <section class="who">
-    <div class="who-inner fade-in">
-      <span class="eyebrow">Is This for You?</span>
+    <div class="who-inner reveal">
       <h2>This Strategy Works Best If You:</h2>
       <ul class="who-list">
         <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Have already maxed out your 401(k) and IRA contributions</li>
@@ -291,36 +884,95 @@
     </div>
   </section>
 
-  <!-- BOTTOM CTA -->
+  <!-- Bottom CTA -->
   <section class="bottom-cta">
-    <div>
+    <div class="bottom-cta-bg"></div>
+    <div class="bottom-cta-overlay"></div>
+    <div class="bottom-cta-content reveal">
       <h2>Find Out If You Qualify</h2>
       <p>It takes 60 seconds. No commitment, no sales pitch. Just clarity on whether this strategy belongs in your plan.</p>
       <a href="#eligibility" class="btn btn-gold">Check my eligibility</a>
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="footer-links">
-      <a href="/">Home</a>
-      <a href="/about">About</a>
-      <a href="/privacy">Privacy Policy</a>
-      <a href="/terms">Terms of Service</a>
+  <!-- Footer (Aurora Style) -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-main">
+        <div class="footer-col-side">
+          <h4>Navigate</h4>
+          <a href="/">Home</a>
+          <a href="/#approach">Our Approach</a>
+          <a href="/#services">Services</a>
+          <a href="/about">About</a>
+          <a href="https://calculator.cornerstone-fps.com">Calculator</a>
+        </div>
+        <div class="footer-center">
+          <img src="logo-white.svg" alt="Cornerstone Financial Partners" class="footer-logo">
+          <p class="footer-tagline">Independent retirement income planning for pre-retirees and recent retirees. Virtual consultations nationwide.</p>
+          <div class="footer-nav">
+            <a href="/annuity">Guaranteed Income</a>
+            <a href="/iul">Tax-Free Growth</a>
+            <a href="/#start">Retirement Review</a>
+          </div>
+        </div>
+        <div class="footer-col-side">
+          <h4>Legal</h4>
+          <a href="/privacy">Privacy Policy</a>
+          <a href="/terms">Terms of Service</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2026 Cornerstone Financial Partners. All rights reserved.</p>
+        <p class="footer-legal">
+          This is not investment advice. Indexed Universal Life Insurance involves insurance products subject to underwriting, carrier approval, and policy terms. Tax advantages depend on proper policy structure and individual tax circumstances. Policy loans reduce death benefit and cash value. Consult a licensed professional before making financial decisions.
+        </p>
+      </div>
     </div>
-    <p class="footer-copy">&copy; 2026 Cornerstone Financial Partners. All rights reserved.</p>
-    <p class="footer-legal">
-      This is not investment advice. Indexed Universal Life Insurance involves insurance products subject to underwriting, carrier approval, and policy terms. Tax advantages depend on proper policy structure and individual tax circumstances. Policy loans reduce death benefit and cash value. Consult a licensed professional before making financial decisions.
-    </p>
   </footer>
 
   <script>
-    const nav = document.querySelector('.nav');
-    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 10));
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    // -- Header scroll effect --
+    const header = document.querySelector('header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 10);
+    });
+
+    // -- Scroll Reveal --
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // -- Mobile Menu --
+    const mobileBtn = document.querySelector('.mobile-menu');
+    const navLinks = document.querySelector('.nav-links');
+    mobileBtn.addEventListener('click', () => {
+      mobileBtn.classList.toggle('open');
+      navLinks.classList.toggle('open');
+      document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileBtn.classList.remove('open');
+        navLinks.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // -- Back to Top --
+    const backToTop = document.querySelector('.back-to-top');
+    window.addEventListener('scroll', () => {
+      backToTop.classList.toggle('visible', window.scrollY > 600);
+    });
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
   </script>
 
   <!-- LeadConnector Chat Widget -->

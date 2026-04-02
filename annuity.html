@@ -15,12 +15,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     :root {
       --gold: #B8860B;
       --gold-hover: #D4A843;
       --gold-subtle: #F8F3E8;
       --gold-border: #E8D5A8;
       --dark: #1A1A1A;
+      --dark-deep: #111111;
       --body: #4A4A4A;
       --light: #7A7A7A;
       --muted: #A0A0A0;
@@ -36,96 +38,215 @@
       --shadow-lg: 0 12px 40px rgba(0,0,0,0.08);
       --radius: 10px;
       --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --max-width: 1200px;
     }
+
     html { scroll-behavior: smooth; }
-    body { font-family: var(--sans); background: var(--bg); color: var(--body); -webkit-font-smoothing: antialiased; line-height: 1.6; }
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--dark);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
 
-    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
-    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    /* -- SCROLL REVEAL -- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
 
-    /* ── NAV ── */
-    .nav {
+    /* -- BACK TO TOP -- */
+    .back-to-top {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      width: 48px;
+      height: 48px;
+      background: var(--gold);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all var(--transition);
+      z-index: 90;
+      box-shadow: 0 4px 16px rgba(184,134,11,0.3);
+    }
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+    .back-to-top:hover {
+      background: var(--gold-hover);
+      transform: translateY(-3px);
+    }
+    .back-to-top svg {
+      width: 20px;
+      height: 20px;
+      stroke: #fff;
+      fill: none;
+      stroke-width: 2.5;
+    }
+
+    /* -- HEADER (subpage: starts solid/white) -- */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: all 0.5s ease;
+    }
+    header.scrolled {
+      box-shadow: var(--shadow-sm);
+    }
+    .header-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 48px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 48px;
-      height: 72px;
-      background: rgba(255,255,255,0.95);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid transparent;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      transition: border-color 0.3s, box-shadow 0.3s;
+      height: 80px;
+      transition: height 0.5s ease;
     }
-    .nav.scrolled { border-bottom-color: var(--border); box-shadow: var(--shadow-sm); }
-    .nav-logo { height: 38px; width: auto; }
-    .nav-right { display: flex; align-items: center; gap: 24px; }
-    .nav-back {
-      font-size: 14px;
+    header.scrolled .header-inner {
+      height: 68px;
+    }
+    .nav-logo {
+      height: 40px;
+      width: auto;
+      transition: all 0.5s ease;
+    }
+    header.scrolled .nav-logo {
+      height: 34px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      align-items: center;
+    }
+    .nav-links a {
       color: var(--light);
       text-decoration: none;
-      font-weight: 500;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition: color var(--transition);
-    }
-    .nav-back:hover { color: var(--dark); }
-    .nav-back svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; }
-    .nav-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 24px;
-      border-radius: 8px;
       font-size: 14px;
-      font-weight: 600;
-      text-decoration: none;
-      background: var(--gold);
-      color: #fff;
-      font-family: var(--sans);
-      transition: all var(--transition);
-      box-shadow: 0 2px 8px rgba(184,134,11,0.2);
-    }
-    .nav-cta:hover { background: var(--gold-hover); transform: translateY(-1px); }
-
-    /* ── HERO ── */
-    .hero {
-      background: linear-gradient(180deg, var(--bg) 0%, var(--bg-warm) 100%);
-      padding: 80px 24px 60px;
-      text-align: center;
-    }
-    .hero-inner { max-width: 720px; margin: 0 auto; }
-    .hero-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 13px;
-      font-weight: 600;
+      font-weight: 500;
+      transition: color var(--transition);
       text-transform: uppercase;
-      letter-spacing: 2px;
-      color: var(--gold);
-      margin-bottom: 24px;
-      padding: 8px 20px;
-      background: var(--gold-subtle);
-      border-radius: 50px;
+      letter-spacing: 0.5px;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta {
+      background: var(--gold) !important;
+      color: #fff !important;
+      padding: 10px 24px !important;
+      border-radius: 6px;
+      font-weight: 600 !important;
+      font-size: 13px !important;
+      letter-spacing: 0.5px;
+      transition: all var(--transition) !important;
+      text-transform: uppercase !important;
+    }
+    .nav-cta:hover {
+      background: var(--gold-hover) !important;
+      transform: translateY(-1px) !important;
+    }
+
+    /* Hamburger */
+    .mobile-menu {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      z-index: 101;
+    }
+    .hamburger {
+      width: 24px;
+      height: 18px;
+      position: relative;
+    }
+    .hamburger span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background: var(--dark);
+      position: absolute;
+      left: 0;
+      transition: all 0.3s ease;
+    }
+    .hamburger span:nth-child(1) { top: 0; }
+    .hamburger span:nth-child(2) { top: 8px; }
+    .hamburger span:nth-child(3) { top: 16px; }
+    .mobile-menu.open .hamburger span:nth-child(1) {
+      top: 8px;
+      transform: rotate(45deg);
+    }
+    .mobile-menu.open .hamburger span:nth-child(2) {
+      opacity: 0;
+    }
+    .mobile-menu.open .hamburger span:nth-child(3) {
+      top: 8px;
+      transform: rotate(-45deg);
+    }
+    .mobile-menu.open .hamburger span {
+      background: var(--dark) !important;
+    }
+
+    /* -- HERO (subpage: dark centered) -- */
+    .hero {
+      position: relative;
+      padding: 160px 24px 100px;
+      text-align: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 25%, #0f3460 50%, #1a1a2e 100%);
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.3);
+    }
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 760px;
+      margin: 0 auto;
     }
     .hero h1 {
       font-family: var(--serif);
-      font-size: clamp(30px, 5vw, 48px);
+      font-size: clamp(30px, 5vw, 50px);
       font-weight: 600;
-      line-height: 1.2;
-      color: var(--dark);
+      line-height: 1.15;
+      color: #fff;
       margin-bottom: 24px;
       letter-spacing: -0.5px;
     }
     .hero-sub {
       font-size: 18px;
-      color: var(--body);
+      color: rgba(255,255,255,0.65);
       line-height: 1.75;
-      max-width: 560px;
-      margin: 0 auto 36px;
+      max-width: 600px;
+      margin: 0 auto 40px;
       font-weight: 300;
     }
     .hero-badges {
@@ -140,14 +261,41 @@
       gap: 8px;
       font-size: 14px;
       font-weight: 500;
-      color: var(--body);
+      color: rgba(255,255,255,0.75);
     }
     .badge-item svg { width: 18px; height: 18px; stroke: var(--gold); fill: none; stroke-width: 2; }
 
-    /* ── FORM SECTION ── */
+    /* -- BUTTONS -- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 16px 32px;
+      border-radius: 0;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all var(--transition);
+      border: none;
+      cursor: pointer;
+      font-family: var(--sans);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .btn-gold {
+      background: var(--gold);
+      color: #fff;
+      border: 2px solid var(--gold);
+    }
+    .btn-gold:hover {
+      background: var(--gold-hover);
+      border-color: var(--gold-hover);
+    }
+
+    /* -- FORM SECTION -- */
     .form-section {
       background: var(--bg-alt);
-      padding: 100px 24px;
+      padding: 120px 24px;
     }
     .form-layout {
       max-width: 1020px;
@@ -156,15 +304,6 @@
       grid-template-columns: 1fr 1fr;
       gap: 80px;
       align-items: start;
-    }
-    .form-left .eyebrow {
-      display: inline-block;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 16px;
     }
     .form-left h2 {
       font-family: var(--serif);
@@ -278,7 +417,7 @@
       line-height: 1.6;
     }
 
-    /* ── WHAT YOU'LL LEARN ── */
+    /* -- WHAT YOU'LL LEARN -- */
     .learn {
       padding: 120px 24px;
       background: var(--bg);
@@ -287,15 +426,6 @@
     .learn-header {
       text-align: center;
       margin-bottom: 64px;
-    }
-    .learn-header .eyebrow {
-      display: inline-block;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 16px;
     }
     .learn-header h2 {
       font-family: var(--serif);
@@ -354,24 +484,15 @@
       font-weight: 300;
     }
 
-    /* ── WHY NOW ── */
+    /* -- WHY NOW -- */
     .why-now {
       background: var(--bg-warm);
-      padding: 100px 24px;
+      padding: 120px 24px;
     }
     .why-now-inner {
       max-width: 760px;
       margin: 0 auto;
       text-align: center;
-    }
-    .why-now-inner .eyebrow {
-      display: inline-block;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 16px;
     }
     .why-now-inner h2 {
       font-family: var(--serif);
@@ -390,49 +511,16 @@
     .why-now-cta {
       margin-top: 36px;
     }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 16px 32px;
-      border-radius: 8px;
-      font-size: 15px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all var(--transition);
-      border: none;
-      cursor: pointer;
-      font-family: var(--sans);
-    }
-    .btn-gold {
-      background: var(--gold);
-      color: #fff;
-      box-shadow: 0 2px 12px rgba(184,134,11,0.25);
-    }
-    .btn-gold:hover {
-      background: var(--gold-hover);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(184,134,11,0.3);
-    }
 
-    /* ── ADVISOR ── */
+    /* -- ADVISOR -- */
     .advisor {
       background: var(--bg);
-      padding: 80px 24px;
+      padding: 100px 24px;
     }
     .advisor-inner {
       max-width: 640px;
       margin: 0 auto;
       text-align: center;
-    }
-    .advisor-inner .eyebrow {
-      display: inline-block;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 16px;
     }
     .advisor-inner h2 {
       font-family: var(--serif);
@@ -448,62 +536,195 @@
       font-weight: 300;
     }
 
-    /* ── FOOTER ── */
-    .footer {
+    /* -- FOOTER (Aurora Style) -- */
+    footer {
       background: var(--footer-bg);
-      color: rgba(255,255,255,0.4);
-      padding: 48px 48px;
+      color: rgba(255,255,255,0.5);
+      padding: 80px 48px 48px;
+      position: relative;
+      overflow: hidden;
     }
-    .footer-links { display: flex; justify-content: center; gap: 32px; margin-bottom: 16px; }
-    .footer-links a { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 13px; transition: color var(--transition); }
-    .footer-links a:hover { color: rgba(255,255,255,0.8); }
-    .footer-copy { text-align: center; font-size: 13px; color: rgba(255,255,255,0.3); margin-bottom: 16px; }
-    .footer-legal {
-      max-width: 640px;
+    .footer-inner {
+      max-width: var(--max-width);
       margin: 0 auto;
-      font-size: 11px;
-      line-height: 1.8;
-      color: rgba(255,255,255,0.15);
+    }
+    .footer-main {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      text-align: center;
+      gap: 0;
+    }
+    .footer-col-side {
+      width: 280px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 60px;
+    }
+    .footer-col-side::before {
+      content: '';
+      height: 2px;
+      width: 180px;
+      display: block;
+      background: radial-gradient(circle, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.25) 48%, transparent 100%);
+      margin-bottom: 24px;
+    }
+    .footer-center {
+      padding: 0 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .footer-logo {
+      height: 48px;
+      width: auto;
+      opacity: 0.9;
+      margin-bottom: 20px;
+    }
+    .footer-tagline {
+      font-size: 14px;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.7;
+      max-width: 300px;
+      margin-bottom: 24px;
+    }
+    .footer-nav {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .footer-nav a {
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      font-size: 13px;
+      transition: color var(--transition);
+    }
+    .footer-nav a:hover { color: var(--gold); }
+    .footer-col-side h4 {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 16px;
+    }
+    .footer-col-side p,
+    .footer-col-side a {
+      font-size: 14px;
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      margin-bottom: 8px;
+      display: block;
+      transition: color var(--transition);
+    }
+    .footer-col-side a:hover { color: var(--gold); }
+    .footer-bottom {
+      margin-top: 48px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255,255,255,0.06);
       text-align: center;
     }
+    .footer-copy {
+      font-size: 13px;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 12px;
+    }
+    .footer-legal {
+      font-size: 11px;
+      color: rgba(255,255,255,0.15);
+      line-height: 1.7;
+      max-width: 600px;
+      margin: 0 auto;
+    }
 
-    @media (max-width: 900px) {
+    /* -- MOBILE -- */
+    @media (max-width: 991px) {
+      .header-inner { padding: 0 24px; }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(255,255,255,0.98);
+        backdrop-filter: blur(12px);
+        padding: 100px 40px 40px;
+        gap: 24px;
+        z-index: 99;
+        align-items: flex-start;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a {
+        color: var(--dark) !important;
+        font-size: 20px;
+      }
+      .mobile-menu { display: block; z-index: 101; }
       .form-layout { grid-template-columns: 1fr; gap: 48px; }
       .learn-grid { grid-template-columns: 1fr 1fr; }
+      .footer-main { flex-direction: column; align-items: center; }
+      .footer-col-side { margin-top: 32px; }
+      footer { padding: 48px 24px 32px; }
     }
     @media (max-width: 768px) {
-      .nav { padding: 0 20px; height: 64px; }
-      .hero { padding: 60px 20px 48px; }
+      .header-inner { height: 68px; }
+      header.scrolled .header-inner { height: 60px; }
+      .hero { padding: 130px 20px 72px; }
       .hero h1 { font-size: 30px; }
-      .form-section { padding: 64px 20px; }
+      .form-section { padding: 80px 20px; }
       .form-card { padding: 32px 24px; }
       .learn { padding: 80px 20px; }
       .learn-grid { grid-template-columns: 1fr; }
-      .why-now { padding: 64px 20px; }
+      .why-now { padding: 72px 20px; }
+      .advisor { padding: 72px 20px; }
       .hero-badges { gap: 16px; }
-      .footer { padding: 32px 20px; }
-      .footer-links { flex-wrap: wrap; gap: 16px; }
+      .footer-center { padding: 0 20px; }
+    }
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 26px; }
+      .hero-sub { font-size: 16px; }
+      .badge-item { font-size: 13px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav class="nav">
-    <a href="/"><img src="logo-v2.png" alt="Cornerstone Financial Partners" class="nav-logo"></a>
-    <div class="nav-right">
-      <a href="/" class="nav-back">
-        <svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-        Home
-      </a>
-      <a href="#estimate" class="nav-cta">Get My Estimate</a>
-    </div>
-  </nav>
+  <!-- Back to Top -->
+  <button class="back-to-top" aria-label="Back to top">
+    <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
 
-  <!-- HERO -->
+  <!-- Header -->
+  <header id="top">
+    <div class="header-inner">
+      <a href="/">
+        <img class="nav-logo" src="logo-v2.png" alt="Cornerstone Financial Partners">
+      </a>
+      <button class="mobile-menu" aria-label="Toggle menu">
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </button>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/#approach">Our Approach</a>
+        <a href="/#services">Services</a>
+        <a href="/about">About</a>
+        <a href="#estimate" class="nav-cta">Get My Estimate</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
   <section class="hero">
-    <div class="hero-inner">
-      <div class="hero-eyebrow">Guaranteed Income Strategy</div>
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-inner reveal">
       <h1>What If Your Retirement Had a Paycheck That Never Stopped?</h1>
       <p class="hero-sub">With annuity rates at multi-year highs, the guaranteed monthly income available to you today may be significantly more than it was 12 months ago. See your personalized number.</p>
       <div class="hero-badges">
@@ -523,13 +744,12 @@
     </div>
   </section>
 
-  <!-- FORM -->
+  <!-- Form -->
   <section class="form-section" id="estimate">
     <div class="form-layout">
-      <div class="form-left fade-in">
-        <span class="eyebrow">Your Estimate</span>
+      <div class="form-left reveal">
         <h2>Find Out How Much Guaranteed Monthly Income Your Savings Could Produce</h2>
-        <p>We'll run your numbers against today's top-rated carrier rates and show you exactly how much guaranteed income you could lock in &mdash; income that arrives every month for life, regardless of what the stock market does.</p>
+        <p>We'll run your numbers against today's top-rated carrier rates and show you exactly how much guaranteed income you could lock in — income that arrives every month for life, regardless of what the stock market does.</p>
         <ul class="benefit-list">
           <li>
             <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
@@ -541,15 +761,15 @@
           </li>
           <li>
             <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-            Shows guaranteed monthly income &mdash; not hypothetical returns
+            Shows guaranteed monthly income — not hypothetical returns
           </li>
           <li>
             <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-            Independent &mdash; we compare across multiple carriers
+            Independent — we compare across multiple carriers
           </li>
         </ul>
       </div>
-      <div class="form-card fade-in">
+      <div class="form-card reveal">
         <h3>Get Your Estimate</h3>
         <form action="YOUR_GHL_WEBHOOK_URL" method="POST">
           <div class="form-group">
@@ -568,10 +788,10 @@
             <label for="age">Your Age Range</label>
             <select id="age" name="age_range" required>
               <option value="">Select your age range</option>
-              <option value="50-54">50 &ndash; 54</option>
-              <option value="55-59">55 &ndash; 59</option>
-              <option value="60-64">60 &ndash; 64</option>
-              <option value="65-69">65 &ndash; 69</option>
+              <option value="50-54">50 – 54</option>
+              <option value="55-59">55 – 59</option>
+              <option value="60-64">60 – 64</option>
+              <option value="65-69">65 – 69</option>
               <option value="70+">70+</option>
             </select>
           </div>
@@ -579,15 +799,15 @@
             <label for="savings">Retirement Savings (approximate)</label>
             <select id="savings" name="savings_range" required>
               <option value="">Select a range</option>
-              <option value="100-250k">$100,000 &ndash; $249,999</option>
-              <option value="250-500k">$250,000 &ndash; $499,999</option>
-              <option value="500k-1m">$500,000 &ndash; $999,999</option>
+              <option value="100-250k">$100,000 – $249,999</option>
+              <option value="250-500k">$250,000 – $499,999</option>
+              <option value="500k-1m">$500,000 – $999,999</option>
               <option value="1m+">$1,000,000+</option>
             </select>
           </div>
           <div class="sms-opt">
             <input type="checkbox" id="sms_opt" name="sms_opt_in" value="yes">
-            <label for="sms_opt">I agree to receive SMS from Cornerstone Financial Partners about my estimate and retirement planning tips. Msg frequency varies. Msg &amp; data rates may apply. Reply STOP to opt out. See <a href="/privacy">Privacy Policy</a> &amp; <a href="/terms">Terms</a>.</label>
+            <label for="sms_opt">I agree to receive SMS from Cornerstone Financial Partners about my estimate and retirement planning tips. Msg frequency varies. Msg & data rates may apply. Reply STOP to opt out. See <a href="/privacy">Privacy Policy</a> & <a href="/terms">Terms</a>.</label>
           </div>
           <button type="submit" class="form-submit">Get My Income Estimate</button>
           <p class="form-note">No obligation. No spam. Your information stays private.<br>Consent to texts is not required to use our services.</p>
@@ -596,47 +816,45 @@
     </div>
   </section>
 
-  <!-- WHAT YOU'LL LEARN -->
+  <!-- What You'll Learn -->
   <section class="learn">
     <div class="learn-inner">
-      <div class="learn-header fade-in">
-        <span class="eyebrow">What You'll Discover</span>
+      <div class="learn-header reveal">
         <h2>Your Estimate Will Show You</h2>
         <p>Three numbers that could change how you think about retirement.</p>
       </div>
-      <div class="learn-grid fade-in">
-        <div class="learn-card">
+      <div class="learn-grid">
+        <div class="learn-card reveal reveal-delay-1">
           <div class="learn-icon">
             <svg viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
           </div>
           <h3>Your Guaranteed Monthly Income</h3>
-          <p>The exact monthly paycheck your savings could produce &mdash; income that's contractually guaranteed for life, not dependent on market performance.</p>
+          <p>The exact monthly paycheck your savings could produce — income that's contractually guaranteed for life, not dependent on market performance.</p>
         </div>
-        <div class="learn-card">
+        <div class="learn-card reveal reveal-delay-2">
           <div class="learn-icon">
             <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
           </div>
           <h3>Your Market Exposure Risk</h3>
-          <p>What a 20&ndash;30% market correction would do to your specific retirement timeline &mdash; and how much of your income is currently at risk.</p>
+          <p>What a 20–30% market correction would do to your specific retirement timeline — and how much of your income is currently at risk.</p>
         </div>
-        <div class="learn-card">
+        <div class="learn-card reveal reveal-delay-3">
           <div class="learn-icon">
             <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
           </div>
           <h3>Your Rate Lock Window</h3>
-          <p>Today's rates won't last forever. You'll see how much more income is available now versus historical averages &mdash; and what waiting could cost you.</p>
+          <p>Today's rates won't last forever. You'll see how much more income is available now versus historical averages — and what waiting could cost you.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- WHY NOW -->
+  <!-- Why Now -->
   <section class="why-now">
-    <div class="why-now-inner fade-in">
-      <span class="eyebrow">The Opportunity</span>
+    <div class="why-now-inner reveal">
       <h2>Why Timing Matters Right Now</h2>
-      <p>Annuity payout rates are driven by interest rates. When rates are high, the guaranteed income available to you is higher. When rates drop, that income drops with them &mdash; permanently.</p>
-      <p>Right now, rates are at levels we haven't seen in over a decade. That means the monthly income your savings can produce today may be <strong style="color:var(--dark)">20&ndash;30% higher</strong> than it was just two years ago.</p>
+      <p>Annuity payout rates are driven by interest rates. When rates are high, the guaranteed income available to you is higher. When rates drop, that income drops with them — permanently.</p>
+      <p>Right now, rates are at levels we haven't seen in over a decade. That means the monthly income your savings can produce today may be <strong style="color:var(--dark)">20–30% higher</strong> than it was just two years ago.</p>
       <p>This isn't about pressure. It's about math. And the math favors acting while the window is open.</p>
       <div class="why-now-cta">
         <a href="#estimate" class="btn btn-gold">Get my personalized estimate</a>
@@ -644,36 +862,92 @@
     </div>
   </section>
 
-  <!-- ADVISOR -->
+  <!-- Advisor -->
   <section class="advisor">
-    <div class="advisor-inner fade-in">
-      <span class="eyebrow">Your Advisor</span>
+    <div class="advisor-inner reveal">
       <h2>Julio | Cornerstone Financial Partners</h2>
-      <p>Independent financial professional specializing in retirement income strategies for pre-retirees and recent retirees. I'm not tied to a single carrier &mdash; I shop across the market to find the best rates for your situation. Virtual consultations available nationwide.</p>
+      <p>Independent financial professional specializing in retirement income strategies for pre-retirees and recent retirees. I'm not tied to a single carrier — I shop across the market to find the best rates for your situation. Virtual consultations available nationwide.</p>
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="footer-links">
-      <a href="/">Home</a>
-      <a href="/about">About</a>
-      <a href="/privacy">Privacy Policy</a>
-      <a href="/terms">Terms of Service</a>
+  <!-- Footer (Aurora Style) -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-main">
+        <div class="footer-col-side">
+          <h4>Navigate</h4>
+          <a href="/">Home</a>
+          <a href="/#approach">Our Approach</a>
+          <a href="/#services">Services</a>
+          <a href="/about">About</a>
+          <a href="https://calculator.cornerstone-fps.com">Calculator</a>
+        </div>
+        <div class="footer-center">
+          <img src="logo-white.svg" alt="Cornerstone Financial Partners" class="footer-logo">
+          <p class="footer-tagline">Independent retirement income planning for pre-retirees and recent retirees. Virtual consultations nationwide.</p>
+          <div class="footer-nav">
+            <a href="/annuity">Guaranteed Income</a>
+            <a href="/iul">Tax-Free Growth</a>
+            <a href="/#start">Retirement Review</a>
+          </div>
+        </div>
+        <div class="footer-col-side">
+          <h4>Legal</h4>
+          <a href="/privacy">Privacy Policy</a>
+          <a href="/terms">Terms of Service</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2026 Cornerstone Financial Partners. All rights reserved.</p>
+        <p class="footer-legal">
+          This is not investment advice. Guaranteed income products involve insurance contracts and are subject to carrier terms, conditions, and underwriting approval. Estimates are illustrative and based on current market rates, which are subject to change. Past performance is not indicative of future results. Consult a licensed professional before making financial decisions.
+        </p>
+      </div>
     </div>
-    <p class="footer-copy">&copy; 2026 Cornerstone Financial Partners. All rights reserved.</p>
-    <p class="footer-legal">
-      This is not investment advice. Guaranteed income products involve insurance contracts and are subject to carrier terms, conditions, and underwriting approval. Estimates are illustrative and based on current market rates, which are subject to change. Past performance is not indicative of future results. Consult a licensed professional before making financial decisions.
-    </p>
   </footer>
 
   <script>
-    const nav = document.querySelector('.nav');
-    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 10));
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    // -- Header scroll state --
+    const header = document.querySelector('header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 10);
+    });
+
+    // -- Scroll Reveal --
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // -- Mobile Menu --
+    const mobileBtn = document.querySelector('.mobile-menu');
+    const navLinks = document.querySelector('.nav-links');
+    mobileBtn.addEventListener('click', () => {
+      mobileBtn.classList.toggle('open');
+      navLinks.classList.toggle('open');
+      document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileBtn.classList.remove('open');
+        navLinks.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // -- Back to Top --
+    const backToTop = document.querySelector('.back-to-top');
+    window.addEventListener('scroll', () => {
+      backToTop.classList.toggle('visible', window.scrollY > 600);
+    });
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
   </script>
 
   <!-- LeadConnector Chat Widget -->

@@ -17,12 +17,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     :root {
       --gold: #B8860B;
       --gold-hover: #D4A843;
       --gold-subtle: #F8F3E8;
       --gold-border: #E8D5A8;
       --dark: #1A1A1A;
+      --dark-deep: #111111;
       --body: #4A4A4A;
       --light: #7A7A7A;
       --muted: #A0A0A0;
@@ -38,292 +40,713 @@
       --shadow-lg: 0 12px 40px rgba(0,0,0,0.08);
       --radius: 10px;
       --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --max-width: 1200px;
     }
+
     html { scroll-behavior: smooth; }
-    body { font-family: var(--sans); background: var(--bg); color: var(--body); -webkit-font-smoothing: antialiased; line-height: 1.6; }
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--dark);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
 
-    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
-    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    /* -- SCROLL REVEAL -- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
 
-    /* ── TOPBAR ── */
+    /* -- BACK TO TOP -- */
+    .back-to-top {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      width: 48px;
+      height: 48px;
+      background: var(--gold);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all var(--transition);
+      z-index: 90;
+      box-shadow: 0 4px 16px rgba(184,134,11,0.3);
+    }
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+    .back-to-top:hover {
+      background: var(--gold-hover);
+      transform: translateY(-3px);
+    }
+    .back-to-top svg {
+      width: 20px;
+      height: 20px;
+      stroke: #fff;
+      fill: none;
+      stroke-width: 2.5;
+    }
+
+    /* -- HEADER (solid for landing page) -- */
+    header {
+      position: sticky;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid transparent;
+      transition: all 0.5s ease;
+    }
+    header.scrolled {
+      box-shadow: var(--shadow-sm);
+      border-bottom-color: var(--border);
+    }
+    .header-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 80px;
+      transition: height 0.5s ease;
+    }
+    header.scrolled .header-inner {
+      height: 68px;
+    }
+    .nav-logo {
+      height: 40px;
+      width: auto;
+      transition: all 0.5s ease;
+    }
+    header.scrolled .nav-logo {
+      height: 34px;
+    }
+    .nav-cta {
+      background: var(--gold);
+      color: #fff;
+      padding: 10px 24px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 0.5px;
+      transition: all var(--transition);
+      text-transform: uppercase;
+      text-decoration: none;
+      font-family: var(--sans);
+    }
+    .nav-cta:hover {
+      background: var(--gold-hover);
+      transform: translateY(-1px);
+    }
+
+    /* -- TOPBAR -- */
     .topbar {
-      display: flex; align-items: center; justify-content: center; gap: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
       padding: 12px 24px;
       background: var(--footer-bg);
       color: rgba(255,255,255,0.7);
-      font-size: 13px; font-weight: 400;
+      font-size: 13px;
+      font-weight: 400;
     }
-    .topbar strong { color: var(--gold-hover); font-weight: 600; }
+    .topbar strong {
+      color: var(--gold-hover);
+      font-weight: 600;
+    }
 
-    /* ── NAV ── */
-    .nav {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 48px; height: 72px;
-      background: rgba(255,255,255,0.95); backdrop-filter: blur(12px);
-      border-bottom: 1px solid transparent;
-      position: sticky; top: 0; z-index: 100;
-      transition: border-color 0.3s, box-shadow 0.3s;
-    }
-    .nav.scrolled { border-bottom-color: var(--border); box-shadow: var(--shadow-sm); }
-    .nav-logo { height: 38px; width: auto; }
-    .nav-cta {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 10px 24px; border-radius: 8px;
-      font-size: 14px; font-weight: 600; text-decoration: none;
-      background: var(--gold); color: #fff; font-family: var(--sans);
-      transition: all var(--transition);
-      box-shadow: 0 2px 8px rgba(184,134,11,0.2);
-    }
-    .nav-cta:hover { background: var(--gold-hover); transform: translateY(-1px); }
-
-    /* ── HERO ── */
+    /* -- HERO -- */
     .hero {
       background: linear-gradient(180deg, var(--bg) 0%, var(--bg-warm) 100%);
-      padding: 80px 24px 100px; text-align: center;
+      padding: 80px 24px 100px;
+      text-align: center;
     }
-    .hero-inner { max-width: 740px; margin: 0 auto; }
-    .hero-eyebrow {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px;
-      color: var(--gold); margin-bottom: 24px;
-      padding: 8px 20px; background: var(--gold-subtle); border-radius: 50px;
+    .hero-inner {
+      max-width: 740px;
+      margin: 0 auto;
     }
     .hero h1 {
       font-family: var(--serif);
-      font-size: clamp(32px, 5vw, 52px); font-weight: 600; line-height: 1.15;
-      color: var(--dark); margin-bottom: 24px; letter-spacing: -0.5px;
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 600;
+      line-height: 1.15;
+      color: var(--dark);
+      margin-bottom: 24px;
+      letter-spacing: -0.5px;
     }
-    .hero h1 em { font-style: normal; color: var(--gold); }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--gold);
+    }
     .hero-sub {
-      font-size: 19px; color: var(--body); line-height: 1.75;
-      max-width: 580px; margin: 0 auto 40px; font-weight: 300;
+      font-size: 19px;
+      color: var(--body);
+      line-height: 1.75;
+      max-width: 580px;
+      margin: 0 auto 40px;
+      font-weight: 300;
     }
     .btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 18px 36px; border-radius: 8px;
-      font-size: 16px; font-weight: 600; text-decoration: none;
-      transition: all var(--transition); border: none; cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 16px 32px;
+      border-radius: 0;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all var(--transition);
+      border: none;
+      cursor: pointer;
       font-family: var(--sans);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
     .btn-gold {
-      background: var(--gold); color: #fff;
-      box-shadow: 0 2px 12px rgba(184,134,11,0.25);
+      background: var(--gold);
+      color: #fff;
+      border: 2px solid var(--gold);
     }
     .btn-gold:hover {
-      background: var(--gold-hover); transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(184,134,11,0.3);
+      background: var(--gold-hover);
+      border-color: var(--gold-hover);
     }
-    .btn-gold svg { width: 18px; height: 18px; fill: #fff; }
-    .hero-note { margin-top: 14px; font-size: 13px; color: var(--muted); }
+    .btn-gold svg {
+      width: 18px;
+      height: 18px;
+      fill: #fff;
+    }
+    .hero-note {
+      margin-top: 14px;
+      font-size: 13px;
+      color: var(--muted);
+    }
 
-    /* ── TRUST BAR ── */
+    /* -- TRUST BAR -- */
     .trust-bar {
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      max-width: 900px; margin: -40px auto 0;
-      position: relative; z-index: 10;
-      background: var(--bg); border-radius: 16px;
-      box-shadow: var(--shadow-lg); overflow: hidden;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      max-width: 1000px;
+      margin: -48px auto 0;
+      position: relative;
+      z-index: 10;
+      background: var(--bg);
+      border-radius: 0;
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
     }
     .trust-item {
-      padding: 32px 20px; text-align: center;
+      padding: 36px 24px;
+      text-align: center;
       border-right: 1px solid var(--border);
+      transition: background var(--transition);
     }
     .trust-item:last-child { border-right: none; }
+    .trust-item:hover { background: var(--bg-warm); }
     .trust-val {
-      font-family: var(--serif); font-size: 22px; font-weight: 600;
-      color: var(--gold); margin-bottom: 4px;
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--gold);
+      margin-bottom: 4px;
     }
-    .trust-label { font-size: 12px; color: var(--light); line-height: 1.4; }
+    .trust-label {
+      font-size: 13px;
+      color: var(--light);
+      font-weight: 400;
+      line-height: 1.4;
+    }
 
-    /* ── WHAT YOU GET ── */
-    .section { padding: 120px 24px; }
-    .section-inner { max-width: 1020px; margin: 0 auto; }
-    .section-header { text-align: center; margin-bottom: 64px; }
-    .eyebrow {
-      display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 2.5px;
-      text-transform: uppercase; color: var(--gold); margin-bottom: 16px;
+    /* -- SECTIONS SHARED -- */
+    .section {
+      padding: 120px 24px;
+    }
+    .section-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 64px;
     }
     .section-title {
-      font-family: var(--serif); font-size: clamp(28px, 3.5vw, 40px);
-      font-weight: 600; color: var(--dark); margin-bottom: 12px; line-height: 1.2;
+      font-family: var(--serif);
+      font-size: clamp(30px, 4vw, 46px);
+      font-weight: 600;
+      color: var(--dark);
+      letter-spacing: -0.5px;
+      margin-bottom: 16px;
+      line-height: 1.2;
     }
     .section-desc {
-      font-size: 17px; color: var(--light); font-weight: 300;
-      max-width: 540px; margin: 0 auto; line-height: 1.75;
+      font-size: 18px;
+      color: var(--light);
+      font-weight: 300;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.75;
     }
+
+    /* -- PILLARS GRID -- */
     .pillars-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
     }
     .pillar {
-      background: var(--bg); border-radius: var(--radius); padding: 40px 28px;
-      border: 1px solid var(--border); transition: all var(--transition);
+      background: var(--bg);
+      border-radius: var(--radius);
+      padding: 40px 28px;
+      border: 1px solid var(--border);
+      transition: all var(--transition);
     }
     .pillar:hover {
-      transform: translateY(-4px); box-shadow: var(--shadow-md);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
       border-color: var(--gold-border);
     }
     .pillar-icon {
-      width: 52px; height: 52px; border-radius: 14px;
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
       background: var(--gold-subtle);
-      display: flex; align-items: center; justify-content: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       margin-bottom: 24px;
     }
     .pillar-icon svg {
-      width: 26px; height: 26px; stroke: var(--gold); fill: none;
-      stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
+      width: 26px;
+      height: 26px;
+      stroke: var(--gold);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
     .pillar h3 {
-      font-family: var(--serif); font-size: 21px; font-weight: 500;
-      color: var(--dark); margin-bottom: 14px;
+      font-family: var(--serif);
+      font-size: 21px;
+      font-weight: 500;
+      color: var(--dark);
+      margin-bottom: 14px;
     }
     .pillar p {
-      font-size: 15px; color: var(--light); line-height: 1.75; font-weight: 300;
+      font-size: 15px;
+      color: var(--light);
+      line-height: 1.75;
+      font-weight: 300;
     }
 
-    /* ── AIRPLANE STRATEGY ── */
+    /* -- AIRPLANE STRATEGY -- */
     .airplane-section {
-      background: var(--bg-warm); padding: 120px 24px;
+      background: var(--bg-warm);
+      padding: 120px 24px;
     }
-    .airplane-inner { max-width: 800px; margin: 0 auto; }
-    .airplane-header { text-align: center; margin-bottom: 56px; }
+    .airplane-inner {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .airplane-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
     .airplane-header h2 {
-      font-family: var(--serif); font-size: clamp(28px, 3.5vw, 40px);
-      font-weight: 600; color: var(--dark); margin-bottom: 16px;
+      font-family: var(--serif);
+      font-size: clamp(30px, 4vw, 46px);
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+      line-height: 1.2;
     }
     .airplane-header p {
-      font-size: 17px; color: var(--body); font-weight: 300; line-height: 1.8;
-      max-width: 600px; margin: 0 auto;
+      font-size: 18px;
+      color: var(--body);
+      font-weight: 300;
+      line-height: 1.8;
+      max-width: 600px;
+      margin: 0 auto;
     }
     .airplane-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
     }
     .airplane-card {
-      background: var(--bg); border-radius: var(--radius); padding: 28px 24px;
-      border: 1px solid var(--border); transition: all var(--transition);
+      background: var(--bg);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      border: 1px solid var(--border);
+      transition: all var(--transition);
     }
     .airplane-card:hover {
-      transform: translateY(-3px); box-shadow: var(--shadow-md);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
       border-color: var(--gold-border);
     }
     .airplane-tag {
-      font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
-      text-transform: uppercase; color: var(--gold); margin-bottom: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 6px;
     }
     .airplane-card h3 {
-      font-family: var(--serif); font-size: 18px; font-weight: 500;
-      color: var(--dark); margin-bottom: 8px;
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--dark);
+      margin-bottom: 8px;
     }
     .airplane-card p {
-      font-size: 14px; line-height: 1.65; color: var(--light); font-weight: 300;
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--light);
+      font-weight: 300;
     }
 
-    /* ── SOCIAL PROOF ── */
-    .proof {
-      background: var(--bg); padding: 100px 24px;
+    /* -- SOCIAL PROOF -- */
+    .social-proof {
+      background: var(--bg);
+      padding: 120px 24px;
     }
     .proof-inner {
-      max-width: 720px; margin: 0 auto; text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
     }
     .proof-quote {
-      font-family: var(--serif); font-size: clamp(20px, 2.8vw, 28px);
-      font-weight: 400; color: var(--dark); line-height: 1.5;
-      font-style: italic; margin-bottom: 28px;
-      position: relative; padding: 0 32px;
+      font-family: var(--serif);
+      font-size: clamp(22px, 3vw, 30px);
+      font-weight: 400;
+      color: var(--dark);
+      line-height: 1.5;
+      font-style: italic;
+      margin-bottom: 32px;
+      position: relative;
+      padding: 0 40px;
     }
     .proof-quote::before {
-      content: '\201C'; position: absolute; top: -16px; left: 0;
-      font-size: 72px; color: var(--gold); font-family: var(--serif);
-      line-height: 1; opacity: 0.3;
+      content: '\201C';
+      position: absolute;
+      top: -20px;
+      left: 0;
+      font-size: 80px;
+      color: var(--gold);
+      font-family: var(--serif);
+      line-height: 1;
+      opacity: 0.3;
     }
-    .proof-attr { font-size: 14px; color: var(--light); }
-    .proof-attr strong { color: var(--body); font-weight: 600; }
+    .proof-attr {
+      font-size: 15px;
+      color: var(--light);
+      font-weight: 400;
+    }
+    .proof-attr strong {
+      color: var(--body);
+      font-weight: 600;
+    }
 
-    /* ── FORM SECTION ── */
+    /* -- FORM SECTION -- */
     .form-section {
-      background: var(--bg-alt); padding: 120px 24px;
+      background: var(--bg-alt);
+      padding: 120px 24px;
     }
     .form-layout {
-      max-width: 1020px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+      max-width: 1020px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
       align-items: start;
     }
     .form-left h2 {
-      font-family: var(--serif); font-size: clamp(26px, 3.5vw, 36px);
-      font-weight: 600; line-height: 1.25; color: var(--dark); margin-bottom: 20px;
+      font-family: var(--serif);
+      font-size: clamp(26px, 3.5vw, 36px);
+      font-weight: 600;
+      line-height: 1.25;
+      color: var(--dark);
+      margin-bottom: 20px;
     }
     .form-left > p {
-      font-size: 17px; color: var(--body); line-height: 1.75;
-      font-weight: 300; margin-bottom: 36px;
+      font-size: 17px;
+      color: var(--body);
+      line-height: 1.75;
+      font-weight: 300;
+      margin-bottom: 36px;
     }
-    .benefit-list { list-style: none; display: flex; flex-direction: column; gap: 18px; }
+    .benefit-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
     .benefit-list li {
-      display: flex; align-items: flex-start; gap: 14px;
-      font-size: 16px; color: var(--body); font-weight: 400; line-height: 1.5;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      font-size: 16px;
+      color: var(--body);
+      font-weight: 400;
+      line-height: 1.5;
     }
     .benefit-list svg {
-      width: 20px; height: 20px; stroke: var(--gold); fill: none;
-      stroke-width: 2; flex-shrink: 0; margin-top: 2px;
+      width: 20px;
+      height: 20px;
+      stroke: var(--gold);
+      fill: none;
+      stroke-width: 2;
+      flex-shrink: 0;
+      margin-top: 2px;
     }
     .form-card {
-      background: var(--bg); border-radius: 16px; padding: 44px;
-      border: 1px solid var(--border); box-shadow: var(--shadow-lg);
+      background: var(--bg);
+      border-radius: 16px;
+      padding: 44px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-lg);
     }
     .form-card h3 {
-      font-family: var(--serif); font-size: 22px; font-weight: 500;
-      color: var(--dark); margin-bottom: 24px; text-align: center;
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--dark);
+      margin-bottom: 24px;
+      text-align: center;
     }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 18px; }
-    .form-group { margin-bottom: 18px; }
-    .form-group label { display: block; font-size: 13px; font-weight: 600; color: var(--dark); margin-bottom: 6px; }
-    .form-group input, .form-group select {
-      width: 100%; padding: 14px 16px;
-      border: 1.5px solid var(--border); border-radius: 8px;
-      font-size: 15px; font-family: var(--sans); color: var(--dark);
-      background: var(--bg); transition: all 0.2s; outline: none;
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+    .form-group {
+      margin-bottom: 18px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 6px;
+    }
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-size: 15px;
+      font-family: var(--sans);
+      color: var(--dark);
+      background: var(--bg);
+      transition: all 0.2s;
+      outline: none;
       -webkit-appearance: none;
     }
-    .form-group input:focus, .form-group select:focus {
-      border-color: var(--gold); box-shadow: 0 0 0 3px rgba(184,134,11,0.1);
+    .form-group input:focus,
+    .form-group select:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(184,134,11,0.1);
     }
-    .form-group input::placeholder { color: var(--muted); }
-    .sms-opt { display: flex; align-items: flex-start; gap: 10px; margin: 20px 0; }
-    .sms-opt input[type="checkbox"] { width: 18px; height: 18px; margin-top: 2px; flex-shrink: 0; accent-color: var(--gold); }
-    .sms-opt label { font-size: 12px; color: var(--light); font-weight: 400; margin: 0; line-height: 1.6; }
-    .sms-opt a { color: var(--gold); }
+    .form-group input::placeholder {
+      color: var(--muted);
+    }
+    .sms-opt {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin: 20px 0;
+    }
+    .sms-opt input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      margin-top: 2px;
+      flex-shrink: 0;
+      accent-color: var(--gold);
+    }
+    .sms-opt label {
+      font-size: 12px;
+      color: var(--light);
+      font-weight: 400;
+      margin: 0;
+      line-height: 1.6;
+    }
+    .sms-opt a {
+      color: var(--gold);
+    }
     .form-submit {
-      width: 100%; padding: 16px;
-      background: var(--gold); color: #fff; border: none; border-radius: 8px;
-      font-size: 16px; font-weight: 600; font-family: var(--sans);
-      cursor: pointer; transition: all var(--transition); margin-top: 8px;
-      box-shadow: 0 2px 12px rgba(184,134,11,0.25);
+      width: 100%;
+      padding: 16px;
+      background: var(--gold);
+      color: #fff;
+      border: none;
+      border-radius: 0;
+      font-size: 14px;
+      font-weight: 600;
+      font-family: var(--sans);
+      cursor: pointer;
+      transition: all var(--transition);
+      margin-top: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
     .form-submit:hover {
-      background: var(--gold-hover); transform: translateY(-1px);
-      box-shadow: 0 6px 20px rgba(184,134,11,0.3);
+      background: var(--gold-hover);
+      transform: translateY(-1px);
     }
-    .form-note { text-align: center; font-size: 12px; color: var(--muted); margin-top: 16px; line-height: 1.6; }
-
-    /* ── FOOTER ── */
-    .footer {
-      background: var(--footer-bg); color: rgba(255,255,255,0.4);
-      padding: 48px 48px; text-align: center;
+    .form-note {
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 16px;
+      line-height: 1.6;
     }
-    .footer-logo { height: 28px; margin-bottom: 20px; opacity: 0.8; }
-    .footer-links { display: flex; justify-content: center; gap: 32px; margin-bottom: 16px; }
-    .footer-links a { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 13px; transition: color var(--transition); }
-    .footer-links a:hover { color: rgba(255,255,255,0.8); }
-    .footer-copy { font-size: 13px; color: rgba(255,255,255,0.3); margin-bottom: 16px; }
-    .footer-legal { max-width: 640px; margin: 0 auto; font-size: 11px; line-height: 1.8; color: rgba(255,255,255,0.15); }
 
-    @media (max-width: 900px) {
+    /* -- FOOTER (Aurora Style) -- */
+    footer {
+      background: var(--footer-bg);
+      color: rgba(255,255,255,0.5);
+      padding: 80px 48px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    .footer-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    .footer-main {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      text-align: center;
+      gap: 0;
+    }
+    .footer-col-side {
+      width: 280px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 60px;
+    }
+    .footer-col-side::before {
+      content: '';
+      height: 2px;
+      width: 180px;
+      display: block;
+      background: radial-gradient(circle, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.25) 48%, transparent 100%);
+      margin-bottom: 24px;
+    }
+    .footer-center {
+      padding: 0 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .footer-logo {
+      height: 48px;
+      width: auto;
+      opacity: 0.9;
+      margin-bottom: 20px;
+    }
+    .footer-tagline {
+      font-size: 14px;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.7;
+      max-width: 300px;
+      margin-bottom: 24px;
+    }
+    .footer-nav {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .footer-nav a {
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      font-size: 13px;
+      transition: color var(--transition);
+    }
+    .footer-nav a:hover { color: var(--gold); }
+    .footer-col-side h4 {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 16px;
+    }
+    .footer-col-side p,
+    .footer-col-side a {
+      font-size: 14px;
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      margin-bottom: 8px;
+      display: block;
+      transition: color var(--transition);
+    }
+    .footer-col-side a:hover { color: var(--gold); }
+    .footer-bottom {
+      margin-top: 48px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      text-align: center;
+    }
+    .footer-copy {
+      font-size: 13px;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 12px;
+    }
+    .footer-legal {
+      font-size: 11px;
+      color: rgba(255,255,255,0.15);
+      line-height: 1.7;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* -- MOBILE -- */
+    @media (max-width: 991px) {
+      .header-inner { padding: 0 24px; }
       .form-layout { grid-template-columns: 1fr; gap: 48px; }
       .airplane-grid { grid-template-columns: 1fr; }
+      .footer-main { flex-direction: column; align-items: center; }
+      .footer-col-side { margin-top: 32px; }
+      footer { padding: 48px 24px 32px; }
     }
     @media (max-width: 768px) {
-      .nav { padding: 0 20px; height: 64px; }
+      .header-inner { height: 68px; }
+      header.scrolled .header-inner { height: 60px; }
       .hero { padding: 64px 20px 88px; }
       .hero h1 { font-size: 30px; }
-      .trust-bar { grid-template-columns: 1fr 1fr; margin: -32px 16px 0; border-radius: 12px; }
+      .trust-bar {
+        grid-template-columns: 1fr 1fr;
+        margin: -36px 16px 0;
+      }
       .trust-item { padding: 24px 16px; }
       .section { padding: 80px 20px; }
       .pillars-grid { grid-template-columns: 1fr; }
@@ -331,11 +754,11 @@
       .form-section { padding: 80px 20px; }
       .form-card { padding: 32px 24px; }
       .form-row { grid-template-columns: 1fr; }
-      .proof { padding: 64px 20px; }
-      .footer { padding: 32px 20px; }
-      .footer-links { flex-wrap: wrap; gap: 16px; }
+      .social-proof { padding: 64px 20px; }
+      .footer-center { padding: 0 20px; }
     }
     @media (max-width: 480px) {
+      .hero h1 { font-size: 28px; }
       .trust-bar { grid-template-columns: 1fr 1fr; }
       .trust-val { font-size: 18px; }
     }
@@ -343,23 +766,29 @@
 </head>
 <body>
 
+  <!-- Back to Top -->
+  <button class="back-to-top" aria-label="Back to top">
+    <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
   <!-- Topbar -->
   <div class="topbar">
-    <strong>Limited Availability</strong> &mdash; Free retirement clarity sessions for adults 55+ with $250K+ saved
+    <strong>Limited Availability</strong> — Free retirement clarity sessions for adults 55+ with $250K+ saved
   </div>
 
-  <!-- Nav -->
-  <nav class="nav">
-    <a href="/"><img src="logo-v2.png" alt="Cornerstone Financial Partners" class="nav-logo"></a>
-    <a href="#book" class="nav-cta">Book Free Session</a>
-  </nav>
+  <!-- Header -->
+  <header id="top">
+    <div class="header-inner">
+      <a href="/"><img src="logo-v2.png" alt="Cornerstone Financial Partners" class="nav-logo"></a>
+      <a href="#book" class="nav-cta">Book Free Session</a>
+    </div>
+  </header>
 
   <!-- Hero -->
   <section class="hero">
     <div class="hero-inner">
-      <div class="hero-eyebrow">Free Retirement Clarity Session</div>
       <h1>Stop Guessing. <em>See Your Retirement Income Plan.</em></h1>
-      <p class="hero-sub">In one free session, we'll map your savings, Social Security, and tax situation into a clear income plan &mdash; so you know exactly how much you can spend each month without running out.</p>
+      <p class="hero-sub">In one free session, we'll map your savings, Social Security, and tax situation into a clear income plan — so you know exactly how much you can spend each month without running out.</p>
       <a href="#book" class="btn btn-gold">
         Book Your Free Session
         <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
@@ -369,7 +798,7 @@
   </section>
 
   <!-- Trust Bar -->
-  <div class="trust-bar fade-in">
+  <div class="trust-bar reveal">
     <div class="trust-item">
       <div class="trust-val">Independent</div>
       <div class="trust-label">Not tied to one carrier or product</div>
@@ -391,27 +820,26 @@
   <!-- What You'll Walk Away With -->
   <section class="section" style="background:var(--bg);">
     <div class="section-inner">
-      <div class="section-header fade-in">
-        <span class="eyebrow">Your Session Includes</span>
+      <div class="section-header reveal">
         <div class="section-title">Three Deliverables in 15 Minutes</div>
         <p class="section-desc">Not a generic pitch. A personalized look at where you stand and what to do about it.</p>
       </div>
-      <div class="pillars-grid fade-in">
-        <div class="pillar">
+      <div class="pillars-grid">
+        <div class="pillar reveal reveal-delay-1">
           <div class="pillar-icon">
             <svg viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
           </div>
           <h3>Your Income Roadmap</h3>
-          <p>How much monthly income your current savings can realistically produce &mdash; including Social Security timing, pension options, and guaranteed income strategies. Real numbers, not projections.</p>
+          <p>How much monthly income your current savings can realistically produce — including Social Security timing, pension options, and guaranteed income strategies. Real numbers, not projections.</p>
         </div>
-        <div class="pillar">
+        <div class="pillar reveal reveal-delay-2">
           <div class="pillar-icon">
             <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           </div>
           <h3>Your Risk Assessment</h3>
-          <p>What a major market correction would do to your specific retirement timeline. Most people have no idea how exposed they are &mdash; we'll show you clearly and plainly.</p>
+          <p>What a major market correction would do to your specific retirement timeline. Most people have no idea how exposed they are — we'll show you clearly and plainly.</p>
         </div>
-        <div class="pillar">
+        <div class="pillar reveal reveal-delay-3">
           <div class="pillar-icon">
             <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
           </div>
@@ -425,70 +853,67 @@
   <!-- Airplane Strategy -->
   <section class="airplane-section">
     <div class="airplane-inner">
-      <div class="airplane-header fade-in">
-        <span class="eyebrow">Our Framework</span>
-        <h2>The Retirement Airplane Strategy&trade;</h2>
-        <p>Your retirement is a flight. Every successful flight needs six essentials. We make sure yours has all of them &mdash; before you leave the runway.</p>
+      <div class="airplane-header reveal">
+        <h2>The Retirement Airplane Strategy&#8482;</h2>
+        <p>Your retirement is a flight. Every successful flight needs six essentials. We make sure yours has all of them — before you leave the runway.</p>
       </div>
-      <div class="airplane-grid fade-in">
-        <div class="airplane-card">
+      <div class="airplane-grid">
+        <div class="airplane-card reveal reveal-delay-1">
           <div class="airplane-tag">The Pilot</div>
-          <h3>Your Vision &amp; Goals</h3>
-          <p>Your retirement, your rules. We build around what you want &mdash; not around a product.</p>
+          <h3>Your Vision & Goals</h3>
+          <p>Your retirement, your rules. We build around what you want — not around a product.</p>
         </div>
-        <div class="airplane-card">
+        <div class="airplane-card reveal reveal-delay-2">
           <div class="airplane-tag">The Engine</div>
           <h3>Guaranteed Income</h3>
           <p>A retirement paycheck that arrives every month regardless of market conditions.</p>
         </div>
-        <div class="airplane-card">
+        <div class="airplane-card reveal reveal-delay-1">
           <div class="airplane-tag">The Wings</div>
-          <h3>Growth &amp; Protection</h3>
+          <h3>Growth & Protection</h3>
           <p>Market participation with downside guardrails so your portfolio survives turbulence.</p>
         </div>
-        <div class="airplane-card">
+        <div class="airplane-card reveal reveal-delay-2">
           <div class="airplane-tag">The Cabin</div>
-          <h3>Legacy &amp; Healthcare</h3>
+          <h3>Legacy & Healthcare</h3>
           <p>Long-term care, estate strategy, and protection for the people who matter most.</p>
         </div>
-        <div class="airplane-card">
+        <div class="airplane-card reveal reveal-delay-1">
           <div class="airplane-tag">The Fuel</div>
           <h3>Tax Strategy</h3>
           <p>Smart distribution sequencing and Roth conversions that keep more money in your pocket.</p>
         </div>
-        <div class="airplane-card">
+        <div class="airplane-card reveal reveal-delay-2">
           <div class="airplane-tag">Air Traffic Control</div>
           <h3>Ongoing Guidance</h3>
-          <p>Your plan adjusts as life changes &mdash; markets, laws, health, goals. Never set and forget.</p>
+          <p>Your plan adjusts as life changes — markets, laws, health, goals. Never set and forget.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Social Proof -->
-  <section class="proof">
-    <div class="proof-inner fade-in">
-      <span class="eyebrow">Client Experience</span>
+  <section class="social-proof">
+    <div class="proof-inner reveal">
       <p class="proof-quote">Before my session, I was losing sleep over whether my savings would last. Julio walked me through the numbers in 15 minutes and for the first time, I could see a clear path to retirement without the anxiety.</p>
-      <p class="proof-attr"><strong>Pre-retiree, 61</strong> &mdash; Virtual session, Texas</p>
+      <p class="proof-attr"><strong>Pre-retiree, 61</strong> — Virtual session, Texas</p>
     </div>
   </section>
 
   <!-- Form Section -->
   <section class="form-section" id="book">
     <div class="form-layout">
-      <div class="form-left fade-in">
-        <span class="eyebrow">Book Your Session</span>
-        <h2>Get Your Personalized Retirement Clarity Session &mdash; Free</h2>
+      <div class="form-left reveal">
+        <h2>Get Your Personalized Retirement Clarity Session — Free</h2>
         <p>Fill out the form and we'll schedule your session. In 15 minutes, you'll know exactly where you stand and what steps to take next. No products pushed. No pressure. Just clarity.</p>
         <ul class="benefit-list">
           <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Custom income, tax, and protection roadmap</li>
           <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> See how much monthly income your savings can actually produce</li>
           <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Understand your risk exposure before it becomes a real problem</li>
-          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Get an honest assessment &mdash; even if the answer is "you're fine"</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Get an honest assessment — even if the answer is "you're fine"</li>
         </ul>
       </div>
-      <div class="form-card fade-in">
+      <div class="form-card reveal">
         <h3>Reserve Your Spot</h3>
         <form action="YOUR_GHL_WEBHOOK_URL" method="POST">
           <div class="form-row">
@@ -513,10 +938,10 @@
             <label for="age">Your Age Range</label>
             <select id="age" name="age_range" required>
               <option value="">Select your age range</option>
-              <option value="50-54">50 &ndash; 54</option>
-              <option value="55-59">55 &ndash; 59</option>
-              <option value="60-64">60 &ndash; 64</option>
-              <option value="65-69">65 &ndash; 69</option>
+              <option value="50-54">50 – 54</option>
+              <option value="55-59">55 – 59</option>
+              <option value="60-64">60 – 64</option>
+              <option value="65-69">65 – 69</option>
               <option value="70+">70+</option>
             </select>
           </div>
@@ -524,8 +949,8 @@
             <label for="savings">Retirement Savings (approximate)</label>
             <select id="savings" name="savings_range" required>
               <option value="">Select a range</option>
-              <option value="250-500k">$250,000 &ndash; $499,999</option>
-              <option value="500k-1m">$500,000 &ndash; $999,999</option>
+              <option value="250-500k">$250,000 – $499,999</option>
+              <option value="500k-1m">$500,000 – $999,999</option>
               <option value="1m+">$1,000,000+</option>
             </select>
           </div>
@@ -543,7 +968,7 @@
           </div>
           <div class="sms-opt">
             <input type="checkbox" id="sms_opt" name="sms_opt_in" value="yes">
-            <label for="sms_opt">I agree to receive SMS from Cornerstone Financial Partners about my session and retirement tips. Msg frequency varies. Msg &amp; data rates may apply. Reply STOP to opt out. See <a href="/privacy">Privacy Policy</a> &amp; <a href="/terms">Terms</a>.</label>
+            <label for="sms_opt">I agree to receive SMS from Cornerstone Financial Partners about my session and retirement tips. Msg frequency varies. Msg & data rates may apply. Reply STOP to opt out. See <a href="/privacy">Privacy Policy</a> & <a href="/terms">Terms</a>.</label>
           </div>
           <button type="submit" class="form-submit">Book My Free Session</button>
           <p class="form-note">No obligation. No spam. Your information stays private.<br>Consent to texts is not required to use our services.</p>
@@ -552,28 +977,65 @@
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <img src="logo-white.svg" alt="Cornerstone Financial Partners" class="footer-logo">
-    <div class="footer-links">
-      <a href="/">Home</a>
-      <a href="/about">About</a>
-      <a href="/privacy">Privacy Policy</a>
-      <a href="/terms">Terms of Service</a>
+  <!-- Footer (Aurora Style) -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-main">
+        <div class="footer-col-side">
+          <h4>Navigate</h4>
+          <a href="/">Home</a>
+          <a href="/about">About</a>
+          <a href="https://calculator.cornerstone-fps.com">Calculator</a>
+        </div>
+        <div class="footer-center">
+          <img src="logo-white.svg" alt="Cornerstone Financial Partners" class="footer-logo">
+          <p class="footer-tagline">Independent retirement income planning for pre-retirees and recent retirees. Virtual consultations nationwide.</p>
+          <div class="footer-nav">
+            <a href="#book">Book a Session</a>
+            <a href="/">Main Site</a>
+          </div>
+        </div>
+        <div class="footer-col-side">
+          <h4>Legal</h4>
+          <a href="/privacy">Privacy Policy</a>
+          <a href="/terms">Terms of Service</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2026 Cornerstone Financial Partners. All rights reserved.</p>
+        <p class="footer-legal">
+          This is not investment advice. Guaranteed income products involve insurance contracts subject to carrier terms and conditions. Results are illustrative based on current market rates. Consult a licensed professional before making financial decisions.
+        </p>
+      </div>
     </div>
-    <p class="footer-copy">&copy; 2026 Cornerstone Financial Partners. All rights reserved.</p>
-    <p class="footer-legal">
-      This is not investment advice. Guaranteed income products involve insurance contracts subject to carrier terms. Results are illustrative based on current market rates. Consult a licensed professional before making financial decisions.
-    </p>
   </footer>
 
   <script>
-    const nav = document.querySelector('.nav');
-    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 10));
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    // -- Header scroll effect --
+    const header = document.querySelector('header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 10);
+    });
+
+    // -- Scroll Reveal --
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // -- Back to Top --
+    const backToTop = document.querySelector('.back-to-top');
+    window.addEventListener('scroll', () => {
+      backToTop.classList.toggle('visible', window.scrollY > 600);
+    });
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
   </script>
 
   <!-- LeadConnector Chat Widget -->
