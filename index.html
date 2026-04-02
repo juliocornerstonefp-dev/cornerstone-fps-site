@@ -640,21 +640,11 @@
       position: relative;
       padding: 100px 24px;
       text-align: center;
-      overflow: hidden;
-    }
-    .cta-band-bg {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 50%, #16213e 100%);
-    }
-    .cta-band-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.4);
+      background: var(--dark-deep);
+      z-index: 1;
     }
     .cta-band-content {
       position: relative;
-      z-index: 2;
       max-width: 700px;
       margin: 0 auto;
     }
@@ -836,6 +826,8 @@
     .social-proof {
       background: var(--bg);
       padding: 120px 24px;
+      position: relative;
+      z-index: 1;
     }
     .proof-inner {
       max-width: 800px;
@@ -879,16 +871,11 @@
       position: relative;
       padding: 120px 24px;
       text-align: center;
-      overflow: hidden;
-    }
-    .bottom-cta-bg {
-      position: absolute;
-      inset: 0;
       background: linear-gradient(180deg, var(--bg-warm) 0%, var(--bg) 100%);
+      z-index: 1;
     }
     .bottom-cta-inner {
       position: relative;
-      z-index: 2;
       max-width: 640px;
       margin: 0 auto;
     }
@@ -1319,8 +1306,6 @@
 
   <!-- CTA Band -->
   <section class="cta-band">
-    <div class="cta-band-bg"></div>
-    <div class="cta-band-overlay"></div>
     <div class="cta-band-content reveal">
       <h2>Curious Where You Actually Stand?</h2>
       <p>Our free calculator shows the gap between what Social Security covers and what you'll actually need — in about 60 seconds. No login. No email. Just your number.</p>
@@ -1434,7 +1419,6 @@
 
   <!-- Bottom CTA -->
   <section class="bottom-cta" id="start">
-    <div class="bottom-cta-bg"></div>
     <div class="bottom-cta-inner reveal">
       <h2>Your Retirement Deserves a Real Plan.</h2>
       <p>Not a pie chart. Not a generic allocation model. A plan that tells you exactly how much you can spend each month — and how long it will last. Let's build yours.</p>
