@@ -17,12 +17,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     :root {
       --gold: #B8860B;
       --gold-hover: #D4A843;
       --gold-subtle: #F8F3E8;
       --gold-border: #E8D5A8;
       --dark: #1A1A1A;
+      --dark-deep: #111111;
       --body: #4A4A4A;
       --light: #7A7A7A;
       --muted: #A0A0A0;
@@ -38,133 +40,242 @@
       --shadow-lg: 0 12px 40px rgba(0,0,0,0.08);
       --radius: 10px;
       --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --max-width: 1200px;
     }
-    html { scroll-behavior: smooth; }
-    body { font-family: var(--sans); background: var(--bg); color: var(--dark); -webkit-font-smoothing: antialiased; line-height: 1.6; }
 
-    /* ── ANIMATIONS ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to { opacity: 1; transform: translateY(0); }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--dark);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
     }
-    .fade-in {
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
       opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
+      transform: translateY(32px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
     }
-    .fade-in.visible {
+    .reveal.visible {
       opacity: 1;
       transform: translateY(0);
     }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
 
-    /* ── NAV ── */
-    nav {
-      background: rgba(255,255,255,0.95);
+    /* ── BACK TO TOP ── */
+    .back-to-top {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      width: 48px;
+      height: 48px;
+      background: var(--gold);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all var(--transition);
+      z-index: 90;
+      box-shadow: 0 4px 16px rgba(184,134,11,0.3);
+    }
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+    .back-to-top:hover {
+      background: var(--gold-hover);
+      transform: translateY(-3px);
+    }
+    .back-to-top svg {
+      width: 20px;
+      height: 20px;
+      stroke: #fff;
+      fill: none;
+      stroke-width: 2.5;
+    }
+
+    /* ── HEADER ── */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      transition: all 0.5s ease;
+    }
+    header:not(.scrolled) {
+      background: transparent;
+    }
+    header.scrolled {
+      background: rgba(255,255,255,0.97);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid transparent;
+      box-shadow: var(--shadow-sm);
+    }
+    .header-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
       padding: 0 48px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 72px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      transition: border-color 0.3s, box-shadow 0.3s;
+      height: 80px;
+      transition: height 0.5s ease;
     }
-    nav.scrolled {
-      border-bottom-color: var(--border);
-      box-shadow: var(--shadow-sm);
+    header.scrolled .header-inner {
+      height: 68px;
     }
-    .nav-logo { height: 38px; width: auto; }
-    .nav-links { display: flex; gap: 36px; align-items: center; }
+    .nav-logo {
+      height: 40px;
+      width: auto;
+      transition: all 0.5s ease;
+    }
+    header.scrolled .nav-logo {
+      height: 34px;
+    }
+    header:not(.scrolled) .nav-logo {
+      filter: brightness(0) invert(1);
+    }
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      align-items: center;
+    }
     .nav-links a {
       color: var(--light);
       text-decoration: none;
       font-size: 14px;
       font-weight: 500;
       transition: color var(--transition);
-      position: relative;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    header:not(.scrolled) .nav-links a {
+      color: rgba(255,255,255,0.85);
+    }
+    header:not(.scrolled) .nav-links a:hover {
+      color: #fff;
     }
     .nav-links a:hover { color: var(--dark); }
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: var(--gold);
-      transition: width var(--transition);
-    }
-    .nav-links a:hover::after { width: 100%; }
+    header.scrolled .nav-links a:hover { color: var(--gold); }
     .nav-cta {
       background: var(--gold) !important;
       color: #fff !important;
       padding: 10px 24px !important;
-      border-radius: 8px;
+      border-radius: 6px;
       font-weight: 600 !important;
-      font-size: 14px !important;
-      letter-spacing: 0.2px;
+      font-size: 13px !important;
+      letter-spacing: 0.5px;
       transition: all var(--transition) !important;
-      box-shadow: 0 2px 8px rgba(184,134,11,0.2);
+      text-transform: uppercase !important;
     }
     .nav-cta:hover {
       background: var(--gold-hover) !important;
       transform: translateY(-1px) !important;
-      box-shadow: 0 4px 16px rgba(184,134,11,0.3) !important;
     }
-    .nav-cta::after { display: none !important; }
-    .mobile-menu { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
-    .mobile-menu svg { width: 24px; height: 24px; stroke: var(--body); fill: none; stroke-width: 2; }
+    header:not(.scrolled) .nav-cta {
+      background: var(--gold) !important;
+      color: #fff !important;
+    }
+
+    /* Hamburger */
+    .mobile-menu {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      z-index: 101;
+    }
+    .hamburger {
+      width: 24px;
+      height: 18px;
+      position: relative;
+    }
+    .hamburger span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background: var(--dark);
+      position: absolute;
+      left: 0;
+      transition: all 0.3s ease;
+    }
+    header:not(.scrolled) .hamburger span {
+      background: #fff;
+    }
+    .hamburger span:nth-child(1) { top: 0; }
+    .hamburger span:nth-child(2) { top: 8px; }
+    .hamburger span:nth-child(3) { top: 16px; }
+    .mobile-menu.open .hamburger span:nth-child(1) {
+      top: 8px;
+      transform: rotate(45deg);
+    }
+    .mobile-menu.open .hamburger span:nth-child(2) {
+      opacity: 0;
+    }
+    .mobile-menu.open .hamburger span:nth-child(3) {
+      top: 8px;
+      transform: rotate(-45deg);
+    }
+    .mobile-menu.open .hamburger span {
+      background: var(--dark) !important;
+    }
 
     /* ── HERO ── */
     .hero {
-      background: linear-gradient(180deg, var(--bg) 0%, var(--bg-warm) 100%);
-      padding: 100px 24px 120px;
-      text-align: center;
       position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 0 48px;
+      background: var(--dark-deep);
       overflow: hidden;
     }
-    .hero::before {
-      content: '';
+    .hero-bg {
       position: absolute;
-      top: -200px;
-      right: -200px;
-      width: 600px;
-      height: 600px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(184,134,11,0.04) 0%, transparent 70%);
-      pointer-events: none;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0.5) 100%),
+        linear-gradient(135deg, #1a1a2e 0%, #16213e 25%, #0f3460 50%, #1a1a2e 100%);
+      background-size: cover;
+      background-position: center;
     }
-    .hero-inner {
-      max-width: 760px;
-      margin: 0 auto;
+    .hero-content {
       position: relative;
-      animation: fadeUp 0.8s ease forwards;
+      z-index: 2;
+      max-width: 640px;
+      text-align: right;
+      padding: 40px 0;
     }
     .hero-eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      font-size: 13px;
-      font-weight: 600;
+      font-size: 12px;
+      font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 2px;
+      letter-spacing: 3px;
       color: var(--gold);
-      margin-bottom: 28px;
-      padding: 8px 20px;
-      background: var(--gold-subtle);
-      border-radius: 50px;
+      margin-bottom: 24px;
     }
     .hero h1 {
       font-family: var(--serif);
-      font-size: clamp(36px, 5.5vw, 58px);
+      font-size: clamp(38px, 5.5vw, 62px);
       font-weight: 600;
-      line-height: 1.15;
+      line-height: 1.1;
       margin-bottom: 24px;
-      color: var(--dark);
+      color: #fff;
       letter-spacing: -0.5px;
     }
     .hero h1 em {
@@ -172,59 +283,76 @@
       color: var(--gold);
     }
     .hero-sub {
-      font-size: 19px;
-      color: var(--body);
+      font-size: 18px;
+      color: rgba(255,255,255,0.7);
       font-weight: 300;
-      line-height: 1.75;
-      max-width: 560px;
-      margin: 0 auto 40px;
+      line-height: 1.8;
+      margin-bottom: 40px;
     }
-    .hero-ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .hero-ctas {
+      display: flex;
+      gap: 16px;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+    }
     .btn {
       display: inline-flex;
       align-items: center;
       gap: 8px;
       padding: 16px 32px;
-      border-radius: 8px;
-      font-size: 15px;
+      border-radius: 0;
+      font-size: 14px;
       font-weight: 600;
       text-decoration: none;
       transition: all var(--transition);
       border: none;
       cursor: pointer;
       font-family: var(--sans);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
     .btn-gold {
       background: var(--gold);
       color: #fff;
-      box-shadow: 0 2px 12px rgba(184,134,11,0.25);
+      border: 2px solid var(--gold);
     }
     .btn-gold:hover {
       background: var(--gold-hover);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(184,134,11,0.3);
+      border-color: var(--gold-hover);
+    }
+    .btn-outline-light {
+      background: transparent;
+      color: #fff;
+      border: 2px solid rgba(255,255,255,0.5);
+    }
+    .btn-outline-light:hover {
+      border-color: #fff;
+      background: rgba(255,255,255,0.1);
     }
     .btn-outline {
       background: transparent;
       color: var(--body);
-      border: 1.5px solid var(--border);
+      border: 2px solid var(--border);
     }
     .btn-outline:hover {
-      border-color: var(--gold-border);
-      background: var(--gold-subtle);
-      color: var(--dark);
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .hero-eyebrow {
+      display: none;
     }
 
     /* ── STAT BAR ── */
     .stat-bar {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      max-width: 960px;
+      max-width: 1000px;
       margin: -48px auto 0;
       position: relative;
       z-index: 10;
       background: var(--bg);
-      border-radius: 16px;
+      border-radius: 0;
       box-shadow: var(--shadow-lg);
       overflow: hidden;
     }
@@ -232,14 +360,16 @@
       padding: 36px 24px;
       text-align: center;
       border-right: 1px solid var(--border);
+      transition: background var(--transition);
     }
     .stat-item:last-child { border-right: none; }
+    .stat-item:hover { background: var(--bg-warm); }
     .stat-val {
       font-family: var(--serif);
-      font-size: 28px;
+      font-size: 32px;
       font-weight: 600;
       color: var(--gold);
-      margin-bottom: 4px;
+      margin-bottom: 6px;
     }
     .stat-label {
       font-size: 13px;
@@ -252,22 +382,20 @@
     .section {
       padding: 120px 24px;
     }
+    .section-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
     .section-header {
       text-align: center;
       margin-bottom: 64px;
     }
     .eyebrow {
-      display: inline-block;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 16px;
+      display: none;
     }
     .section-title {
       font-family: var(--serif);
-      font-size: clamp(30px, 4vw, 44px);
+      font-size: clamp(30px, 4vw, 46px);
       font-weight: 600;
       color: var(--dark);
       letter-spacing: -0.5px;
@@ -278,112 +406,153 @@
       font-size: 18px;
       color: var(--light);
       font-weight: 300;
-      max-width: 560px;
+      max-width: 600px;
       margin: 0 auto;
       line-height: 1.75;
     }
 
-    /* ── PROBLEM SECTION ── */
-    .problem {
-      background: var(--bg);
-    }
-    .problem-grid {
-      max-width: 1080px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
+    /* ── TEXT OVERLAY SECTION (Problem) ── */
+    .text-overlay {
+      position: relative;
+      min-height: 600px;
+      display: flex;
       align-items: center;
+      overflow: hidden;
     }
-    .problem-content h2 {
+    .text-overlay-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #2c2c3a 0%, #1a1a2e 50%, #0f3460 100%);
+      background-size: cover;
+      background-position: center;
+    }
+    .text-overlay-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(26,26,26,0.95) 50%, rgba(26,26,26,0) 100%);
+    }
+    .text-overlay-content {
+      position: relative;
+      z-index: 2;
+      max-width: 680px;
+      padding: 80px 48px;
+    }
+    .text-overlay-content .eyebrow { color: var(--gold); }
+    .text-overlay-content h2 {
       font-family: var(--serif);
-      font-size: clamp(28px, 3.5vw, 40px);
+      font-size: clamp(28px, 3.5vw, 42px);
       font-weight: 600;
-      color: var(--dark);
-      letter-spacing: -0.3px;
-      margin-bottom: 24px;
+      color: #fff;
       line-height: 1.2;
+      margin-bottom: 24px;
     }
-    .problem-content p {
+    .text-overlay-content p {
       font-size: 17px;
       line-height: 1.8;
-      color: var(--body);
+      color: rgba(255,255,255,0.7);
       font-weight: 300;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
     }
-    .problem-content strong { color: var(--dark); font-weight: 500; }
+    .text-overlay-content strong { color: #fff; font-weight: 500; }
+    .text-overlay .v-line-side {
+      position: absolute;
+      left: 48px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 2px;
+      height: 120px;
+      background: var(--gold);
+      opacity: 0.4;
+    }
+
+    /* Problem stats */
     .problem-stats {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 20px;
+      gap: 16px;
+      margin-top: 32px;
     }
     .problem-stat {
-      background: var(--bg-warm);
-      border-radius: var(--radius);
-      padding: 28px 24px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 24px 20px;
       text-align: center;
     }
     .problem-stat .num {
       font-family: var(--serif);
-      font-size: 36px;
+      font-size: 32px;
       font-weight: 600;
       color: var(--gold);
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
     .problem-stat .label {
-      font-size: 14px;
-      color: var(--body);
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
       line-height: 1.5;
     }
 
-    /* ── AIRPLANE STRATEGY ── */
-    .strategy {
-      background: var(--bg-warm);
-    }
-    .airplane-visual {
-      max-width: 1080px;
-      margin: 0 auto;
-    }
-    .airplane-intro {
-      max-width: 680px;
-      margin: 0 auto 56px;
-      text-align: center;
-    }
-    .airplane-intro p {
-      font-size: 18px;
-      color: var(--body);
-      font-weight: 300;
-      line-height: 1.8;
-    }
-    .component-grid {
+    /* ── STRATEGY SECTION ── */
+    .strategy { background: var(--bg-warm); }
+
+    /* ── FLIP CARDS ── */
+    .flip-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 24px;
+      max-width: var(--max-width);
+      margin: 0 auto;
     }
-    .component-card {
-      background: var(--bg);
-      border-radius: var(--radius);
-      padding: 36px 28px;
-      border: 1px solid var(--border);
-      transition: all var(--transition);
+    .flip-card {
+      perspective: 1000px;
+      height: 380px;
+      cursor: pointer;
+    }
+    .flip-card-inner {
       position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      transform-style: preserve-3d;
     }
-    .component-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-md);
-      border-color: var(--gold-border);
+    .flip-card.flipped .flip-card-inner {
+      transform: rotateY(180deg);
     }
-    .component-icon {
+    .flip-card-front,
+    .flip-card-back {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 36px 28px;
+      overflow: hidden;
+    }
+    .flip-card-front {
+      background: var(--dark-deep);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .flip-card-front::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 30%, rgba(0,0,0,0.7) 100%);
+      z-index: 1;
+    }
+    .flip-card-front .card-icon {
+      position: relative;
+      z-index: 2;
       width: 48px;
       height: 48px;
       border-radius: 12px;
-      background: var(--gold-subtle);
+      background: rgba(184,134,11,0.15);
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
     }
-    .component-icon svg {
+    .flip-card-front .card-icon svg {
       width: 24px;
       height: 24px;
       stroke: var(--gold);
@@ -392,41 +561,89 @@
       stroke-linecap: round;
       stroke-linejoin: round;
     }
-    .component-tag {
+    .flip-card-front .card-tag {
+      position: relative;
+      z-index: 2;
       font-size: 11px;
       font-weight: 700;
-      letter-spacing: 1.5px;
+      letter-spacing: 2px;
       text-transform: uppercase;
       color: var(--gold);
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
-    .component-card h3 {
+    .flip-card-front h3 {
+      position: relative;
+      z-index: 2;
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 500;
+      color: #fff;
+    }
+    .flip-card-front .flip-hint {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 2;
+      font-size: 11px;
+      color: rgba(255,255,255,0.3);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .flip-card-back {
+      background: var(--dark);
+      border: 1px solid var(--gold);
+      transform: rotateY(180deg);
+      justify-content: center;
+      padding: 36px 32px;
+    }
+    .flip-card-back .card-tag {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .flip-card-back h3 {
       font-family: var(--serif);
       font-size: 20px;
       font-weight: 500;
-      color: var(--dark);
-      margin-bottom: 12px;
+      color: #fff;
+      margin-bottom: 16px;
     }
-    .component-card p {
+    .flip-card-back p {
       font-size: 15px;
       line-height: 1.7;
-      color: var(--light);
+      color: rgba(255,255,255,0.6);
       font-weight: 300;
     }
 
-    /* ── CTA BAND ── */
+    /* ── CTA BAND (dark overlay) ── */
     .cta-band {
-      background: var(--footer-bg);
-      padding: 80px 24px;
+      position: relative;
+      padding: 100px 24px;
       text-align: center;
+      overflow: hidden;
     }
-    .cta-band-inner {
+    .cta-band-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 50%, #16213e 100%);
+    }
+    .cta-band-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+    }
+    .cta-band-content {
+      position: relative;
+      z-index: 2;
       max-width: 700px;
       margin: 0 auto;
     }
     .cta-band h2 {
       font-family: var(--serif);
-      font-size: clamp(28px, 4vw, 42px);
+      font-size: clamp(28px, 4vw, 44px);
       font-weight: 600;
       color: #fff;
       margin-bottom: 16px;
@@ -437,37 +654,44 @@
       color: rgba(255,255,255,0.6);
       font-weight: 300;
       line-height: 1.7;
-      max-width: 480px;
+      max-width: 520px;
       margin: 0 auto 32px;
     }
-    .cta-band .btn-gold {
-      font-size: 16px;
-      padding: 18px 36px;
-    }
 
-    /* ── SERVICES ── */
-    .services {
-      background: var(--bg);
+    /* ── SERVICES (FLIP CARDS) ── */
+    .services { background: var(--bg); }
+    .svc-flip-card {
+      perspective: 1000px;
+      height: 420px;
+      cursor: pointer;
     }
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
-      max-width: 1080px;
-      margin: 0 auto;
+    .svc-flip-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      transform-style: preserve-3d;
     }
-    .svc-card {
-      background: var(--bg);
-      border-radius: var(--radius);
-      padding: 44px 32px;
-      border: 1px solid var(--border);
-      transition: all var(--transition);
+    .svc-flip-card.flipped .svc-flip-inner {
+      transform: rotateY(180deg);
+    }
+    .svc-front,
+    .svc-back {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
       display: flex;
       flex-direction: column;
+      padding: 40px 32px;
+      overflow: hidden;
     }
-    .svc-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-md);
+    .svc-front {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      justify-content: space-between;
+    }
+    .svc-front:hover {
       border-color: var(--gold-border);
     }
     .svc-icon {
@@ -489,52 +713,63 @@
       stroke-linecap: round;
       stroke-linejoin: round;
     }
-    .svc-card h3 {
+    .svc-front h3 {
       font-family: var(--serif);
-      font-size: 22px;
+      font-size: 24px;
       font-weight: 500;
       color: var(--dark);
       margin-bottom: 16px;
     }
-    .svc-card p {
+    .svc-front p {
       font-size: 15px;
       color: var(--light);
       font-weight: 300;
       line-height: 1.75;
-      margin-bottom: 28px;
       flex: 1;
     }
-    .svc-link {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--gold);
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition: all var(--transition);
+    .svc-front .flip-hint {
+      font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 20px;
     }
-    .svc-link:hover { color: var(--gold-hover); gap: 10px; }
-    .svc-link svg {
-      width: 16px;
-      height: 16px;
-      stroke: currentColor;
-      fill: none;
-      stroke-width: 2;
+    .svc-back {
+      background: var(--dark);
+      border: 1px solid var(--gold);
+      transform: rotateY(180deg);
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+    .svc-back h3 {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 500;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+    .svc-back p {
+      font-size: 15px;
+      color: rgba(255,255,255,0.6);
+      font-weight: 300;
+      line-height: 1.7;
+      margin-bottom: 28px;
+      max-width: 320px;
+    }
+    .svc-back .btn {
+      font-size: 13px;
+      padding: 12px 28px;
     }
 
     /* ── HOW IT WORKS ── */
-    .how {
-      background: var(--bg-alt);
-    }
-    .how-inner {
-      max-width: 1000px;
-      margin: 0 auto;
-    }
+    .how { background: var(--bg-alt); }
     .steps {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 48px;
+      max-width: 1000px;
+      margin: 0 auto;
       position: relative;
     }
     .steps::before {
@@ -580,7 +815,7 @@
       margin: 0 auto;
     }
 
-    /* ── TESTIMONIAL / SOCIAL PROOF ── */
+    /* ── SOCIAL PROOF ── */
     .social-proof {
       background: var(--bg);
       padding: 120px 24px;
@@ -624,11 +859,19 @@
 
     /* ── BOTTOM CTA ── */
     .bottom-cta {
-      background: linear-gradient(180deg, var(--bg-warm) 0%, var(--bg) 100%);
+      position: relative;
       padding: 120px 24px;
       text-align: center;
+      overflow: hidden;
+    }
+    .bottom-cta-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, var(--bg-warm) 0%, var(--bg) 100%);
     }
     .bottom-cta-inner {
+      position: relative;
+      z-index: 2;
       max-width: 640px;
       margin: 0 auto;
     }
@@ -648,8 +891,8 @@
       margin-bottom: 40px;
     }
     .bottom-cta .btn-gold {
-      font-size: 17px;
-      padding: 20px 40px;
+      font-size: 15px;
+      padding: 18px 40px;
     }
     .bottom-cta-note {
       margin-top: 16px;
@@ -657,120 +900,175 @@
       color: var(--muted);
     }
 
-    /* ── FOOTER ── */
+    /* ── FOOTER (Aurora Style) ── */
     footer {
       background: var(--footer-bg);
-      color: rgba(255,255,255,0.4);
-      padding: 64px 48px 48px;
+      color: rgba(255,255,255,0.5);
+      padding: 80px 48px 48px;
+      position: relative;
+      overflow: hidden;
     }
-    .footer-top {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      gap: 48px;
-      margin-bottom: 48px;
-      padding-bottom: 48px;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+    .footer-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
     }
-    .footer-brand p {
+    .footer-main {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      text-align: center;
+      gap: 0;
+    }
+    .footer-col-side {
+      width: 280px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 60px;
+    }
+    .footer-col-side::before {
+      content: '';
+      height: 2px;
+      width: 180px;
+      display: block;
+      background: radial-gradient(circle, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.25) 48%, transparent 100%);
+      margin-bottom: 24px;
+    }
+    .footer-center {
+      padding: 0 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .footer-logo {
+      height: 48px;
+      width: auto;
+      opacity: 0.9;
+      margin-bottom: 20px;
+    }
+    .footer-tagline {
       font-size: 14px;
-      line-height: 1.8;
       color: rgba(255,255,255,0.4);
-      margin-top: 16px;
-      max-width: 320px;
+      line-height: 1.7;
+      max-width: 300px;
+      margin-bottom: 24px;
     }
-    .footer-logo { height: 32px; width: auto; opacity: 0.9; }
-    .footer-col h4 {
+    .footer-nav {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .footer-nav a {
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      font-size: 13px;
+      transition: color var(--transition);
+    }
+    .footer-nav a:hover { color: var(--gold); }
+    .footer-col-side h4 {
       font-size: 13px;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 1.5px;
       color: rgba(255,255,255,0.6);
-      margin-bottom: 20px;
+      margin-bottom: 16px;
     }
-    .footer-col a {
-      display: block;
+    .footer-col-side p,
+    .footer-col-side a {
+      font-size: 14px;
       color: rgba(255,255,255,0.4);
       text-decoration: none;
-      font-size: 14px;
-      margin-bottom: 12px;
+      margin-bottom: 8px;
+      display: block;
       transition: color var(--transition);
     }
-    .footer-col a:hover { color: rgba(255,255,255,0.8); }
+    .footer-col-side a:hover { color: var(--gold); }
     .footer-bottom {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 24px;
-      flex-wrap: wrap;
+      margin-top: 48px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      text-align: center;
     }
     .footer-copy {
       font-size: 13px;
       color: rgba(255,255,255,0.3);
+      margin-bottom: 12px;
     }
     .footer-legal {
       font-size: 11px;
       color: rgba(255,255,255,0.15);
       line-height: 1.7;
-      max-width: 480px;
-      text-align: right;
+      max-width: 600px;
+      margin: 0 auto;
     }
 
     /* ── MOBILE ── */
-    @media (max-width: 900px) {
-      .stat-bar { grid-template-columns: repeat(2, 1fr); }
-      .problem-grid { grid-template-columns: 1fr; gap: 48px; }
-      .component-grid { grid-template-columns: 1fr 1fr; }
-      .services-grid { grid-template-columns: 1fr 1fr; }
-      .footer-top { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 768px) {
-      nav { padding: 0 20px; height: 64px; }
+    @media (max-width: 991px) {
+      .header-inner { padding: 0 24px; }
       .nav-links {
         display: none;
         flex-direction: column;
-        position: absolute;
-        top: 64px;
+        position: fixed;
+        top: 0;
         left: 0;
         right: 0;
+        bottom: 0;
         background: rgba(255,255,255,0.98);
         backdrop-filter: blur(12px);
-        padding: 24px;
-        gap: 16px;
-        border-bottom: 1px solid var(--border);
-        box-shadow: var(--shadow-md);
+        padding: 100px 40px 40px;
+        gap: 24px;
+        z-index: 99;
+        align-items: flex-start;
       }
       .nav-links.open { display: flex; }
-      .nav-links a::after { display: none; }
-      .mobile-menu { display: block; }
-      .hero { padding: 72px 20px 100px; }
-      .hero h1 { font-size: 34px; }
-      .hero-sub { font-size: 17px; }
-      .hero-ctas { flex-direction: column; align-items: center; }
+      .nav-links a {
+        color: var(--dark) !important;
+        font-size: 20px;
+      }
+      .mobile-menu { display: block; z-index: 101; }
+      .hero { padding: 0 24px; min-height: 90vh; }
+      .hero-content { text-align: center; max-width: 100%; }
+      .hero-ctas { justify-content: center; flex-direction: column; align-items: center; }
       .btn { justify-content: center; width: 100%; max-width: 340px; }
       .stat-bar {
         grid-template-columns: 1fr 1fr;
         margin: -36px 16px 0;
-        border-radius: 12px;
       }
       .stat-item { padding: 24px 16px; }
-      .stat-val { font-size: 22px; }
+      .stat-val { font-size: 24px; }
       .section { padding: 80px 20px; }
-      .component-grid { grid-template-columns: 1fr; }
-      .services-grid { grid-template-columns: 1fr; }
+      .text-overlay { min-height: auto; }
+      .text-overlay-gradient {
+        background: rgba(26,26,26,0.9);
+      }
+      .text-overlay-content { padding: 60px 24px; max-width: 100%; }
+      .text-overlay .v-line-side { display: none; }
+      .flip-grid { grid-template-columns: 1fr 1fr; }
+      .flip-card { height: 320px; }
+      .svc-flip-card { height: 380px; }
       .steps { grid-template-columns: 1fr; gap: 36px; }
       .steps::before { display: none; }
-      .cta-band { padding: 64px 20px; }
+      .footer-main { flex-direction: column; align-items: center; }
+      .footer-col-side { margin-top: 32px; }
+      footer { padding: 48px 24px 32px; }
+    }
+    @media (max-width: 768px) {
+      .header-inner { height: 68px; }
+      header.scrolled .header-inner { height: 60px; }
+      .hero h1 { font-size: 32px; }
+      .flip-grid { grid-template-columns: 1fr; }
+      .flip-card { height: 300px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .svc-flip-card { height: 360px; }
+      .problem-stats { grid-template-columns: 1fr 1fr; }
+      .cta-band { padding: 72px 20px; }
       .bottom-cta { padding: 80px 20px; }
-      .bottom-cta .btn-gold { width: 100%; max-width: 340px; justify-content: center; }
-      footer { padding: 48px 20px 32px; }
-      .footer-top { grid-template-columns: 1fr; gap: 32px; }
-      .footer-bottom { flex-direction: column; }
-      .footer-legal { text-align: left; }
+      .footer-center { padding: 0 20px; }
     }
     @media (max-width: 480px) {
       .hero h1 { font-size: 28px; }
       .stat-bar { grid-template-columns: 1fr 1fr; }
-      .stat-item { padding: 20px 12px; }
       .stat-val { font-size: 20px; }
       .stat-label { font-size: 12px; }
     }
@@ -778,220 +1076,317 @@
 </head>
 <body>
 
-  <!-- Nav -->
-  <nav>
-    <a href="/">
-      <img class="nav-logo" src="logo-v2.png" alt="Cornerstone Financial Partners">
-    </a>
-    <button class="mobile-menu" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Open menu">
-      <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-    </button>
-    <div class="nav-links">
-      <a href="#approach">Our Approach</a>
-      <a href="#services">Services</a>
-      <a href="/about">About</a>
-      <a href="https://calculator.cornerstone-fps.com">Calculator</a>
-      <a href="#start" class="nav-cta">Book a Free Call</a>
+  <!-- Back to Top -->
+  <button class="back-to-top" aria-label="Back to top">
+    <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <!-- Header -->
+  <header id="top">
+    <div class="header-inner">
+      <a href="/">
+        <img class="nav-logo" src="logo-v2.png" alt="Cornerstone Financial Partners">
+      </a>
+      <button class="mobile-menu" aria-label="Toggle menu">
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </button>
+      <div class="nav-links">
+        <a href="#approach">Our Approach</a>
+        <a href="#services">Services</a>
+        <a href="/about">About</a>
+        <a href="https://calculator.cornerstone-fps.com">Calculator</a>
+        <a href="#start" class="nav-cta">Book a Free Call</a>
+      </div>
     </div>
-  </nav>
+  </header>
 
   <!-- Hero -->
-  <section class="hero">
-    <div class="hero-inner">
-      <div class="hero-eyebrow">Retirement Income Specialist</div>
-      <h1>Your Savings Worked Hard.<br>Now Make Them <em>Pay You Back.</em></h1>
-      <p class="hero-sub">Social Security replaces roughly 40% of your pre-retirement income. We build a plan for the other 60% &mdash; so you never have to wonder if your money will last.</p>
+  <section class="hero" id="hero-section">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <h1>You Spent 30 Years Building This.<br>Let's Make Sure <em>It Works for You.</em></h1>
+      <p class="hero-sub">Most advisors help you save. We help you spend it — confidently, sustainably, and without the worry of running out. That's all we do.</p>
       <div class="hero-ctas">
-        <a href="#start" class="btn btn-gold">Book your free consultation</a>
-        <a href="https://calculator.cornerstone-fps.com" class="btn btn-outline">
+        <a href="#start" class="btn btn-gold">Let's talk about your plan</a>
+        <a href="https://calculator.cornerstone-fps.com" class="btn btn-outline-light">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="12" y2="10"/><line x1="8" y1="14" x2="16" y2="14"/><line x1="8" y1="18" x2="12" y2="18"/></svg>
-          Check your income gap
+          See where you stand
         </a>
       </div>
     </div>
   </section>
 
-  <!-- Stat bar -->
-  <div class="stat-bar fade-in">
+  <!-- Stat Bar -->
+  <div class="stat-bar reveal">
     <div class="stat-item">
       <div class="stat-val">39%</div>
-      <div class="stat-label">Average income replaced by Social Security</div>
+      <div class="stat-label">of pre-retirement income replaced by Social Security</div>
     </div>
     <div class="stat-item">
       <div class="stat-val">$165K</div>
-      <div class="stat-label">Average healthcare costs in retirement</div>
+      <div class="stat-label">in healthcare costs the average retiree will face</div>
     </div>
     <div class="stat-item">
       <div class="stat-val">30+</div>
-      <div class="stat-label">Years your income may need to last</div>
+      <div class="stat-label">years your money may need to last</div>
     </div>
     <div class="stat-item">
       <div class="stat-val">47%</div>
-      <div class="stat-label">Of retirees say they retired earlier than planned</div>
+      <div class="stat-label">of retirees left work sooner than they planned</div>
     </div>
   </div>
 
-  <!-- Problem / About -->
-  <section class="section problem" id="about">
-    <div class="problem-grid fade-in">
-      <div class="problem-content">
-        <span class="eyebrow">The Real Problem</span>
-        <h2>You Were Taught to Save. Nobody Taught You How to Spend It.</h2>
-        <p>Most financial advice stops at accumulation. Save more. Diversify. Max out your 401(k). But when you're five years from retirement &mdash; or already there &mdash; the question changes completely:</p>
-        <p><strong>How do I turn this lump sum into income I can't outlive?</strong></p>
-        <p>That's not a portfolio management question. It's an income engineering question. And it requires a completely different skillset than what got you here.</p>
-        <p>That's what Cornerstone was built for.</p>
-      </div>
+  <!-- The Gap -->
+  <section class="text-overlay" id="about">
+    <div class="text-overlay-bg"></div>
+    <div class="text-overlay-gradient"></div>
+    <div class="v-line-side"></div>
+    <div class="text-overlay-content reveal">
+      <h2>You've Done Everything Right. So Why Does Retirement Still Feel Uncertain?</h2>
+      <p>You saved consistently. You maxed out your 401(k). You did what you were told. But now that retirement is actually on the horizon, the advice stops being useful — because the question has changed.</p>
+      <p>It's no longer <strong>"how do I save more?"</strong> It's <strong>"how do I turn what I have into income that lasts the rest of my life?"</strong></p>
+      <p>That's a completely different problem. And it's the only one we solve.</p>
       <div class="problem-stats">
         <div class="problem-stat">
           <div class="num">56%</div>
-          <div class="label">of Americans can't estimate how much income their savings will produce</div>
+          <div class="label">can't estimate how much monthly income their savings will produce</div>
         </div>
         <div class="problem-stat">
           <div class="num">$1.46M</div>
-          <div class="label">what Americans expect to need &mdash; average savings: $88K</div>
+          <div class="label">what people think they need — yet average savings sit at $88K</div>
         </div>
         <div class="problem-stat">
           <div class="num">22 yrs</div>
-          <div class="label">average time spent in retirement today</div>
+          <div class="label">the average retirement lasts today</div>
         </div>
         <div class="problem-stat">
           <div class="num">73%</div>
-          <div class="label">worry about outliving their retirement savings</div>
+          <div class="label">worry about outliving their money</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Airplane Strategy -->
+  <!-- Strategy -->
   <section class="section strategy" id="approach">
-    <div class="section-header fade-in">
-      <span class="eyebrow">Our Framework</span>
-      <div class="section-title">The Retirement Airplane Strategy&trade;</div>
-      <p class="section-desc">A retirement that lasts isn't built on hope. It's engineered &mdash; like a flight plan. Every successful retirement has six essentials. We make sure yours has all of them.</p>
-    </div>
-
-    <div class="airplane-visual">
-      <div class="component-grid fade-in">
-        <div class="component-card">
-          <div class="component-icon">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 0 0-16 0"/></svg>
+    <div class="section-inner">
+      <div class="section-header reveal">
+        <div class="section-title">The Retirement Airplane Strategy™</div>
+        <p class="section-desc">Think of your retirement like a flight. You need a pilot, an engine, wings, a cabin, fuel, and someone watching the radar. Miss one, and things get bumpy. We make sure you have all six.</p>
+      </div>
+      <div class="flip-grid">
+        <div class="flip-card reveal reveal-delay-1">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <span class="flip-hint">Tap to explore</span>
+              <div class="card-icon">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 0 0-16 0"/></svg>
+              </div>
+              <div class="card-tag">The Pilot</div>
+              <h3>You & Your Goals</h3>
+            </div>
+            <div class="flip-card-back">
+              <div class="card-tag">The Pilot</div>
+              <h3>You & Your Goals</h3>
+              <p>Everything starts with what you actually want. When do you want to retire? What does your ideal Tuesday look like? Your vision drives the plan — not a product.</p>
+            </div>
           </div>
-          <div class="component-tag">The Pilot</div>
-          <h3>Your Vision &amp; Goals</h3>
-          <p>Your plan starts with what retirement actually looks like for you &mdash; not a one-size model. When do you want to retire? What does your ideal month look like? We build around your answer.</p>
         </div>
-        <div class="component-card">
-          <div class="component-icon">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        <div class="flip-card reveal reveal-delay-2">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <span class="flip-hint">Tap to explore</span>
+              <div class="card-icon">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              </div>
+              <div class="card-tag">The Engine</div>
+              <h3>Guaranteed Income</h3>
+            </div>
+            <div class="flip-card-back">
+              <div class="card-tag">The Engine</div>
+              <h3>Guaranteed Income</h3>
+              <p>Your retirement paycheck. Money that arrives every month no matter what the market does — so your mortgage, groceries, and essentials are never at risk.</p>
+            </div>
           </div>
-          <div class="component-tag">The Engine</div>
-          <h3>Guaranteed Income</h3>
-          <p>The foundation of your retirement paycheck. Income that arrives every month regardless of what the market does &mdash; so your essentials are never at risk.</p>
         </div>
-        <div class="component-card">
-          <div class="component-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        <div class="flip-card reveal reveal-delay-3">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <span class="flip-hint">Tap to explore</span>
+              <div class="card-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+              </div>
+              <div class="card-tag">The Wings</div>
+              <h3>Growth & Protection</h3>
+            </div>
+            <div class="flip-card-back">
+              <div class="card-tag">The Wings</div>
+              <h3>Growth & Protection</h3>
+              <p>You still want your money growing — but not at the cost of sleepless nights. We balance upside participation with downside protection so turbulence doesn't ground you.</p>
+            </div>
           </div>
-          <div class="component-tag">The Wings</div>
-          <h3>Growth &amp; Protection</h3>
-          <p>Balanced positioning that participates in market upside while limiting downside exposure. Your portfolio stays airborne through turbulence &mdash; not grounded by it.</p>
         </div>
-        <div class="component-card">
-          <div class="component-icon">
-            <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <div class="flip-card reveal reveal-delay-1">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <span class="flip-hint">Tap to explore</span>
+              <div class="card-icon">
+                <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              </div>
+              <div class="card-tag">The Cabin</div>
+              <h3>Legacy & Healthcare</h3>
+            </div>
+            <div class="flip-card-back">
+              <div class="card-tag">The Cabin</div>
+              <h3>Legacy & Healthcare</h3>
+              <p>Long-term care. Estate strategy. Making sure the people who matter most are taken care of — whether you're here or not. This is the part most plans forget.</p>
+            </div>
           </div>
-          <div class="component-tag">The Cabin</div>
-          <h3>Legacy &amp; Healthcare</h3>
-          <p>Long-term care planning, estate strategy, and making sure the people who matter most to you are protected &mdash; whether you're here or not.</p>
         </div>
-        <div class="component-card">
-          <div class="component-icon">
-            <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        <div class="flip-card reveal reveal-delay-2">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <span class="flip-hint">Tap to explore</span>
+              <div class="card-icon">
+                <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              </div>
+              <div class="card-tag">The Fuel</div>
+              <h3>Tax Strategy</h3>
+            </div>
+            <div class="flip-card-back">
+              <div class="card-tag">The Fuel</div>
+              <h3>Tax Strategy</h3>
+              <p>Which account you pull from first can save — or cost — you tens of thousands. Roth conversions, bracket management, and smart sequencing keep more in your pocket.</p>
+            </div>
           </div>
-          <div class="component-tag">The Fuel</div>
-          <h3>Tax Strategy</h3>
-          <p>The order you withdraw matters more than most realize. Smart Roth conversions, bracket management, and distribution sequencing that keeps more money in your pocket.</p>
         </div>
-        <div class="component-card">
-          <div class="component-icon">
-            <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        <div class="flip-card reveal reveal-delay-3">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <span class="flip-hint">Tap to explore</span>
+              <div class="card-icon">
+                <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              </div>
+              <div class="card-tag">Air Traffic Control</div>
+              <h3>Ongoing Guidance</h3>
+            </div>
+            <div class="flip-card-back">
+              <div class="card-tag">Air Traffic Control</div>
+              <h3>Ongoing Guidance</h3>
+              <p>Markets shift. Tax laws change. Life throws curveballs. Your plan isn't a binder on a shelf — it's a living strategy we adjust with you, year after year.</p>
+            </div>
           </div>
-          <div class="component-tag">Air Traffic Control</div>
-          <h3>Ongoing Guidance</h3>
-          <p>Markets shift. Tax laws change. Life throws curveballs. Your plan isn't a document we hand you &mdash; it's a living strategy we manage and adjust with you, year after year.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Mid CTA -->
+  <!-- CTA Band -->
   <section class="cta-band">
-    <div class="cta-band-inner fade-in">
-      <h2>Do You Know Your Retirement Income Gap?</h2>
-      <p>Most people don't. Our free calculator shows the gap between what you'll have and what you'll need &mdash; in about 60 seconds. No login. No email required.</p>
-      <a href="https://calculator.cornerstone-fps.com" class="btn btn-gold">Check my income gap</a>
+    <div class="cta-band-bg"></div>
+    <div class="cta-band-overlay"></div>
+    <div class="cta-band-content reveal">
+      <h2>Curious Where You Actually Stand?</h2>
+      <p>Our free calculator shows the gap between what Social Security covers and what you'll actually need — in about 60 seconds. No login. No email. Just your number.</p>
+      <a href="https://calculator.cornerstone-fps.com" class="btn btn-gold">Run the numbers</a>
     </div>
   </section>
 
   <!-- Services -->
   <section class="section services" id="services">
-    <div class="section-header fade-in">
-      <span class="eyebrow">What We Do</span>
-      <div class="section-title">Three Problems. Three Solutions.</div>
-      <p class="section-desc">Most people approaching retirement face the same three challenges. We built a focused practice around solving them.</p>
-    </div>
-    <div class="services-grid fade-in">
-      <div class="svc-card">
-        <div class="svc-icon">
-          <svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="14" rx="2"/><path d="M12 12h.01"/><path d="M17 12h.01"/><path d="M7 12h.01"/></svg>
-        </div>
-        <h3>Retirement Income Planning</h3>
-        <p>Turn your savings into a reliable monthly paycheck &mdash; one that arrives whether the market is up 20% or down 30%. We use guaranteed income strategies to create an income floor you can build your life around.</p>
-        <a href="/annuity" class="svc-link">See how it works <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    <div class="section-inner">
+      <div class="section-header reveal">
+        <div class="section-title">Here's How We Help</div>
+        <p class="section-desc">Most people nearing retirement face the same three challenges. We built our entire practice around solving them.</p>
       </div>
-      <div class="svc-card">
-        <div class="svc-icon">
-          <svg viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+      <div class="flip-grid services-grid">
+        <div class="svc-flip-card reveal reveal-delay-1">
+          <div class="svc-flip-inner">
+            <div class="svc-front">
+              <div>
+                <div class="svc-icon">
+                  <svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="14" rx="2"/><path d="M12 12h.01"/><path d="M17 12h.01"/><path d="M7 12h.01"/></svg>
+                </div>
+                <h3>Retirement Income Planning</h3>
+                <p>Your savings become a paycheck — one that shows up every month whether markets are up, down, or sideways.</p>
+              </div>
+              <div class="flip-hint">Tap to learn more</div>
+            </div>
+            <div class="svc-back">
+              <h3>Retirement Income Planning</h3>
+              <p>We create a guaranteed income floor you can build your life around. Your rent, groceries, and utilities are covered no matter what happens on Wall Street.</p>
+              <a href="/annuity" class="btn btn-gold">See how it works</a>
+            </div>
+          </div>
         </div>
-        <h3>Tax-Free Retirement Income</h3>
-        <p>For high earners who've maxed out their 401(k) and want more. No contribution limits, tax-free retirement income through IRS-approved strategies, and zero market risk on the downside.</p>
-        <a href="/iul" class="svc-link">Check eligibility <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-      </div>
-      <div class="svc-card">
-        <div class="svc-icon">
-          <svg viewBox="0 0 24 24"><path d="M9 5H2v7l6.29 6.29a1 1 0 0 0 1.42 0l5.58-5.58a1 1 0 0 0 0-1.42L9 5z"/><path d="M6 9h.01"/><line x1="22" y1="2" x2="15" y2="9"/></svg>
+        <div class="svc-flip-card reveal reveal-delay-2">
+          <div class="svc-flip-inner">
+            <div class="svc-front">
+              <div>
+                <div class="svc-icon">
+                  <svg viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                </div>
+                <h3>Tax-Free Retirement Income</h3>
+                <p>Already maxing out your 401(k)? There's another vehicle with no contribution caps, no market risk, and tax-free withdrawals.</p>
+              </div>
+              <div class="flip-hint">Tap to learn more</div>
+            </div>
+            <div class="svc-back">
+              <h3>Tax-Free Retirement Income</h3>
+              <p>IRS-approved strategies that let high earners grow wealth beyond their 401(k). No contribution limits, no RMDs, and downside protection baked in.</p>
+              <a href="/iul" class="btn btn-gold">Check eligibility</a>
+            </div>
+          </div>
         </div>
-        <h3>Retirement Readiness Review</h3>
-        <p>A comprehensive look at your full picture: savings, Social Security timing, tax bracket strategy, healthcare costs, and income floor. Not a sales pitch &mdash; an honest assessment of where you stand.</p>
-        <a href="#start" class="svc-link">Book a review <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <div class="svc-flip-card reveal reveal-delay-3">
+          <div class="svc-flip-inner">
+            <div class="svc-front">
+              <div>
+                <div class="svc-icon">
+                  <svg viewBox="0 0 24 24"><path d="M9 5H2v7l6.29 6.29a1 1 0 0 0 1.42 0l5.58-5.58a1 1 0 0 0 0-1.42L9 5z"/><path d="M6 9h.01"/><line x1="22" y1="2" x2="15" y2="9"/></svg>
+                </div>
+                <h3>Retirement Readiness Review</h3>
+                <p>An honest look at where you actually stand — savings, Social Security timing, tax brackets, healthcare, all of it.</p>
+              </div>
+              <div class="flip-hint">Tap to learn more</div>
+            </div>
+            <div class="svc-back">
+              <h3>Retirement Readiness Review</h3>
+              <p>This isn't a sales pitch. It's a clear-eyed assessment of your numbers — what's working, what's missing, and what to do about it.</p>
+              <a href="#start" class="btn btn-gold">Book a review</a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- How it works -->
+  <!-- How It Works -->
   <section class="section how">
-    <div class="how-inner">
-      <div class="section-header fade-in">
-        <span class="eyebrow">Getting Started</span>
-        <div class="section-title">Three Steps to Clarity</div>
-        <p class="section-desc">No jargon. No pressure. Just a clear path from uncertainty to confidence.</p>
+    <div class="section-inner">
+      <div class="section-header reveal">
+        <div class="section-title">Getting Started Is Simple</div>
+        <p class="section-desc">No paperwork. No commitment. Just a conversation to see if we can help.</p>
       </div>
-      <div class="steps fade-in">
+      <div class="steps reveal">
         <div class="step">
           <div class="step-num">1</div>
-          <h3>See Where You Stand</h3>
-          <p>Use our free Retirement Income Gap Calculator. 60 seconds, no login, completely private. You'll see exactly what you're working with.</p>
+          <h3>Run the Numbers</h3>
+          <p>Use our free calculator to see the gap between what Social Security covers and what you'll actually need. Takes 60 seconds. No login required.</p>
         </div>
         <div class="step">
           <div class="step-num">2</div>
-          <h3>Have a Real Conversation</h3>
-          <p>Schedule a free 15-minute call. We'll walk through your results, answer your questions, and see if working together makes sense.</p>
+          <h3>Talk It Through</h3>
+          <p>Book a free 15-minute call. We'll walk through your results together and figure out if there's a fit — no pressure either way.</p>
         </div>
         <div class="step">
           <div class="step-num">3</div>
           <h3>Get Your Flight Plan</h3>
-          <p>If we're a fit, we'll build a personalized retirement income strategy &mdash; one designed around your specific numbers, goals, and timeline.</p>
+          <p>If it makes sense to work together, we'll build a personalized income strategy around your numbers, your goals, and your timeline.</p>
         </div>
       </div>
     </div>
@@ -999,74 +1394,122 @@
 
   <!-- Social Proof -->
   <section class="social-proof">
-    <div class="proof-inner fade-in">
-      <span class="eyebrow">Why Clients Choose Us</span>
-      <p class="proof-quote">I had a 401(k), a pension estimate, and Social Security projections &mdash; but I had no idea how to turn those into a monthly income I could actually live on. Julio showed me the full picture for the first time.</p>
-      <p class="proof-attr"><strong>Retired educator, 63</strong> &mdash; Virtual client, Florida</p>
+    <div class="proof-inner reveal">
+      <p class="proof-quote">I had a 401(k), a pension estimate, and Social Security projections — but I had no idea how to turn those into a monthly income I could actually live on. Julio showed me the full picture for the first time.</p>
+      <p class="proof-attr"><strong>Retired educator, 63</strong> — Virtual client, Florida</p>
     </div>
   </section>
 
   <!-- Bottom CTA -->
   <section class="bottom-cta" id="start">
-    <div class="bottom-cta-inner fade-in">
-      <span class="eyebrow">Let's Talk</span>
-      <h2>Your Retirement Deserves More Than a Pie Chart.</h2>
-      <p>Book a free, no-obligation consultation. We'll look at your numbers together and build a plan that turns your savings into income you can count on &mdash; for as long as you need it.</p>
+    <div class="bottom-cta-bg"></div>
+    <div class="bottom-cta-inner reveal">
+      <h2>Your Retirement Deserves a Real Plan.</h2>
+      <p>Not a pie chart. Not a generic allocation model. A plan that tells you exactly how much you can spend each month — and how long it will last. Let's build yours.</p>
       <a href="https://calendar.cornerstone-fps.com" class="btn btn-gold">Schedule your free call</a>
       <p class="bottom-cta-note">15 minutes. Virtual. No sales pitch.</p>
     </div>
   </section>
 
-  <!-- Footer -->
+  <!-- Footer (Aurora Style) -->
   <footer>
-    <div class="footer-top">
-      <div class="footer-brand">
-        <img src="logo-white.svg" alt="Cornerstone Financial Partners" class="footer-logo">
-        <p>Independent retirement income planning for pre-retirees and recent retirees. Virtual consultations nationwide.</p>
+    <div class="footer-inner">
+      <div class="footer-main">
+        <div class="footer-col-side">
+          <h4>Navigate</h4>
+          <a href="/">Home</a>
+          <a href="#approach">Our Approach</a>
+          <a href="#services">Services</a>
+          <a href="/about">About</a>
+          <a href="https://calculator.cornerstone-fps.com">Calculator</a>
+        </div>
+        <div class="footer-center">
+          <img src="logo-white.svg" alt="Cornerstone Financial Partners" class="footer-logo">
+          <p class="footer-tagline">Independent retirement income planning for pre-retirees and recent retirees. Virtual consultations nationwide.</p>
+          <div class="footer-nav">
+            <a href="/annuity">Guaranteed Income</a>
+            <a href="/iul">Tax-Free Growth</a>
+            <a href="#start">Retirement Review</a>
+          </div>
+        </div>
+        <div class="footer-col-side">
+          <h4>Legal</h4>
+          <a href="/privacy">Privacy Policy</a>
+          <a href="/terms">Terms of Service</a>
+        </div>
       </div>
-      <div class="footer-col">
-        <h4>Navigate</h4>
-        <a href="/">Home</a>
-        <a href="#approach">Our Approach</a>
-        <a href="#services">Services</a>
-        <a href="/about">About</a>
-        <a href="https://calculator.cornerstone-fps.com">Calculator</a>
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2026 Cornerstone Financial Partners. All rights reserved.</p>
+        <p class="footer-legal">
+          This is not investment advice. Guaranteed income products involve insurance contracts subject to carrier terms and conditions. Results are illustrative based on current market rates. Consult a licensed professional before making financial decisions.
+        </p>
       </div>
-      <div class="footer-col">
-        <h4>Services</h4>
-        <a href="/annuity">Guaranteed Income</a>
-        <a href="/iul">Tax-Free Growth</a>
-        <a href="#start">Retirement Review</a>
-        <a href="/privacy">Privacy Policy</a>
-        <a href="/terms">Terms of Service</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p class="footer-copy">&copy; 2026 Cornerstone Financial Partners. All rights reserved.</p>
-      <p class="footer-legal">
-        This is not investment advice. Guaranteed income products involve insurance contracts subject to carrier terms and conditions. Results are illustrative based on current market rates. Consult a licensed professional before making financial decisions.
-      </p>
     </div>
   </footer>
 
-  <!-- Scroll animations -->
   <script>
-    // Sticky nav shadow
-    const nav = document.querySelector('nav');
-    window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 10);
-    });
+    // ── Header: IntersectionObserver for transparent → solid ──
+    const header = document.querySelector('header');
+    const heroSection = document.getElementById('hero-section');
+    const heroObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          header.classList.remove('scrolled');
+        } else {
+          header.classList.add('scrolled');
+        }
+      });
+    }, { threshold: 0 });
+    heroObserver.observe(heroSection);
 
-    // Fade-in on scroll
-    const observer = new IntersectionObserver((entries) => {
+    // ── Scroll Reveal ──
+    const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    // ── Flip Cards ──
+    document.querySelectorAll('.flip-card, .svc-flip-card').forEach(card => {
+      card.addEventListener('click', () => {
+        // Close other flipped cards in the same grid
+        const parent = card.parentElement;
+        parent.querySelectorAll('.flipped').forEach(other => {
+          if (other !== card) other.classList.remove('flipped');
+        });
+        card.classList.toggle('flipped');
+      });
+    });
+
+    // ── Mobile Menu ──
+    const mobileBtn = document.querySelector('.mobile-menu');
+    const navLinks = document.querySelector('.nav-links');
+    mobileBtn.addEventListener('click', () => {
+      mobileBtn.classList.toggle('open');
+      navLinks.classList.toggle('open');
+      document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
+    });
+    // Close on nav link click
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileBtn.classList.remove('open');
+        navLinks.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // ── Back to Top ──
+    const backToTop = document.querySelector('.back-to-top');
+    window.addEventListener('scroll', () => {
+      backToTop.classList.toggle('visible', window.scrollY > 600);
+    });
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
   </script>
 
   <!-- LeadConnector Chat Widget -->
