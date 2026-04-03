@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About | Cornerstone Financial Partners</title>
-  <meta name="description" content="Meet Julio, founder of Cornerstone Financial Partners. Independent retirement income specialist helping pre-retirees turn savings into income that lasts.">
-  <meta property="og:title" content="About Cornerstone Financial Partners">
-  <meta property="og:description" content="Independent. Specialized. Built around one mission: helping you retire with income you can count on.">
+  <title>Our Approach | Cornerstone Financial Partners</title>
+  <meta name="description" content="The Retirement Airplane Strategy. We help pre-retirees turn savings into sustainable income — guaranteed floors, tax strategy, growth, and ongoing guidance.">
+  <meta property="og:title" content="Our Approach | Cornerstone Financial Partners">
+  <meta property="og:description" content="We don't just help you save — we help you spend. Confidently, sustainably, and without the worry of running out.">
   <meta property="og:image" content="/og-image.png">
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -66,6 +66,9 @@
     .reveal-delay-1 { transition-delay: 0.1s; }
     .reveal-delay-2 { transition-delay: 0.2s; }
     .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-5 { transition-delay: 0.5s; }
+    .reveal-delay-6 { transition-delay: 0.6s; }
 
     /* ── BACK TO TOP ── */
     .back-to-top {
@@ -242,107 +245,243 @@
       margin: 0 auto;
     }
 
-    /* ── STORY ── */
-    .story {
+    /* ── THE PROBLEM SECTION ── */
+    .problem {
       padding: 120px 24px;
       background: var(--bg);
     }
-    .story-inner {
+    .problem-inner {
       max-width: 720px;
       margin: 0 auto;
+      text-align: center;
     }
-    .story-inner h2 {
+    .problem-inner h2 {
       font-family: var(--heading);
-      font-size: clamp(26px, 3.5vw, 36px);
+      font-size: clamp(28px, 3.5vw, 40px);
       font-weight: 700;
       color: var(--dark);
       margin-bottom: 32px;
-      line-height: 1.25;
       text-transform: uppercase;
       letter-spacing: 1px;
     }
-    .story-inner p {
+    .problem-inner p {
       font-size: 17px;
       line-height: 1.85;
       color: var(--body);
       font-weight: 300;
       margin-bottom: 24px;
+      text-align: left;
     }
-    .story-inner strong { color: var(--dark); font-weight: 500; }
+    .problem-inner .emphasized {
+      font-size: 19px;
+      font-weight: 500;
+      color: var(--dark);
+      line-height: 1.7;
+      border-left: 3px solid var(--accent);
+      padding-left: 24px;
+      margin: 32px 0;
+      text-align: left;
+    }
 
-    /* ── VALUES ── */
-    .values {
+    /* ── STRATEGY SECTION ── */
+    .strategy {
       background: var(--bg-warm);
       padding: 120px 24px;
     }
-    .values-header {
+    .strategy-header {
       text-align: center;
       margin-bottom: 64px;
     }
-    .values-header h2 {
+    .strategy-header h2 {
       font-family: var(--heading);
       font-size: clamp(28px, 3.5vw, 40px);
       font-weight: 700;
       color: var(--dark);
       text-transform: uppercase;
       letter-spacing: 1px;
+      margin-bottom: 16px;
     }
-    .values-grid {
+    .strategy-header p {
+      font-size: 17px;
+      color: var(--body);
+      font-weight: 300;
+      line-height: 1.75;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .strategy-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 28px;
       max-width: 1040px;
       margin: 0 auto;
     }
-    .value-card {
+    .strategy-card {
       background: var(--bg);
       border-radius: var(--radius);
       padding: 40px 32px;
       border: 1px solid var(--border);
       transition: all var(--transition);
     }
-    .value-card:hover {
+    .strategy-card:hover {
       transform: translateY(-4px);
       box-shadow: var(--shadow-md);
       border-color: var(--accent);
     }
-    .value-icon {
-      width: 52px; height: 52px; border-radius: 14px;
-      background: rgba(207,172,104,0.12);
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 24px;
+    .strategy-card-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
     }
-    .value-icon svg { width: 26px; height: 26px; stroke: var(--accent); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
-    .value-card h3 {
+    .strategy-card-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: var(--primary);
       font-family: var(--heading);
-      font-size: 21px; font-weight: 700; color: var(--dark); margin-bottom: 14px;
-      text-transform: uppercase; letter-spacing: 0.75px;
+      font-size: 16px;
+      font-weight: 700;
+      flex-shrink: 0;
     }
-    .value-card p {
-      font-size: 15px; color: var(--light); line-height: 1.75; font-weight: 300;
+    .strategy-card-label {
+      font-family: var(--heading);
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--accent);
+    }
+    .strategy-card h3 {
+      font-family: var(--heading);
+      font-size: 21px;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.75px;
+    }
+    .strategy-card p {
+      font-size: 15px;
+      color: var(--light);
+      line-height: 1.75;
+      font-weight: 300;
     }
 
-    /* ── APPROACH ── */
-    .approach {
+    /* ── SHAPE DIVIDERS ── */
+    .shape-divider-top {
+      position: relative;
+      overflow: hidden;
+    }
+    .shape-divider-top::before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: 0;
+      right: 0;
+      height: 55px;
+      z-index: 3;
+      pointer-events: none;
+      background-repeat: no-repeat;
+      background-size: 100% 55px;
+      background-position: center top;
+      background-image: url('data:image/svg+xml;charset=utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 55" preserveAspectRatio="none"><path d="M0 0h1200L600 55z" fill="%23ffffff"/></svg>');
+    }
+
+    /* ── HOW IT WORKS / STEPS ── */
+    .how {
       padding: 120px 24px;
       background: var(--bg);
     }
-    .approach-inner {
-      max-width: 720px;
-      margin: 0 auto;
+    .how-header {
       text-align: center;
+      margin-bottom: 64px;
     }
-    .approach-inner h2 {
+    .how-header h2 {
       font-family: var(--heading);
       font-size: clamp(28px, 3.5vw, 40px);
-      font-weight: 700; color: var(--dark); margin-bottom: 32px;
-      text-transform: uppercase; letter-spacing: 0.75px;
+      font-weight: 700;
+      color: var(--dark);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
     }
-    .approach-inner p {
-      font-size: 17px; line-height: 1.85; color: var(--body); font-weight: 300; margin-bottom: 24px;
-      text-align: left;
+    .how-header p {
+      font-size: 17px;
+      color: var(--body);
+      font-weight: 300;
+      line-height: 1.75;
+      max-width: 520px;
+      margin: 0 auto;
     }
-    .approach-inner strong { color: var(--dark); font-weight: 500; }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 48px;
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .steps::before {
+      content: '';
+      position: absolute;
+      top: 36px;
+      left: 16%;
+      right: 16%;
+      height: 2px;
+      background: linear-gradient(to right, rgba(207,172,104,0.2), var(--accent), rgba(207,172,104,0.2));
+      opacity: 0.4;
+    }
+    .step { text-align: center; position: relative; }
+    .step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: var(--primary);
+      font-family: var(--heading);
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 24px;
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 4px 16px rgba(207,172,104,0.3);
+    }
+    .step h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .step p {
+      font-size: 15px;
+      color: var(--body);
+      font-weight: 400;
+      line-height: 1.7;
+      max-width: 280px;
+      margin: 0 auto;
+    }
+    .step a {
+      display: inline-block;
+      margin-top: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: color var(--transition);
+    }
+    .step a:hover { color: var(--accent-hover); }
 
     /* ── BOTTOM CTA ── */
     .bottom-cta {
@@ -548,10 +687,12 @@
       }
       .mobile-menu { display: block; z-index: 101; }
       .page-hero { padding: 120px 20px 72px; }
-      .story { padding: 80px 20px; }
-      .values { padding: 80px 20px; }
-      .values-grid { grid-template-columns: 1fr; }
-      .approach { padding: 80px 20px; }
+      .problem { padding: 80px 20px; }
+      .strategy { padding: 80px 20px; }
+      .strategy-grid { grid-template-columns: 1fr; }
+      .how { padding: 80px 20px; }
+      .steps { grid-template-columns: 1fr; gap: 36px; }
+      .steps::before { display: none; }
       .bottom-cta { padding: 80px 20px; }
       .btn { justify-content: center; width: 100%; max-width: 340px; }
       .footer-main { flex-direction: column; align-items: center; }
@@ -589,9 +730,9 @@
         </div>
       </button>
       <div class="nav-links">
-        <a href="/approach">Our Approach</a>
-        <a href="/services">Services</a>
-        <a href="/about" class="active">About</a>
+        <a href="/approach" class="active">Our Approach</a>
+        <a href="/#services">Services</a>
+        <a href="/about">About</a>
         <a href="https://calculator.cornerstone-fps.com">Calculator</a>
         <a href="/#start" class="nav-cta">Book a Free Call</a>
       </div>
@@ -602,87 +743,102 @@
   <section class="page-hero">
     <div class="page-hero-bg"></div>
     <div class="page-hero-inner reveal">
-      <h1>Built for One Purpose: Your Retirement Income.</h1>
-      <p>Most advisory firms try to be everything to everyone. We chose to go deep on the one problem that matters most when you're approaching retirement — making sure your money outlasts you.</p>
+      <h1>Our Approach</h1>
+      <p>We don't just help you save &mdash; we help you spend. Confidently, sustainably, and without the worry of running out.</p>
     </div>
   </section>
 
-  <!-- Origin Story -->
-  <section class="story">
-    <div class="story-inner reveal">
-      <h2>Why I Started Cornerstone</h2>
-      <p>I kept meeting people who had done everything right. They saved consistently. They maxed out their 401(k). They lived below their means for decades. But when retirement got close — or arrived — they hit the same wall:</p>
-      <p><strong>They had no plan for turning their savings into a paycheck.</strong></p>
-      <p>Their advisor would hand them a pie chart and a withdrawal rate. Maybe run a Monte Carlo simulation. But nobody answered the real question: <strong>How much can I actually spend each month without running out?</strong></p>
-      <p>That's the question I built this practice to answer.</p>
-      <p>I come from a background in strategy and business operations — not Wall Street. Which means I approach retirement planning the way an engineer approaches a system: inputs, outputs, stress tests, and contingencies. Not speculation. Not hope.</p>
-      <p>Cornerstone Financial Partners exists because the retirement income problem deserves a specialist — not a generalist with a side interest.</p>
+  <!-- The Problem -->
+  <section class="problem">
+    <div class="problem-inner reveal">
+      <h2>The Question Nobody Answers</h2>
+      <p>You've spent 30 years doing everything right &mdash; saving consistently, maxing out your 401(k), living below your means. But now that retirement is on the horizon, the advice stops being useful. Because the question has changed.</p>
+      <p class="emphasized">It's no longer "how do I save more?" It's "how do I turn what I have into income that lasts the rest of my life?"</p>
+      <p>That's a completely different problem. And it's the only one we solve.</p>
     </div>
   </section>
 
-  <!-- Values -->
-  <section class="values">
-    <div class="values-header reveal">
-      <h2>How We're Different</h2>
+  <!-- The Retirement Airplane Strategy -->
+  <section class="strategy shape-divider-top">
+    <div class="strategy-header reveal">
+      <h2>The Retirement Airplane Strategy&trade;</h2>
+      <p>Think of your retirement like a flight. You need a pilot, an engine, wings, a cabin, fuel, and someone watching the radar. Miss one, and things get bumpy. We make sure you have all six.</p>
     </div>
-    <div class="values-grid">
-      <div class="value-card reveal reveal-delay-1">
-        <div class="value-icon">
-          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <div class="strategy-grid">
+      <div class="strategy-card reveal reveal-delay-1">
+        <div class="strategy-card-tag">
+          <span class="strategy-card-num">1</span>
+          <span class="strategy-card-label">The Pilot</span>
         </div>
-        <h3>Independent</h3>
-        <p>We're not owned by a bank or insurance company. We shop across multiple carriers and products to find what actually fits your situation — not what pays us the most.</p>
+        <h3>You &amp; Your Goals</h3>
+        <p>Everything starts with what you actually want. When do you want to retire? What does your ideal Tuesday look like? How much do you need each month to live comfortably? Your vision drives every decision in the plan &mdash; not a product, not a sales target.</p>
       </div>
-      <div class="value-card reveal reveal-delay-2">
-        <div class="value-icon">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+      <div class="strategy-card reveal reveal-delay-2">
+        <div class="strategy-card-tag">
+          <span class="strategy-card-num">2</span>
+          <span class="strategy-card-label">The Engine</span>
         </div>
-        <h3>Specialized</h3>
-        <p>We don't manage stock portfolios, sell mutual funds, or do tax prep. We focus entirely on the retirement income problem — turning savings into a sustainable, reliable paycheck.</p>
+        <h3>Guaranteed Income</h3>
+        <p>Your retirement paycheck. Using annuities, Social Security optimization, and pension strategies, we create a guaranteed income floor &mdash; money that arrives every month no matter what the market does. Your mortgage, groceries, and essentials are never at risk.</p>
       </div>
-      <div class="value-card reveal reveal-delay-3">
-        <div class="value-icon">
-          <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+      <div class="strategy-card reveal reveal-delay-3">
+        <div class="strategy-card-tag">
+          <span class="strategy-card-num">3</span>
+          <span class="strategy-card-label">The Wings</span>
         </div>
-        <h3>Transparent</h3>
-        <p>No hidden fees. No jargon. No proprietary products we're required to push. We explain everything in plain language and show you exactly how every recommendation works.</p>
+        <h3>Growth &amp; Protection</h3>
+        <p>You still want your money growing &mdash; but not at the cost of sleepless nights. We balance upside participation with downside protection using indexed strategies, so market turbulence doesn't ground your retirement.</p>
       </div>
-      <div class="value-card reveal reveal-delay-1">
-        <div class="value-icon">
-          <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      <div class="strategy-card reveal reveal-delay-4">
+        <div class="strategy-card-tag">
+          <span class="strategy-card-num">4</span>
+          <span class="strategy-card-label">The Cabin</span>
         </div>
-        <h3>Ongoing</h3>
-        <p>Retirement isn't a one-time event. Markets change. Tax laws change. Healthcare costs change. We review and adjust your plan regularly so it stays on course — not set-and-forget.</p>
+        <h3>Legacy &amp; Healthcare</h3>
+        <p>Long-term care. Estate strategy. Making sure the people who matter most are taken care of &mdash; whether you're here or not. This is the part most plans forget, and it's often the most expensive surprise in retirement.</p>
       </div>
-      <div class="value-card reveal reveal-delay-2">
-        <div class="value-icon">
-          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      <div class="strategy-card reveal reveal-delay-5">
+        <div class="strategy-card-tag">
+          <span class="strategy-card-num">5</span>
+          <span class="strategy-card-label">The Fuel</span>
         </div>
-        <h3>Virtual Nationwide</h3>
-        <p>We work with clients across the country through video consultations. No office visit required. Same depth, same care, wherever you are.</p>
+        <h3>Tax Strategy</h3>
+        <p>Which account you pull from first can save &mdash; or cost &mdash; you tens of thousands over your retirement. Roth conversions, bracket management, and smart sequencing keep more money in your pocket and less going to the IRS.</p>
       </div>
-      <div class="value-card reveal reveal-delay-3">
-        <div class="value-icon">
-          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      <div class="strategy-card reveal reveal-delay-6">
+        <div class="strategy-card-tag">
+          <span class="strategy-card-num">6</span>
+          <span class="strategy-card-label">Air Traffic Control</span>
         </div>
-        <h3>Personal</h3>
-        <p>You won't be passed off to a junior associate. When you work with Cornerstone, you work directly with me. Every call. Every plan. Every review.</p>
+        <h3>Ongoing Guidance</h3>
+        <p>Markets shift. Tax laws change. Life throws curveballs. Your plan isn't a binder on a shelf &mdash; it's a living strategy we review and adjust with you, quarter after quarter, year after year.</p>
       </div>
     </div>
   </section>
 
-  <!-- Approach -->
-  <section class="approach">
-    <div class="approach-inner reveal">
-      <h2>Accumulation Is Not the Same as Distribution</h2>
-      <p>The financial industry has spent decades teaching people how to save. And for the most part, it worked. The problem is that <strong>the skills that build a nest egg are not the same skills that turn it into income.</strong></p>
-      <p>Accumulation is about growth, diversification, and time in the market. Distribution is about sequencing, tax efficiency, guaranteed floors, and longevity risk. They require fundamentally different strategies.</p>
-      <p>Most advisors are trained in accumulation. They manage portfolios. They optimize for returns. But when a client walks in and says, "I'm retiring next year — now what?" — they don't always have a clear answer.</p>
-      <p><strong>That's where we start.</strong> Every plan we build answers the three questions that matter most in retirement:</p>
-      <p>1. How much guaranteed income can I count on every month?<br>
-         2. How long will my money last under different scenarios?<br>
-         3. What happens if the market drops 30% in my first year of retirement?</p>
-      <p>If your current plan can't answer those questions clearly, we should talk.</p>
+  <!-- Getting Started -->
+  <section class="how">
+    <div class="how-header reveal">
+      <h2>Getting Started Is Simple</h2>
+      <p>No paperwork. No commitment. Just a conversation to see if we can help.</p>
+    </div>
+    <div class="steps reveal">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Run the Numbers</h3>
+        <p>Use our free calculator to see the gap between what Social Security covers and what you'll actually need. Takes 60 seconds. No login required.</p>
+        <a href="https://calculator.cornerstone-fps.com">Try the calculator &rarr;</a>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Talk It Through</h3>
+        <p>Book a free 15-minute call. We'll walk through your results together and figure out if there's a fit &mdash; no pressure either way.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Get Your Flight Plan</h3>
+        <p>If it makes sense to work together, we'll build a personalized income strategy around your numbers, your goals, and your timeline.</p>
+      </div>
     </div>
   </section>
 
@@ -691,9 +847,9 @@
     <div class="bottom-cta-bg"></div>
     <div class="bottom-cta-overlay"></div>
     <div class="bottom-cta-inner reveal">
-      <h2>Ready to See Where You Stand?</h2>
-      <p>Book a free, no-obligation conversation. We'll walk through your situation and tell you honestly whether we can help.</p>
-      <a href="/#start" class="btn btn-gold">Schedule your free call</a>
+      <h2>Your Retirement Deserves a Real Plan.</h2>
+      <p>Not a pie chart. Not a generic allocation model. A plan that tells you exactly how much you can spend each month &mdash; and how long it will last.</p>
+      <a href="https://calendar.cornerstone-fps.com" class="btn btn-gold">Schedule your free call</a>
       <p class="bottom-cta-note">15 minutes. Virtual. No sales pitch.</p>
     </div>
   </section>
@@ -706,7 +862,7 @@
           <h4>Navigate</h4>
           <a href="/">Home</a>
           <a href="/approach">Our Approach</a>
-          <a href="/services">Services</a>
+          <a href="/#services">Services</a>
           <a href="/about">About</a>
           <a href="https://calculator.cornerstone-fps.com">Calculator</a>
         </div>

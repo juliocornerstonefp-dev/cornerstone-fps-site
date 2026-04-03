@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About | Cornerstone Financial Partners</title>
-  <meta name="description" content="Meet Julio, founder of Cornerstone Financial Partners. Independent retirement income specialist helping pre-retirees turn savings into income that lasts.">
-  <meta property="og:title" content="About Cornerstone Financial Partners">
-  <meta property="og:description" content="Independent. Specialized. Built around one mission: helping you retire with income you can count on.">
+  <title>Services | Cornerstone Financial Partners</title>
+  <meta name="description" content="Retirement income planning, tax-free retirement strategies, and comprehensive retirement readiness reviews. Specialized services from Cornerstone Financial Partners.">
+  <meta property="og:title" content="Services | Cornerstone Financial Partners">
+  <meta property="og:description" content="Specialized retirement income strategies designed to turn your savings into a paycheck that lasts.">
   <meta property="og:image" content="/og-image.png">
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -242,44 +242,169 @@
       margin: 0 auto;
     }
 
-    /* ── STORY ── */
-    .story {
+    /* ── OVERVIEW ── */
+    .overview {
       padding: 120px 24px;
       background: var(--bg);
     }
-    .story-inner {
+    .overview-inner {
       max-width: 720px;
       margin: 0 auto;
+      text-align: center;
     }
-    .story-inner h2 {
+    .overview-inner h2 {
       font-family: var(--heading);
-      font-size: clamp(26px, 3.5vw, 36px);
+      font-size: clamp(28px, 3.5vw, 40px);
       font-weight: 700;
       color: var(--dark);
       margin-bottom: 32px;
-      line-height: 1.25;
       text-transform: uppercase;
       letter-spacing: 1px;
     }
-    .story-inner p {
+    .overview-inner p {
       font-size: 17px;
       line-height: 1.85;
       color: var(--body);
       font-weight: 300;
+    }
+
+    /* ── SERVICE CARDS ── */
+    .services-section {
+      padding: 0 24px 120px;
+      background: var(--bg);
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .service-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 40px 32px;
+      transition: all var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--accent);
+    }
+    .service-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      background: rgba(207,172,104,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
       margin-bottom: 24px;
     }
-    .story-inner strong { color: var(--dark); font-weight: 500; }
+    .service-icon svg {
+      width: 26px;
+      height: 26px;
+      stroke: var(--accent);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .service-card h3 {
+      font-family: var(--heading);
+      font-size: 21px;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.75px;
+    }
+    .service-card > p {
+      font-size: 15px;
+      color: var(--light);
+      line-height: 1.75;
+      font-weight: 300;
+      margin-bottom: 20px;
+    }
+    .service-points {
+      list-style: none;
+      margin-bottom: 24px;
+      flex-grow: 1;
+    }
+    .service-points li {
+      font-size: 14px;
+      color: var(--body);
+      line-height: 1.7;
+      padding-left: 24px;
+      position: relative;
+      margin-bottom: 8px;
+      font-weight: 400;
+    }
+    .service-points li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 6px;
+      width: 14px;
+      height: 14px;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' stroke='%23CFAC68' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+    .service-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all var(--transition);
+    }
+    .service-cta:hover {
+      color: var(--accent-hover);
+      gap: 10px;
+    }
+    .service-cta svg {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+    }
 
-    /* ── VALUES ── */
-    .values {
-      background: var(--bg-warm);
-      padding: 120px 24px;
+    /* ── HOW WE'RE DIFFERENT ── */
+    .different {
+      position: relative;
     }
-    .values-header {
+    .shape-divider-top {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      overflow: hidden;
+      line-height: 0;
+    }
+    .shape-divider-top svg {
+      position: relative;
+      display: block;
+      width: calc(100% + 1.3px);
+      height: 60px;
+    }
+    .shape-divider-top .shape-fill {
+      fill: var(--bg);
+    }
+    .different-header {
       text-align: center;
-      margin-bottom: 64px;
+      padding: 100px 24px 0;
+      background: var(--bg-warm);
     }
-    .values-header h2 {
+    .different-header h2 {
       font-family: var(--heading);
       font-size: clamp(28px, 3.5vw, 40px);
       font-weight: 700;
@@ -287,62 +412,38 @@
       text-transform: uppercase;
       letter-spacing: 1px;
     }
-    .values-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
-      max-width: 1040px;
-      margin: 0 auto;
+    .diff-block {
+      padding: 80px 24px;
     }
-    .value-card {
-      background: var(--bg);
-      border-radius: var(--radius);
-      padding: 40px 32px;
-      border: 1px solid var(--border);
-      transition: all var(--transition);
-    }
-    .value-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-md);
-      border-color: var(--accent);
-    }
-    .value-icon {
-      width: 52px; height: 52px; border-radius: 14px;
-      background: rgba(207,172,104,0.12);
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 24px;
-    }
-    .value-icon svg { width: 26px; height: 26px; stroke: var(--accent); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
-    .value-card h3 {
-      font-family: var(--heading);
-      font-size: 21px; font-weight: 700; color: var(--dark); margin-bottom: 14px;
-      text-transform: uppercase; letter-spacing: 0.75px;
-    }
-    .value-card p {
-      font-size: 15px; color: var(--light); line-height: 1.75; font-weight: 300;
-    }
-
-    /* ── APPROACH ── */
-    .approach {
-      padding: 120px 24px;
+    .diff-block:nth-child(odd) {
       background: var(--bg);
     }
-    .approach-inner {
+    .diff-block:nth-child(even) {
+      background: var(--bg-warm);
+    }
+    .diff-block-inner {
       max-width: 720px;
       margin: 0 auto;
-      text-align: center;
     }
-    .approach-inner h2 {
+    .diff-block-inner h3 {
       font-family: var(--heading);
-      font-size: clamp(28px, 3.5vw, 40px);
-      font-weight: 700; color: var(--dark); margin-bottom: 32px;
-      text-transform: uppercase; letter-spacing: 0.75px;
+      font-size: clamp(22px, 3vw, 28px);
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.75px;
     }
-    .approach-inner p {
-      font-size: 17px; line-height: 1.85; color: var(--body); font-weight: 300; margin-bottom: 24px;
-      text-align: left;
+    .diff-block-inner p {
+      font-size: 17px;
+      line-height: 1.85;
+      color: var(--body);
+      font-weight: 300;
     }
-    .approach-inner strong { color: var(--dark); font-weight: 500; }
+    .diff-block-inner strong {
+      color: var(--dark);
+      font-weight: 500;
+    }
 
     /* ── BOTTOM CTA ── */
     .bottom-cta {
@@ -548,10 +649,11 @@
       }
       .mobile-menu { display: block; z-index: 101; }
       .page-hero { padding: 120px 20px 72px; }
-      .story { padding: 80px 20px; }
-      .values { padding: 80px 20px; }
-      .values-grid { grid-template-columns: 1fr; }
-      .approach { padding: 80px 20px; }
+      .overview { padding: 80px 20px; }
+      .services-section { padding: 0 20px 80px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .different-header { padding: 60px 20px 0; }
+      .diff-block { padding: 60px 20px; }
       .bottom-cta { padding: 80px 20px; }
       .btn { justify-content: center; width: 100%; max-width: 340px; }
       .footer-main { flex-direction: column; align-items: center; }
@@ -589,9 +691,9 @@
         </div>
       </button>
       <div class="nav-links">
-        <a href="/approach">Our Approach</a>
-        <a href="/services">Services</a>
-        <a href="/about" class="active">About</a>
+        <a href="/#approach">Our Approach</a>
+        <a href="/services" class="active">Services</a>
+        <a href="/about">About</a>
         <a href="https://calculator.cornerstone-fps.com">Calculator</a>
         <a href="/#start" class="nav-cta">Book a Free Call</a>
       </div>
@@ -602,87 +704,104 @@
   <section class="page-hero">
     <div class="page-hero-bg"></div>
     <div class="page-hero-inner reveal">
-      <h1>Built for One Purpose: Your Retirement Income.</h1>
-      <p>Most advisory firms try to be everything to everyone. We chose to go deep on the one problem that matters most when you're approaching retirement — making sure your money outlasts you.</p>
+      <h1>Our Services</h1>
+      <p>Specialized retirement income strategies designed to turn your savings into a paycheck that lasts — no matter what the market does.</p>
     </div>
   </section>
 
-  <!-- Origin Story -->
-  <section class="story">
-    <div class="story-inner reveal">
-      <h2>Why I Started Cornerstone</h2>
-      <p>I kept meeting people who had done everything right. They saved consistently. They maxed out their 401(k). They lived below their means for decades. But when retirement got close — or arrived — they hit the same wall:</p>
-      <p><strong>They had no plan for turning their savings into a paycheck.</strong></p>
-      <p>Their advisor would hand them a pie chart and a withdrawal rate. Maybe run a Monte Carlo simulation. But nobody answered the real question: <strong>How much can I actually spend each month without running out?</strong></p>
-      <p>That's the question I built this practice to answer.</p>
-      <p>I come from a background in strategy and business operations — not Wall Street. Which means I approach retirement planning the way an engineer approaches a system: inputs, outputs, stress tests, and contingencies. Not speculation. Not hope.</p>
-      <p>Cornerstone Financial Partners exists because the retirement income problem deserves a specialist — not a generalist with a side interest.</p>
+  <!-- Overview -->
+  <section class="overview">
+    <div class="overview-inner reveal">
+      <h2>What We Do</h2>
+      <p>Most financial advisors help you accumulate wealth. We focus on the harder question: how to turn what you've saved into reliable, sustainable income for the rest of your life. Every strategy we recommend is built around three pillars — guaranteed income, tax efficiency, and long-term protection.</p>
     </div>
   </section>
 
-  <!-- Values -->
-  <section class="values">
-    <div class="values-header reveal">
+  <!-- Service Cards -->
+  <section class="services-section">
+    <div class="services-grid">
+
+      <!-- Card 1: Retirement Income Planning -->
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="14" rx="2" ry="2"/><path d="M2 10h20"/><path d="M6 14h4"/></svg>
+        </div>
+        <h3>Retirement Income Planning</h3>
+        <p>Your savings become a monthly paycheck — one that shows up whether markets are up, down, or sideways. We analyze your Social Security, pension, 401(k), and other assets to build a guaranteed income floor that covers your essential expenses. No guesswork. No anxiety about running out.</p>
+        <ul class="service-points">
+          <li>Guaranteed monthly income streams</li>
+          <li>Social Security optimization</li>
+          <li>Pension maximization strategies</li>
+          <li>Income gap analysis</li>
+        </ul>
+        <a href="/annuity" class="service-cta">Learn more <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </div>
+
+      <!-- Card 2: Tax-Free Retirement Income -->
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <h3>Tax-Free Retirement Income</h3>
+        <p>Already maxing out your 401(k)? There's an IRS-approved vehicle with no contribution caps, no required minimum distributions, and tax-free withdrawals in retirement. For high earners ($150K+), this can be the most powerful tool in your retirement arsenal.</p>
+        <ul class="service-points">
+          <li>No contribution limits</li>
+          <li>Tax-free retirement distributions</li>
+          <li>Zero market risk on downside</li>
+          <li>No required minimum distributions</li>
+        </ul>
+        <a href="/iul" class="service-cta">Check eligibility <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </div>
+
+      <!-- Card 3: Retirement Readiness Review -->
+      <div class="service-card reveal reveal-delay-3">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><line x1="9" y1="12" x2="11" y2="14"/><line x1="11" y1="14" x2="15" y2="10"/></svg>
+        </div>
+        <h3>Retirement Readiness Review</h3>
+        <p>An honest, no-pressure look at where you actually stand. We'll review your savings, Social Security timing, tax brackets, healthcare costs, and long-term care exposure — then tell you exactly what's working, what's missing, and what to do about it.</p>
+        <ul class="service-points">
+          <li>Complete financial snapshot</li>
+          <li>Personalized income projection</li>
+          <li>Tax bracket analysis</li>
+          <li>Healthcare cost planning</li>
+        </ul>
+        <a href="/#start" class="service-cta">Book a free review <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- How We're Different -->
+  <section class="different">
+    <div class="shape-divider-top">
+      <svg data-name="Layer 1" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M1200 120L0 16.48V0h1200v120z" class="shape-fill"></path>
+      </svg>
+    </div>
+    <div class="different-header reveal">
       <h2>How We're Different</h2>
     </div>
-    <div class="values-grid">
-      <div class="value-card reveal reveal-delay-1">
-        <div class="value-icon">
-          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        </div>
-        <h3>Independent</h3>
-        <p>We're not owned by a bank or insurance company. We shop across multiple carriers and products to find what actually fits your situation — not what pays us the most.</p>
-      </div>
-      <div class="value-card reveal reveal-delay-2">
-        <div class="value-icon">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
-        </div>
-        <h3>Specialized</h3>
-        <p>We don't manage stock portfolios, sell mutual funds, or do tax prep. We focus entirely on the retirement income problem — turning savings into a sustainable, reliable paycheck.</p>
-      </div>
-      <div class="value-card reveal reveal-delay-3">
-        <div class="value-icon">
-          <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-        </div>
-        <h3>Transparent</h3>
-        <p>No hidden fees. No jargon. No proprietary products we're required to push. We explain everything in plain language and show you exactly how every recommendation works.</p>
-      </div>
-      <div class="value-card reveal reveal-delay-1">
-        <div class="value-icon">
-          <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-        </div>
-        <h3>Ongoing</h3>
-        <p>Retirement isn't a one-time event. Markets change. Tax laws change. Healthcare costs change. We review and adjust your plan regularly so it stays on course — not set-and-forget.</p>
-      </div>
-      <div class="value-card reveal reveal-delay-2">
-        <div class="value-icon">
-          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        </div>
-        <h3>Virtual Nationwide</h3>
-        <p>We work with clients across the country through video consultations. No office visit required. Same depth, same care, wherever you are.</p>
-      </div>
-      <div class="value-card reveal reveal-delay-3">
-        <div class="value-icon">
-          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        </div>
-        <h3>Personal</h3>
-        <p>You won't be passed off to a junior associate. When you work with Cornerstone, you work directly with me. Every call. Every plan. Every review.</p>
+
+    <div class="diff-block" style="background: var(--bg-warm);">
+      <div class="diff-block-inner reveal">
+        <h3>We're Specialists, Not Generalists</h3>
+        <p>We don't manage stock portfolios, sell mutual funds, or do tax prep. We focus entirely on the retirement income problem. That singular focus means we see solutions — and risks — that generalist advisors often miss.</p>
       </div>
     </div>
-  </section>
 
-  <!-- Approach -->
-  <section class="approach">
-    <div class="approach-inner reveal">
-      <h2>Accumulation Is Not the Same as Distribution</h2>
-      <p>The financial industry has spent decades teaching people how to save. And for the most part, it worked. The problem is that <strong>the skills that build a nest egg are not the same skills that turn it into income.</strong></p>
-      <p>Accumulation is about growth, diversification, and time in the market. Distribution is about sequencing, tax efficiency, guaranteed floors, and longevity risk. They require fundamentally different strategies.</p>
-      <p>Most advisors are trained in accumulation. They manage portfolios. They optimize for returns. But when a client walks in and says, "I'm retiring next year — now what?" — they don't always have a clear answer.</p>
-      <p><strong>That's where we start.</strong> Every plan we build answers the three questions that matter most in retirement:</p>
-      <p>1. How much guaranteed income can I count on every month?<br>
-         2. How long will my money last under different scenarios?<br>
-         3. What happens if the market drops 30% in my first year of retirement?</p>
-      <p>If your current plan can't answer those questions clearly, we should talk.</p>
+    <div class="diff-block" style="background: var(--bg);">
+      <div class="diff-block-inner reveal">
+        <h3>We're Independent</h3>
+        <p>We're not owned by a bank, brokerage, or insurance company. We shop across multiple carriers and products to find what actually fits your situation — not what pays us the most.</p>
+      </div>
+    </div>
+
+    <div class="diff-block" style="background: var(--bg-warm);">
+      <div class="diff-block-inner reveal">
+        <h3>We Plan for What Can Go Wrong</h3>
+        <p>Market crashes. Inflation spikes. Unexpected healthcare costs. A spouse passing early. We stress-test your plan against the scenarios most advisors don't talk about — because retirement income planning without risk management isn't planning at all.</p>
+      </div>
     </div>
   </section>
 
@@ -692,8 +811,8 @@
     <div class="bottom-cta-overlay"></div>
     <div class="bottom-cta-inner reveal">
       <h2>Ready to See Where You Stand?</h2>
-      <p>Book a free, no-obligation conversation. We'll walk through your situation and tell you honestly whether we can help.</p>
-      <a href="/#start" class="btn btn-gold">Schedule your free call</a>
+      <p>Book a free, no-obligation 15-minute call. We'll walk through your situation and tell you honestly whether we can help.</p>
+      <a href="https://calendar.cornerstone-fps.com" class="btn btn-gold">Schedule your free call</a>
       <p class="bottom-cta-note">15 minutes. Virtual. No sales pitch.</p>
     </div>
   </section>
@@ -705,7 +824,7 @@
         <div class="footer-col-side">
           <h4>Navigate</h4>
           <a href="/">Home</a>
-          <a href="/approach">Our Approach</a>
+          <a href="/#approach">Our Approach</a>
           <a href="/services">Services</a>
           <a href="/about">About</a>
           <a href="https://calculator.cornerstone-fps.com">Calculator</a>
