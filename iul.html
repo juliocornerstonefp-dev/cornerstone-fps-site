@@ -12,33 +12,35 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Arimo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --primary: #4D85A8;
-      --primary-hover: #3A6F92;
-      --primary-subtle: #E8F1F5;
-      --primary-border: #B8D4E3;
-      --secondary: #182038;
-      --dark: #182038;
-      --dark-deep: #0F1525;
-      --body: #666064;
-      --light: #888488;
-      --muted: #A09CA0;
-      --bg: #FEFEFE;
-      --bg-alt: #F7F9FB;
-      --bg-warm: #F0F4F7;
-      --border: #E0E6EC;
-      --footer-bg: #182038;
+      --primary: #14204D;
+      --primary-hover: #0f1a3e;
+      --primary-subtle: #F7F9FC;
+      --primary-border: #e6eaf5;
+      --secondary: #23326B;
+      --accent: #CFAC68;
+      --accent-hover: #E9C786;
+      --dark: #14204D;
+      --dark-deep: #0C1333;
+      --body: #4F555A;
+      --light: #6b7280;
+      --muted: #9ca3af;
+      --bg: #FFFFFF;
+      --bg-alt: #FAFAFA;
+      --bg-warm: #F7F9FC;
+      --border: #e6eaf5;
+      --footer-bg: #14204D;
       --heading: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      --body-font: 'Arimo', 'Roboto', 'Open Sans', 'Helvetica Neue', sans-serif;
-      --shadow-sm: 0 2px 4px rgba(0,0,0,0.06);
-      --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
-      --shadow-lg: 0 8px 32px rgba(0,0,0,0.10);
-      --radius: 4px;
-      --transition: 0.4s ease;
+      --body-font: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --shadow-sm: 0 2px 4px rgba(20,32,77,0.05);
+      --shadow-md: 0 6px 18px rgba(20,32,77,0.08);
+      --shadow-lg: 0 6px 18px rgba(20,32,77,0.15);
+      --radius: 0px;
+      --transition: 0.3s ease;
       --max-width: 1200px;
     }
 
@@ -72,8 +74,8 @@
       right: 32px;
       width: 48px;
       height: 48px;
-      background: var(--primary);
-      color: #fff;
+      background: var(--accent);
+      color: var(--primary);
       border: none;
       border-radius: 50%;
       cursor: pointer;
@@ -84,20 +86,20 @@
       visibility: hidden;
       transition: all var(--transition);
       z-index: 90;
-      box-shadow: 0 4px 16px rgba(77,133,168,0.3);
+      box-shadow: 0 4px 16px rgba(207,172,104,0.3);
     }
     .back-to-top.visible {
       opacity: 1;
       visibility: visible;
     }
     .back-to-top:hover {
-      background: var(--primary-hover);
+      background: var(--accent-hover);
       transform: translateY(-3px);
     }
     .back-to-top svg {
       width: 20px;
       height: 20px;
-      stroke: #fff;
+      stroke: var(--primary);
       fill: none;
       stroke-width: 2.5;
     }
@@ -154,8 +156,8 @@
     }
     .nav-links a:hover { color: var(--primary); }
     .nav-cta {
-      background: var(--primary) !important;
-      color: #fff !important;
+      background: var(--accent) !important;
+      color: var(--primary) !important;
       padding: 10px 24px !important;
       border-radius: var(--radius);
       font-weight: 700 !important;
@@ -165,7 +167,7 @@
       text-transform: uppercase !important;
     }
     .nav-cta:hover {
-      background: var(--primary-hover) !important;
+      background: var(--accent-hover) !important;
       transform: translateY(-1px) !important;
     }
 
@@ -220,7 +222,7 @@
     .hero-bg {
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, #182038 0%, #1E2A48 25%, #2A4A68 50%, #182038 100%);
+      background: linear-gradient(135deg, #14204D 0%, #182244 25%, #23326B 50%, #14204D 100%);
     }
     .hero-inner {
       position: relative;
@@ -231,11 +233,11 @@
     .hero h1 {
       font-family: var(--heading);
       font-size: clamp(30px, 5vw, 48px);
-      font-weight: 700;
+      font-weight: 800;
       line-height: 1.2;
       color: #fff;
       margin-bottom: 24px;
-      letter-spacing: 0.75px;
+      letter-spacing: 1px;
       text-transform: uppercase;
     }
     .hero-sub {
@@ -263,7 +265,7 @@
     .badge-item svg {
       width: 18px;
       height: 18px;
-      stroke: var(--primary);
+      stroke: var(--accent);
       fill: none;
       stroke-width: 2;
     }
@@ -286,13 +288,14 @@
       letter-spacing: 2px;
     }
     .btn-gold {
-      background: var(--primary);
-      color: #fff;
-      border: 2px solid var(--primary);
+      background: var(--accent);
+      color: var(--primary);
+      border: 2px solid var(--accent);
+      border-radius: 0;
     }
     .btn-gold:hover {
-      background: var(--primary-hover);
-      border-color: var(--primary-hover);
+      background: var(--accent-hover);
+      border-color: var(--accent-hover);
     }
 
     /* -- FORM SECTION -- */
@@ -311,12 +314,12 @@
     .form-left h2 {
       font-family: var(--heading);
       font-size: clamp(26px, 3.5vw, 36px);
-      font-weight: 700;
+      font-weight: 800;
       line-height: 1.25;
       color: var(--dark);
       margin-bottom: 20px;
       text-transform: uppercase;
-      letter-spacing: 0.75px;
+      letter-spacing: 1px;
     }
     .form-left > p {
       font-size: 17px;
@@ -362,7 +365,7 @@
       font-weight: 700;
       color: var(--dark);
       text-transform: uppercase;
-      letter-spacing: 0.75px;
+      letter-spacing: 1px;
       margin-bottom: 24px;
       text-align: center;
     }
@@ -393,7 +396,7 @@
     .form-group input:focus,
     .form-group select:focus {
       border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(77,133,168,0.1);
+      box-shadow: 0 0 0 3px rgba(20,32,77,0.1);
     }
     .form-group input::placeholder { color: var(--muted); }
     .sms-opt {
@@ -420,8 +423,8 @@
     .form-submit {
       width: 100%;
       padding: 16px;
-      background: var(--primary);
-      color: #fff;
+      background: var(--accent);
+      color: var(--primary);
       border: none;
       border-radius: var(--radius);
       font-size: 16px;
@@ -431,12 +434,12 @@
       transition: all var(--transition);
       margin-top: 8px;
       letter-spacing: 2px;
-      box-shadow: 0 2px 12px rgba(77,133,168,0.25);
+      box-shadow: 0 2px 12px rgba(207,172,104,0.25);
     }
     .form-submit:hover {
-      background: var(--primary-hover);
+      background: var(--accent-hover);
       transform: translateY(-1px);
-      box-shadow: 0 6px 20px rgba(77,133,168,0.3);
+      box-shadow: 0 6px 20px rgba(207,172,104,0.3);
     }
     .form-note {
       text-align: center;
@@ -462,11 +465,11 @@
     .comparison-header h2 {
       font-family: var(--heading);
       font-size: clamp(28px, 3.5vw, 40px);
-      font-weight: 700;
+      font-weight: 800;
       color: var(--dark);
       margin-bottom: 12px;
       text-transform: uppercase;
-      letter-spacing: 0.75px;
+      letter-spacing: 1px;
     }
     .comparison-header p {
       font-size: 17px;
@@ -494,7 +497,7 @@
       color: var(--dark);
       margin-bottom: 12px;
       text-transform: uppercase;
-      letter-spacing: 0.75px;
+      letter-spacing: 1px;
     }
     .compare-cell p {
       font-size: 15px;
@@ -516,11 +519,11 @@
     .who-inner h2 {
       font-family: var(--heading);
       font-size: clamp(26px, 3.5vw, 34px);
-      font-weight: 700;
+      font-weight: 800;
       color: var(--dark);
       margin-bottom: 40px;
       text-transform: uppercase;
-      letter-spacing: 0.75px;
+      letter-spacing: 1px;
     }
     .who-list {
       list-style: none;
@@ -558,7 +561,7 @@
     .bottom-cta-bg {
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, #182038 0%, #2A4A68 50%, #1E2A48 100%);
+      background: linear-gradient(135deg, #14204D 0%, #23326B 50%, #182244 100%);
     }
     .bottom-cta-overlay {
       position: absolute;
@@ -574,12 +577,12 @@
     .bottom-cta h2 {
       font-family: var(--heading);
       font-size: clamp(26px, 3.5vw, 38px);
-      font-weight: 700;
+      font-weight: 800;
       color: #fff;
       margin-bottom: 16px;
       line-height: 1.2;
       text-transform: uppercase;
-      letter-spacing: 0.75px;
+      letter-spacing: 1px;
     }
     .bottom-cta p {
       font-size: 17px;
@@ -655,7 +658,7 @@
       font-size: 13px;
       transition: color var(--transition);
     }
-    .footer-nav a:hover { color: #97C4DE; }
+    .footer-nav a:hover { color: var(--accent); }
     .footer-col-side h4 {
       font-size: 13px;
       font-weight: 600;
@@ -673,7 +676,7 @@
       display: block;
       transition: color var(--transition);
     }
-    .footer-col-side a:hover { color: #97C4DE; }
+    .footer-col-side a:hover { color: var(--accent); }
     .footer-bottom {
       margin-top: 48px;
       padding-top: 32px;

@@ -14,33 +14,35 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Arimo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --primary: #4D85A8;
-      --primary-hover: #3A6F92;
-      --primary-subtle: #E8F1F5;
-      --primary-border: #B8D4E3;
-      --secondary: #182038;
-      --dark: #182038;
-      --dark-deep: #0F1525;
-      --body: #666064;
-      --light: #888488;
-      --muted: #A09CA0;
-      --bg: #FEFEFE;
-      --bg-alt: #F7F9FB;
-      --bg-warm: #F0F4F7;
-      --border: #E0E6EC;
-      --footer-bg: #182038;
+      --primary: #14204D;
+      --primary-hover: #0f1a3e;
+      --primary-subtle: #F7F9FC;
+      --primary-border: #e6eaf5;
+      --secondary: #23326B;
+      --accent: #CFAC68;
+      --accent-hover: #E9C786;
+      --dark: #14204D;
+      --dark-deep: #0C1333;
+      --body: #4F555A;
+      --light: #6b7280;
+      --muted: #9ca3af;
+      --bg: #FFFFFF;
+      --bg-alt: #FAFAFA;
+      --bg-warm: #F7F9FC;
+      --border: #e6eaf5;
+      --footer-bg: #14204D;
       --heading: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      --body-font: 'Arimo', 'Roboto', 'Open Sans', 'Helvetica Neue', sans-serif;
-      --shadow-sm: 0 2px 4px rgba(0,0,0,0.06);
-      --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
-      --shadow-lg: 0 8px 32px rgba(0,0,0,0.10);
-      --radius: 4px;
-      --transition: 0.4s ease;
+      --body-font: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --shadow-sm: 0 2px 4px rgba(20,32,77,0.05);
+      --shadow-md: 0 6px 18px rgba(20,32,77,0.08);
+      --shadow-lg: 0 6px 18px rgba(20,32,77,0.15);
+      --radius: 0px;
+      --transition: 0.3s ease;
       --max-width: 1200px;
     }
 
@@ -74,8 +76,8 @@
       right: 32px;
       width: 48px;
       height: 48px;
-      background: var(--primary);
-      color: #fff;
+      background: var(--accent);
+      color: var(--primary);
       border: none;
       border-radius: 50%;
       cursor: pointer;
@@ -86,20 +88,20 @@
       visibility: hidden;
       transition: all var(--transition);
       z-index: 90;
-      box-shadow: 0 4px 16px rgba(77,133,168,0.3);
+      box-shadow: 0 4px 16px rgba(207,172,104,0.35);
     }
     .back-to-top.visible {
       opacity: 1;
       visibility: visible;
     }
     .back-to-top:hover {
-      background: var(--primary-hover);
+      background: var(--accent-hover);
       transform: translateY(-3px);
     }
     .back-to-top svg {
       width: 20px;
       height: 20px;
-      stroke: #fff;
+      stroke: var(--primary);
       fill: none;
       stroke-width: 2.5;
     }
@@ -143,10 +145,10 @@
       height: 34px;
     }
     .nav-cta {
-      background: var(--primary);
-      color: #fff;
+      background: var(--accent);
+      color: var(--primary);
       padding: 10px 24px;
-      border-radius: var(--radius);
+      border-radius: 0;
       font-weight: 700;
       font-size: 13px;
       letter-spacing: 2px;
@@ -156,7 +158,7 @@
       font-family: var(--body-font);
     }
     .nav-cta:hover {
-      background: var(--primary-hover);
+      background: var(--accent-hover);
       transform: translateY(-1px);
     }
 
@@ -173,13 +175,13 @@
       font-weight: 400;
     }
     .topbar strong {
-      color: var(--primary-hover);
+      color: var(--accent);
       font-weight: 600;
     }
 
     /* -- HERO -- */
     .hero {
-      background: linear-gradient(180deg, var(--bg) 0%, var(--bg-warm) 100%);
+      background: linear-gradient(180deg, var(--primary-subtle) 0%, var(--bg) 100%);
       padding: 80px 24px 100px;
       text-align: center;
     }
@@ -190,16 +192,16 @@
     .hero h1 {
       font-family: var(--heading);
       font-size: clamp(32px, 5vw, 52px);
-      font-weight: 700;
+      font-weight: 800;
       line-height: 1.15;
       color: var(--dark);
       margin-bottom: 24px;
-      letter-spacing: 0.75px;
+      letter-spacing: 1px;
       text-transform: uppercase;
     }
     .hero h1 em {
       font-style: normal;
-      color: var(--primary);
+      color: var(--accent);
     }
     .hero-sub {
       font-size: 19px;
@@ -226,18 +228,19 @@
       letter-spacing: 2px;
     }
     .btn-gold {
-      background: var(--primary);
-      color: #fff;
-      border: 2px solid var(--primary);
+      background: var(--accent);
+      color: var(--primary);
+      border: 2px solid var(--accent);
+      border-radius: 0;
     }
     .btn-gold:hover {
-      background: var(--primary-hover);
-      border-color: var(--primary-hover);
+      background: var(--accent-hover);
+      border-color: var(--accent-hover);
     }
     .btn-gold svg {
       width: 18px;
       height: 18px;
-      fill: #fff;
+      fill: var(--primary);
     }
     .hero-note {
       margin-top: 14px;
@@ -295,9 +298,9 @@
     .section-title {
       font-family: var(--heading);
       font-size: clamp(30px, 4vw, 46px);
-      font-weight: 700;
+      font-weight: 800;
       color: var(--dark);
-      letter-spacing: 0.75px;
+      letter-spacing: 1px;
       margin-bottom: 16px;
       line-height: 1.2;
       text-transform: uppercase;
@@ -332,7 +335,7 @@
     .pillar-icon {
       width: 52px;
       height: 52px;
-      border-radius: 14px;
+      border-radius: 0;
       background: var(--primary-subtle);
       display: flex;
       align-items: center;
@@ -355,7 +358,7 @@
       color: var(--dark);
       margin-bottom: 14px;
       text-transform: uppercase;
-      letter-spacing: 0.75px;
+      letter-spacing: 1px;
     }
     .pillar p {
       font-size: 15px;
@@ -380,10 +383,10 @@
     .airplane-header h2 {
       font-family: var(--heading);
       font-size: clamp(30px, 4vw, 46px);
-      font-weight: 700;
+      font-weight: 800;
       color: var(--dark);
       margin-bottom: 16px;
-      letter-spacing: 0.75px;
+      letter-spacing: 1px;
       line-height: 1.2;
       text-transform: uppercase;
     }
@@ -417,7 +420,7 @@
       font-weight: 700;
       letter-spacing: 1.5px;
       text-transform: uppercase;
-      color: var(--primary);
+      color: var(--accent);
       margin-bottom: 6px;
     }
     .airplane-card h3 {
@@ -427,7 +430,7 @@
       color: var(--dark);
       margin-bottom: 8px;
       text-transform: uppercase;
-      letter-spacing: 0.75px;
+      letter-spacing: 1px;
     }
     .airplane-card p {
       font-size: 14px;
@@ -463,10 +466,10 @@
       top: -20px;
       left: 0;
       font-size: 80px;
-      color: var(--primary);
+      color: var(--accent);
       font-family: var(--heading);
       line-height: 1;
-      opacity: 0.3;
+      opacity: 0.4;
     }
     .proof-attr {
       font-size: 15px;
@@ -494,12 +497,12 @@
     .form-left h2 {
       font-family: var(--heading);
       font-size: clamp(26px, 3.5vw, 36px);
-      font-weight: 700;
+      font-weight: 800;
       line-height: 1.25;
       color: var(--dark);
       margin-bottom: 20px;
       text-transform: uppercase;
-      letter-spacing: 0.75px;
+      letter-spacing: 1px;
     }
     .form-left > p {
       font-size: 17px;
@@ -534,7 +537,7 @@
     }
     .form-card {
       background: var(--bg);
-      border-radius: 16px;
+      border-radius: 0;
       padding: 44px;
       border: 1px solid var(--border);
       box-shadow: var(--shadow-lg);
@@ -547,7 +550,7 @@
       margin-bottom: 24px;
       text-align: center;
       text-transform: uppercase;
-      letter-spacing: 0.75px;
+      letter-spacing: 1px;
     }
     .form-row {
       display: grid;
@@ -570,7 +573,7 @@
       width: 100%;
       padding: 14px 16px;
       border: 1.5px solid var(--border);
-      border-radius: 8px;
+      border-radius: 0;
       font-size: 15px;
       font-family: var(--body-font);
       color: var(--dark);
@@ -582,7 +585,7 @@
     .form-group input:focus,
     .form-group select:focus {
       border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(77,133,168,0.1);
+      box-shadow: 0 0 0 3px rgba(20,32,77,0.1);
     }
     .form-group input::placeholder {
       color: var(--muted);
@@ -703,7 +706,7 @@
       font-size: 13px;
       transition: color var(--transition);
     }
-    .footer-nav a:hover { color: #97C4DE; }
+    .footer-nav a:hover { color: var(--accent); }
     .footer-col-side h4 {
       font-size: 13px;
       font-weight: 600;
@@ -721,7 +724,7 @@
       display: block;
       transition: color var(--transition);
     }
-    .footer-col-side a:hover { color: #97C4DE; }
+    .footer-col-side a:hover { color: var(--accent); }
     .footer-bottom {
       margin-top: 48px;
       padding-top: 32px;
