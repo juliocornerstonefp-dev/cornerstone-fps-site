@@ -116,9 +116,6 @@
       -webkit-backdrop-filter: blur(12px);
       transition: all 0.5s ease;
     }
-    header.scrolled {
-      box-shadow: var(--shadow-sm);
-    }
     .header-inner {
       max-width: var(--max-width);
       margin: 0 auto;
@@ -127,18 +124,10 @@
       align-items: center;
       justify-content: space-between;
       height: 80px;
-      transition: height 0.5s ease;
-    }
-    header.scrolled .header-inner {
-      height: 68px;
     }
     .nav-logo {
       height: 40px;
       width: auto;
-      transition: all 0.5s ease;
-    }
-    header.scrolled .nav-logo {
-      height: 34px;
     }
     .nav-links {
       display: flex;
@@ -689,7 +678,6 @@
     }
     @media (max-width: 768px) {
       .header-inner { height: 68px; }
-      header.scrolled .header-inner { height: 60px; }
       .hero { padding: 130px 20px 72px; }
       .hero h1 { font-size: 30px; }
       .form-section { padding: 80px 20px; }
@@ -926,10 +914,6 @@
 
   <script>
     // -- Header scroll state --
-    const header = document.querySelector('header');
-    window.addEventListener('scroll', () => {
-      header.classList.toggle('scrolled', window.scrollY > 10);
-    });
 
     // -- Scroll Reveal --
     const revealObserver = new IntersectionObserver((entries) => {

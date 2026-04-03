@@ -153,10 +153,7 @@
       z-index: 100;
       transition: all 0.4s ease;
     }
-    header:not(.scrolled) {
-      background: transparent;
-    }
-    header.scrolled {
+    header {
       background: rgba(255,255,255,0.97);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
@@ -172,18 +169,11 @@
       height: 88px;
       transition: height 0.4s ease;
     }
-    header.scrolled .header-inner {
-      height: 72px;
-    }
     .nav-logo {
       height: 44px;
       width: auto;
       transition: all 0.4s ease;
     }
-    header.scrolled .nav-logo {
-      height: 36px;
-    }
-    /* Blue logo shows on all states — no filter swap */
     .nav-links {
       display: flex;
       gap: 36px;
@@ -199,15 +189,7 @@
       letter-spacing: 0.5px;
       font-family: var(--body-font);
     }
-    header:not(.scrolled) .nav-links a {
-      color: rgba(255,255,255,0.85);
-    }
-    header:not(.scrolled) .nav-links a:hover {
-      color: var(--accent);
-    }
     .nav-links a:hover { color: var(--accent); }
-    header.scrolled .nav-links a:hover { color: var(--accent); }
-    header.scrolled .nav-links a.active { color: var(--accent); }
     .nav-cta {
       background: var(--accent) !important;
       color: var(--primary) !important;
@@ -223,15 +205,6 @@
     .nav-cta:hover {
       background: var(--accent-hover) !important;
       border-color: var(--accent-hover) !important;
-      color: #fff !important;
-    }
-    header:not(.scrolled) .nav-cta {
-      background: var(--accent) !important;
-      border: 2px solid var(--accent) !important;
-      color: var(--primary) !important;
-    }
-    header:not(.scrolled) .nav-cta:hover {
-      background: var(--accent-hover) !important;
       color: #fff !important;
     }
 
@@ -257,9 +230,6 @@
       position: absolute;
       left: 0;
       transition: all 0.3s ease;
-    }
-    header:not(.scrolled) .hamburger span {
-      background: #fff;
     }
     .hamburger span:nth-child(1) { top: 0; }
     .hamburger span:nth-child(2) { top: 8px; }
@@ -1192,7 +1162,6 @@
     }
     @media (max-width: 768px) {
       .header-inner { height: 68px; }
-      header.scrolled .header-inner { height: 60px; }
       .hero h1 { font-size: 32px; }
       .card-grid { grid-template-columns: 1fr; }
       .strat-card { height: 280px; }
@@ -1568,19 +1537,6 @@
   </footer>
 
   <script>
-    // ── Header: IntersectionObserver for transparent → solid ──
-    const header = document.querySelector('header');
-    const heroSection = document.getElementById('hero-section');
-    const heroObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          header.classList.remove('scrolled');
-        } else {
-          header.classList.add('scrolled');
-        }
-      });
-    }, { threshold: 0 });
-    heroObserver.observe(heroSection);
 
     // ── Scroll Reveal ──
     const revealObserver = new IntersectionObserver((entries) => {
