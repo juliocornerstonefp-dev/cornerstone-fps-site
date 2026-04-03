@@ -12,38 +12,39 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Arimo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --gold: #B8860B;
-      --gold-hover: #D4A843;
-      --gold-subtle: #F8F3E8;
-      --gold-border: #E8D5A8;
-      --dark: #1A1A1A;
-      --dark-deep: #111111;
-      --body: #4A4A4A;
-      --light: #7A7A7A;
-      --muted: #A0A0A0;
-      --bg: #FFFFFF;
-      --bg-alt: #FAFAF8;
-      --bg-warm: #F5F3EE;
-      --border: #EDEBE6;
-      --footer-bg: #1E1A14;
-      --serif: 'Playfair Display', Georgia, serif;
-      --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
-      --shadow-md: 0 4px 16px rgba(0,0,0,0.06);
-      --shadow-lg: 0 12px 40px rgba(0,0,0,0.08);
-      --radius: 10px;
-      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --primary: #4D85A8;
+      --primary-hover: #3A6F92;
+      --primary-subtle: #E8F1F5;
+      --primary-border: #B8D4E3;
+      --secondary: #182038;
+      --dark: #182038;
+      --dark-deep: #0F1525;
+      --body: #666064;
+      --light: #888488;
+      --muted: #A09CA0;
+      --bg: #FEFEFE;
+      --bg-alt: #F7F9FB;
+      --bg-warm: #F0F4F7;
+      --border: #E0E6EC;
+      --footer-bg: #182038;
+      --heading: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --body-font: 'Arimo', 'Roboto', 'Open Sans', 'Helvetica Neue', sans-serif;
+      --shadow-sm: 0 2px 4px rgba(0,0,0,0.06);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+      --shadow-lg: 0 8px 32px rgba(0,0,0,0.10);
+      --radius: 4px;
+      --transition: 0.4s ease;
       --max-width: 1200px;
     }
 
     html { scroll-behavior: smooth; }
     body {
-      font-family: var(--sans);
+      font-family: var(--body-font);
       background: var(--bg);
       color: var(--dark);
       -webkit-font-smoothing: antialiased;
@@ -71,7 +72,7 @@
       right: 32px;
       width: 48px;
       height: 48px;
-      background: var(--gold);
+      background: var(--primary);
       color: #fff;
       border: none;
       border-radius: 50%;
@@ -83,14 +84,14 @@
       visibility: hidden;
       transition: all var(--transition);
       z-index: 90;
-      box-shadow: 0 4px 16px rgba(184,134,11,0.3);
+      box-shadow: 0 4px 16px rgba(77,133,168,0.3);
     }
     .back-to-top.visible {
       opacity: 1;
       visibility: visible;
     }
     .back-to-top:hover {
-      background: var(--gold-hover);
+      background: var(--primary-hover);
       transform: translateY(-3px);
     }
     .back-to-top svg {
@@ -133,6 +134,7 @@
       height: 40px;
       width: auto;
       transition: all 0.5s ease;
+      filter: sepia(1) saturate(3) hue-rotate(170deg) brightness(0.7);
     }
     header.scrolled .nav-logo {
       height: 34px;
@@ -151,20 +153,20 @@
       text-transform: uppercase;
       letter-spacing: 0.5px;
     }
-    .nav-links a:hover { color: var(--gold); }
+    .nav-links a:hover { color: var(--primary); }
     .nav-cta {
-      background: var(--gold) !important;
+      background: var(--primary) !important;
       color: #fff !important;
       padding: 10px 24px !important;
-      border-radius: 6px;
-      font-weight: 600 !important;
+      border-radius: var(--radius);
+      font-weight: 700 !important;
       font-size: 13px !important;
-      letter-spacing: 0.5px;
+      letter-spacing: 2px;
       transition: all var(--transition) !important;
       text-transform: uppercase !important;
     }
     .nav-cta:hover {
-      background: var(--gold-hover) !important;
+      background: var(--primary-hover) !important;
       transform: translateY(-1px) !important;
     }
 
@@ -219,7 +221,7 @@
     .hero-bg {
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 25%, #0f3460 50%, #1a1a2e 100%);
+      background: linear-gradient(135deg, #182038 0%, #1E2A48 25%, #2A4A68 50%, #182038 100%);
     }
     .hero-overlay {
       position: absolute;
@@ -233,13 +235,14 @@
       margin: 0 auto;
     }
     .hero h1 {
-      font-family: var(--serif);
+      font-family: var(--heading);
       font-size: clamp(30px, 5vw, 50px);
-      font-weight: 600;
+      font-weight: 700;
       line-height: 1.15;
       color: #fff;
       margin-bottom: 24px;
-      letter-spacing: -0.5px;
+      letter-spacing: 0.75px;
+      text-transform: uppercase;
     }
     .hero-sub {
       font-size: 18px;
@@ -263,7 +266,7 @@
       font-weight: 500;
       color: rgba(255,255,255,0.75);
     }
-    .badge-item svg { width: 18px; height: 18px; stroke: var(--gold); fill: none; stroke-width: 2; }
+    .badge-item svg { width: 18px; height: 18px; stroke: var(--primary); fill: none; stroke-width: 2; }
 
     /* -- BUTTONS -- */
     .btn {
@@ -271,25 +274,25 @@
       align-items: center;
       gap: 8px;
       padding: 16px 32px;
-      border-radius: 0;
+      border-radius: var(--radius);
       font-size: 14px;
-      font-weight: 600;
+      font-weight: 700;
       text-decoration: none;
       transition: all var(--transition);
       border: none;
       cursor: pointer;
-      font-family: var(--sans);
+      font-family: var(--body-font);
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      letter-spacing: 2px;
     }
     .btn-gold {
-      background: var(--gold);
+      background: var(--primary);
       color: #fff;
-      border: 2px solid var(--gold);
+      border: 2px solid var(--primary);
     }
     .btn-gold:hover {
-      background: var(--gold-hover);
-      border-color: var(--gold-hover);
+      background: var(--primary-hover);
+      border-color: var(--primary-hover);
     }
 
     /* -- FORM SECTION -- */
@@ -306,12 +309,14 @@
       align-items: start;
     }
     .form-left h2 {
-      font-family: var(--serif);
+      font-family: var(--heading);
       font-size: clamp(26px, 3.5vw, 36px);
-      font-weight: 600;
+      font-weight: 700;
       line-height: 1.25;
       color: var(--dark);
       margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.75px;
     }
     .form-left > p {
       font-size: 17px;
@@ -335,7 +340,7 @@
       font-weight: 400;
       line-height: 1.5;
     }
-    .benefit-list svg { width: 20px; height: 20px; stroke: var(--gold); fill: none; stroke-width: 2; flex-shrink: 0; margin-top: 2px; }
+    .benefit-list svg { width: 20px; height: 20px; stroke: var(--primary); fill: none; stroke-width: 2; flex-shrink: 0; margin-top: 2px; }
 
     .form-card {
       background: var(--bg);
@@ -345,12 +350,14 @@
       box-shadow: var(--shadow-lg);
     }
     .form-card h3 {
-      font-family: var(--serif);
+      font-family: var(--heading);
       font-size: 22px;
-      font-weight: 500;
+      font-weight: 700;
       color: var(--dark);
       margin-bottom: 24px;
       text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 0.75px;
     }
     .form-group { margin-bottom: 18px; }
     .form-group label {
@@ -367,7 +374,7 @@
       border: 1.5px solid var(--border);
       border-radius: 8px;
       font-size: 15px;
-      font-family: var(--sans);
+      font-family: var(--body-font);
       color: var(--dark);
       background: var(--bg);
       transition: all 0.2s;
@@ -376,8 +383,8 @@
     }
     .form-group input:focus,
     .form-group select:focus {
-      border-color: var(--gold);
-      box-shadow: 0 0 0 3px rgba(184,134,11,0.1);
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(77,133,168,0.1);
     }
     .form-group input::placeholder { color: var(--muted); }
     .sms-opt {
@@ -386,28 +393,29 @@
       gap: 10px;
       margin: 20px 0;
     }
-    .sms-opt input[type="checkbox"] { width: 18px; height: 18px; margin-top: 2px; flex-shrink: 0; accent-color: var(--gold); }
+    .sms-opt input[type="checkbox"] { width: 18px; height: 18px; margin-top: 2px; flex-shrink: 0; accent-color: var(--primary); }
     .sms-opt label { font-size: 12px; color: var(--light); font-weight: 400; margin: 0; line-height: 1.6; }
-    .sms-opt a { color: var(--gold); }
+    .sms-opt a { color: var(--primary); }
     .form-submit {
       width: 100%;
       padding: 16px;
-      background: var(--gold);
+      background: var(--primary);
       color: #fff;
       border: none;
-      border-radius: 8px;
+      border-radius: var(--radius);
       font-size: 16px;
-      font-weight: 600;
-      font-family: var(--sans);
+      font-weight: 700;
+      font-family: var(--body-font);
       cursor: pointer;
       transition: all var(--transition);
       margin-top: 8px;
-      box-shadow: 0 2px 12px rgba(184,134,11,0.25);
+      box-shadow: 0 2px 12px rgba(77,133,168,0.25);
+      letter-spacing: 2px;
     }
     .form-submit:hover {
-      background: var(--gold-hover);
+      background: var(--primary-hover);
       transform: translateY(-1px);
-      box-shadow: 0 6px 20px rgba(184,134,11,0.3);
+      box-shadow: 0 6px 20px rgba(77,133,168,0.3);
     }
     .form-note {
       text-align: center;
@@ -428,11 +436,13 @@
       margin-bottom: 64px;
     }
     .learn-header h2 {
-      font-family: var(--serif);
+      font-family: var(--heading);
       font-size: clamp(28px, 3.5vw, 40px);
-      font-weight: 600;
+      font-weight: 700;
       color: var(--dark);
       margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.75px;
     }
     .learn-header p {
       font-size: 18px;
@@ -457,25 +467,27 @@
     .learn-card:hover {
       transform: translateY(-4px);
       box-shadow: var(--shadow-md);
-      border-color: var(--gold-border);
+      border-color: var(--primary-border);
     }
     .learn-icon {
       width: 48px;
       height: 48px;
       border-radius: 12px;
-      background: var(--gold-subtle);
+      background: var(--primary-subtle);
       display: flex;
       align-items: center;
       justify-content: center;
       margin-bottom: 20px;
     }
-    .learn-icon svg { width: 24px; height: 24px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
+    .learn-icon svg { width: 24px; height: 24px; stroke: var(--primary); fill: none; stroke-width: 1.5; }
     .learn-card h3 {
-      font-family: var(--serif);
+      font-family: var(--heading);
       font-size: 20px;
-      font-weight: 500;
+      font-weight: 700;
       color: var(--dark);
       margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.75px;
     }
     .learn-card p {
       font-size: 15px;
@@ -495,11 +507,13 @@
       text-align: center;
     }
     .why-now-inner h2 {
-      font-family: var(--serif);
+      font-family: var(--heading);
       font-size: clamp(26px, 3.5vw, 36px);
-      font-weight: 600;
+      font-weight: 700;
       color: var(--dark);
       margin-bottom: 24px;
+      text-transform: uppercase;
+      letter-spacing: 0.75px;
     }
     .why-now-inner > p {
       font-size: 17px;
@@ -523,11 +537,13 @@
       text-align: center;
     }
     .advisor-inner h2 {
-      font-family: var(--serif);
+      font-family: var(--heading);
       font-size: 26px;
-      font-weight: 500;
+      font-weight: 700;
       color: var(--dark);
       margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.75px;
     }
     .advisor-inner p {
       font-size: 17px;
@@ -601,7 +617,7 @@
       font-size: 13px;
       transition: color var(--transition);
     }
-    .footer-nav a:hover { color: var(--gold); }
+    .footer-nav a:hover { color: #97C4DE; }
     .footer-col-side h4 {
       font-size: 13px;
       font-weight: 600;
@@ -619,7 +635,7 @@
       display: block;
       transition: color var(--transition);
     }
-    .footer-col-side a:hover { color: var(--gold); }
+    .footer-col-side a:hover { color: #97C4DE; }
     .footer-bottom {
       margin-top: 48px;
       padding-top: 32px;
