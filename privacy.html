@@ -45,7 +45,7 @@
       top: 0;
       z-index: 100;
     }
-    .nav-logo { height: 36px; width: auto; }
+    .nav-logo { height: 44px; width: auto; transition: all 0.4s ease; }
     .nav-right { display: flex; gap: 32px; align-items: center; }
     .nav-right a {
       color: var(--light);
@@ -205,7 +205,7 @@
   <!-- Nav -->
   <nav>
     <a href="/">
-      <img class="nav-logo" src="logo-blue.svg" alt="Cornerstone Financial Partners" style="height:36px;width:auto;">
+      <img class="nav-logo" src="logo-color.svg" alt="Cornerstone Financial Partners">
     </a>
     <button class="mobile-menu" onclick="document.querySelector('.nav-right').classList.toggle('open')" aria-label="Menu">
       <svg viewBox="0 0 24 24"><path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z"/></svg>
