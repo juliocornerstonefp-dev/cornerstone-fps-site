@@ -104,10 +104,42 @@
       stroke-width: 2.5;
     }
 
+    /* ── UTILITY BAR ── */
+    .utility-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 101;
+      background: var(--bg-warm);
+      border-bottom: 1px solid var(--border);
+      transition: transform 0.3s ease;
+    }
+    .utility-bar.hidden { transform: translateY(-100%); }
+    .utility-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 48px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      font-family: var(--body-font);
+      font-size: 12px;
+      color: var(--body);
+      letter-spacing: 0.3px;
+    }
+    .utility-item { white-space: nowrap; }
+    .utility-sep {
+      margin: 0 12px;
+      opacity: 0.3;
+    }
+
     /* ── HEADER (starts solid on subpages) ── */
     header {
       position: fixed;
-      top: 0;
+      top: 36px;
       left: 0;
       right: 0;
       z-index: 100;
@@ -117,6 +149,10 @@
       box-shadow: var(--shadow-sm);
       transition: all 0.5s ease;
     }
+    header.scrolled {
+      top: 0;
+      box-shadow: var(--shadow-md);
+    }
     .header-inner {
       max-width: var(--max-width);
       margin: 0 auto;
@@ -124,7 +160,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 68px;
+      height: 76px;
       transition: height 0.5s ease;
     }
     .nav-logo {
@@ -626,6 +662,7 @@
 
     /* ── MOBILE ── */
     @media (max-width: 991px) {
+      .utility-inner { padding: 0 24px; }
       .header-inner { padding: 0 24px; }
       .nav-links {
         display: none;
@@ -637,7 +674,7 @@
         bottom: 0;
         background: rgba(255,255,255,0.98);
         backdrop-filter: blur(12px);
-        padding: 100px 40px 40px;
+        padding: 120px 40px 40px;
         gap: 24px;
         z-index: 99;
         align-items: flex-start;
@@ -661,11 +698,17 @@
       footer { padding: 48px 24px 32px; }
     }
     @media (max-width: 768px) {
+      .utility-bar { height: 32px; }
+      .utility-inner { height: 32px; font-size: 11px; }
+      header { top: 32px; }
+      header.scrolled { top: 0; }
       .header-inner { height: 68px; }
       .page-hero h1 { font-size: 32px; }
       .footer-center { padding: 0 20px; }
     }
     @media (max-width: 480px) {
+      .utility-nationwide { display: none; }
+      .utility-sep.hide-mobile { display: none; }
       .page-hero h1 { font-size: 28px; }
     }
   </style>
@@ -676,6 +719,17 @@
   <button class="back-to-top" aria-label="Back to top">
     <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
   </button>
+
+  <!-- Utility Bar -->
+  <div class="utility-bar" id="utilityBar">
+    <div class="utility-inner">
+      <span class="utility-item">Licensed Fiduciary</span>
+      <span class="utility-sep">|</span>
+      <span class="utility-item">15+ Years Experience</span>
+      <span class="utility-sep hide-mobile">|</span>
+      <span class="utility-item utility-nationwide">Virtual Consultations Nationwide</span>
+    </div>
+  </div>
 
   <!-- Header (solid on subpages) -->
   <header>
@@ -883,8 +937,18 @@
 
     // ── Back to Top ──
     const backToTop = document.querySelector('.back-to-top');
+    const utilityBar = document.getElementById('utilityBar');
+    const headerEl = document.querySelector('header');
     window.addEventListener('scroll', () => {
-      backToTop.classList.toggle('visible', window.scrollY > 600);
+      const y = window.scrollY;
+      if (y > 80) {
+        utilityBar.classList.add('hidden');
+        headerEl.classList.add('scrolled');
+      } else {
+        utilityBar.classList.remove('hidden');
+        headerEl.classList.remove('scrolled');
+      }
+      backToTop.classList.toggle('visible', y > 600);
     });
     backToTop.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });

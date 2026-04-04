@@ -32,6 +32,32 @@
     html { scroll-behavior: smooth; }
     body { font-family: var(--sans); background: var(--bg); color: var(--dark); -webkit-font-smoothing: antialiased; }
 
+    /* ── UTILITY BAR ── */
+    .utility-bar {
+      position: sticky;
+      top: 0;
+      z-index: 101;
+      background: var(--bg-warm);
+      border-bottom: 1px solid var(--border);
+      transition: transform 0.3s ease;
+    }
+    .utility-bar.hidden { transform: translateY(-100%); position: fixed; }
+    .utility-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--sans);
+      font-size: 12px;
+      color: var(--body);
+      letter-spacing: 0.3px;
+    }
+    .utility-item { white-space: nowrap; }
+    .utility-sep { margin: 0 12px; opacity: 0.3; }
+
     /* ── NAV ── */
     nav {
       background: var(--bg);
@@ -42,9 +68,11 @@
       justify-content: space-between;
       height: 64px;
       position: sticky;
-      top: 0;
+      top: 36px;
       z-index: 100;
+      transition: top 0.3s ease, box-shadow 0.3s ease;
     }
+    nav.scrolled { top: 0; box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
     .nav-logo { height: 44px; width: auto; transition: all 0.4s ease; }
     .nav-right { display: flex; gap: 32px; align-items: center; }
     .nav-right a {
@@ -179,7 +207,11 @@
 
     /* ── MOBILE ── */
     @media (max-width: 768px) {
-      nav { padding: 0 20px; }
+      .utility-inner { padding: 0 20px; height: 32px; font-size: 11px; }
+      nav { padding: 0 20px; top: 32px; }
+      nav.scrolled { top: 0; }
+      .utility-nationwide { display: none; }
+      .utility-sep.hide-mobile { display: none; }
       .nav-right {
         display: none;
         flex-direction: column;
@@ -205,8 +237,19 @@
 </head>
 <body>
 
+  <!-- Utility Bar -->
+  <div class="utility-bar" id="utilityBar">
+    <div class="utility-inner">
+      <span class="utility-item">Licensed Fiduciary</span>
+      <span class="utility-sep">|</span>
+      <span class="utility-item">15+ Years Experience</span>
+      <span class="utility-sep hide-mobile">|</span>
+      <span class="utility-item utility-nationwide">Virtual Consultations Nationwide</span>
+    </div>
+  </div>
+
   <!-- Nav -->
-  <nav>
+  <nav id="mainNav">
     <a href="/">
       <img class="nav-logo" src="logo-color.svg" alt="Cornerstone Financial Partners">
     </a>
@@ -214,11 +257,11 @@
       <svg viewBox="0 0 24 24"><path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z"/></svg>
     </button>
     <div class="nav-right">
-      <a href="/">Home</a>
-      <a href="/annuity">Guaranteed Income</a>
-      <a href="/iul">Tax-Free Growth</a>
+      <a href="/approach">Our Approach</a>
+      <a href="/services">Services</a>
+      <a href="/about">About</a>
       <a href="https://calculator.cornerstone-fps.com">Calculator</a>
-      <a href="/#contact" class="nav-cta">Schedule a Call</a>
+      <a href="/#start" class="nav-cta">Book a Free Call</a>
     </div>
   </nav>
 
@@ -338,5 +381,18 @@
     </p>
   </footer>
 
+<script>
+  const utilityBar = document.getElementById('utilityBar');
+  const navEl = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 80) {
+      utilityBar.classList.add('hidden');
+      navEl.classList.add('scrolled');
+    } else {
+      utilityBar.classList.remove('hidden');
+      navEl.classList.remove('scrolled');
+    }
+  });
+</script>
 </body>
 </html>

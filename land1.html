@@ -106,10 +106,42 @@
       stroke-width: 2.5;
     }
 
+    /* ── UTILITY BAR ── */
+    .utility-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 101;
+      background: var(--bg-warm);
+      border-bottom: 1px solid var(--border);
+      transition: transform 0.3s ease;
+    }
+    .utility-bar.hidden { transform: translateY(-100%); }
+    .utility-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 48px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      font-family: var(--body-font);
+      font-size: 12px;
+      color: var(--body);
+      letter-spacing: 0.3px;
+    }
+    .utility-item { white-space: nowrap; }
+    .utility-sep {
+      margin: 0 12px;
+      opacity: 0.3;
+    }
+
     /* -- HEADER (solid for landing page) -- */
     header {
       position: sticky;
-      top: 0;
+      top: 36px;
       left: 0;
       right: 0;
       z-index: 100;
@@ -119,6 +151,10 @@
       border-bottom: 1px solid transparent;
       transition: all 0.5s ease;
     }
+    header.scrolled {
+      top: 0;
+      box-shadow: 0 6px 18px rgba(20,32,77,0.08);
+    }
     .header-inner {
       max-width: var(--max-width);
       margin: 0 auto;
@@ -126,7 +162,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 80px;
+      height: 76px;
     }
     .nav-logo {
       height: 44px;
@@ -743,6 +779,9 @@
       footer { padding: 48px 24px 32px; }
     }
     @media (max-width: 768px) {
+      .utility-inner { padding: 0 20px; font-size: 11px; }
+      .utility-sep.hide-mobile { display: none; }
+      .utility-item.utility-nationwide { display: none; }
       .header-inner { height: 68px; }
       .hero { padding: 64px 20px 88px; }
       .hero h1 { font-size: 30px; }
@@ -777,6 +816,17 @@
   <!-- Topbar -->
   <div class="topbar">
     <strong>Limited Availability</strong> — Free retirement clarity sessions for adults 55+ with $250K+ saved
+  </div>
+
+  <!-- Utility Bar -->
+  <div class="utility-bar" id="utilityBar">
+    <div class="utility-inner">
+      <span class="utility-item">Licensed Fiduciary</span>
+      <span class="utility-sep">|</span>
+      <span class="utility-item">15+ Years Experience</span>
+      <span class="utility-sep hide-mobile">|</span>
+      <span class="utility-item utility-nationwide">Virtual Consultations Nationwide</span>
+    </div>
   </div>
 
   <!-- Header -->
@@ -1014,7 +1064,9 @@
   </footer>
 
   <script>
-    // -- Header scroll effect --
+    // -- Utility Bar + Header scroll effect --
+    const utilityBar = document.getElementById('utilityBar');
+    const headerEl = document.querySelector('header');
 
     // -- Scroll Reveal --
     const revealObserver = new IntersectionObserver((entries) => {
@@ -1030,7 +1082,15 @@
     // -- Back to Top --
     const backToTop = document.querySelector('.back-to-top');
     window.addEventListener('scroll', () => {
-      backToTop.classList.toggle('visible', window.scrollY > 600);
+      const y = window.scrollY;
+      backToTop.classList.toggle('visible', y > 600);
+      if (y > 80) {
+        utilityBar.classList.add('hidden');
+        headerEl.classList.add('scrolled');
+      } else {
+        utilityBar.classList.remove('hidden');
+        headerEl.classList.remove('scrolled');
+      }
     });
     backToTop.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
